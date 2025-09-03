@@ -1,0 +1,8 @@
+.card {
+    height: 300px;
+}
+
+.card > img {
+    height: 300px;
+    object-fit: fill;
+}
