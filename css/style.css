@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-background: #000000;
+    --electric-blue: #1E90FF;
+    --neon-green: #39FF14;
+    --primary-text: #FFFFFF;
+    --secondary-text: #D3D3D3;
+    --primary-font: 'Roboto', sans-serif;
+    --heading-font: 'Orbitron', sans-serif;
+}
