@@ -8,9 +8,12 @@
 
 :root {
   --primary-background: #000000;
+  --dark-electric-blue: #0a4d90;
   --electric-blue: #1e90ff;
   --electric-light-blue: #8dc2f7;
+  --light-green: #a1f0c6;
   --neon-green: #3fe48c;
+  --dark-green: #125d35;
   --primary-text: #ffffff;
   --secondary-text: #d3d3d3;
   --light-gray: #ecebeb;
@@ -18,6 +21,7 @@
   --heading-font: "Orbitron", sans-serif;
   --light-gray: #e8e8e8;
   --main-padding: 4rem 2em;
+  font-family: "Roboto", Helvetica, arial, sans-serif;
 }
 
 /* Navegación */
@@ -55,6 +59,7 @@
 }
 
 /* Main */
+
 main {
   min-height: 60vh;
 }
@@ -87,13 +92,70 @@ footer a {
 }
 
 #newsletter-button {
-    background-color: var(--neon-green);
-    border: none;
+  background-color: var(--neon-green);
+  border: none;
 }
 
 #payment-logos {
-    max-width: 200px;
+  max-width: 200px;
 }
 
 /* Administracion */
 
+#admin-dashboard {
+  min-height: 80vh;
+}
+
+#admin-content h1 {
+  color: var(--primary-font);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+#admin-menu {
+  background-color: var(--dark-electric-blue);
+  padding: var(--main-padding);
+  color: var(--electric-light-blue);
+  min-width: 20vw;
+}
+
+#admin-menu ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#admin-menu ul li {
+  margin-bottom: 1rem;
+}
+
+#admin-menu ul li a {
+  color: var(--electric-light-blue);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+#admin-menu ul li a:hover {
+  color: var(--electric-blue);
+}
+
+#admin-menu h2 {
+  color: var(--neon-green);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+#admin-menu .dashboard-active {
+  font-weight: 700;
+  color: var(--neon-green);
+}
+
+#admin-content {
+  padding: var(--main-padding);
+}
+
+.table-responsive .table .dark-green-background {
+  background-color: var(--dark-green) !important;
+  color: var(--primary-text);
+}

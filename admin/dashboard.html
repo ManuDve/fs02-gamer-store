@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Gamer</title>
+    <title>Tienda Level-Up Gamer - Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
@@ -14,7 +14,7 @@
     <nav id="nav" class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img id="logo-nav" src="./img/logo.jpeg" alt="LevelUp Gamer Logo">
+                <img id="logo-nav" src="./../img/logo.jpeg" alt="LevelUp Gamer Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,43 +23,91 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav d-flex">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./index.html">Inicio</a>
+                        <a class="nav-link" aria-current="page" href="./../index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./store/products.html">Productos</a>
+                        <a class="nav-link" href="./../store/products.html">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./blog/home.html">Blog</a>
+                        <a class="nav-link" href="./../blog/home.html">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./store/contact.html">Contacto</a>
+                        <a class="nav-link" href="./../store/contact.html">Contacto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./auth/login.html">Login</a>
+                        <a class="nav-link" href="./../auth/login.html">Login</a>
                     </li>
                     <li class="nav-item ms-lg-auto">
-                        <a class="nav-link" href="./admin/dashboard.html">Admin</a>
+                        <a class="nav-link active" href="./../admin/dashboard.html">Admin</a>
                     </li>
                 </ul>
+                <div id="shopping-cart-container" class="px-lg-3">
+                    <a href="./../store/cart.html" class="d-flex gap-1 align-items-center">
+                        <img src="./../img/cart.svg" alt="icono de carro de compras">
+                        <div>
+                            Carro&nbsp;(0)
+                        </div>
+
+                    </a>
+                </div>
                 <div>
 
                 </div>
             </div>
         </div>
     </nav>
-    <div class="container d-flex">
-        <aside>
+    <div class="container-fluid d-flex g-0 flex-column flex-lg-row" id="admin-dashboard">
+        <aside id="admin-menu">
             <h2>Panel de Administración</h2>
             <ul>
-                <li><a href="./dashboard.html">Inicio</a></li>
+                <li><a href="./dashboard.html" class="dashboard-active">Inicio</a></li>
                 <li><a href="./users.html">Usuarios</a></li>
                 <li><a href="./products.html">Productos</a></li>
             </ul>
         </aside>
-        <section>
+        <section id="admin-content">
             <h1>Hola Administrador</h1>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus, exercitationem. Excepturi quis, iure eaque libero iusto sequi exercitationem aut corporis qui pariatur, voluptate ex eos vitae voluptates. Tempora, omnis dolor?
+                Distinctio exercitationem.
+            </p>
         </section>
     </div>
+        <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4 pb-4">
+                    <strong>Tienda Level-Up Gaming</strong>
+                    <ul>
+                        <li>Álvarez 2336, Viña del Mar, Chile.</li>
+                        <img class="py-1" src="./../img/payment.png" id="payment-logos" alt="payment sytem logo">
+                    </ul>
+                </div>
+                <div class="col-12 col-md-4 pb-4">
+                    <strong>Contáctanos</strong>
+                    <ul>
+                        <li>
+                            +569 9999 0000
+                        </li>
+                        <li>
+                            <a href="mailto:contacto@lupgamer.cl">contacto@lupgamer.cl</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-4">
+                    <strong>Newsletter</strong>
+                    <form>
+                        <div class="mb-3 py-3">
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                            <div>Ingresa tu correo para suscribirte.</div>
+                        </div>
+                        <button type="submit" id="newsletter-button" class="btn btn-primary">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
