@@ -9,9 +9,51 @@
 :root {
     --primary-background: #000000;
     --electric-blue: #1E90FF;
-    --neon-green: #39FF14;
+    --electric-light-blue: #8dc2f7;
     --primary-text: #FFFFFF;
     --secondary-text: #D3D3D3;
+    --light-gray: #ecebeb;
     --primary-font: 'Roboto', sans-serif;
     --heading-font: 'Orbitron', sans-serif;
+    --light-gray: #e8e8e8;
+    --main-padding: 4rem 2em;
+}
+
+/* Navegación */
+
+#nav {
+    box-shadow: #00000009 5px 5px 5px;
+}
+
+#logo-nav {
+    max-height: 80px;
+}
+
+.nav-link:hover {
+    color: var(--electric-light-blue);
+}
+
+.navbar-nav .nav-item .active {
+    color: var(--electric-blue);
+}
+
+.navbar-nav {
+    width: 100%;
+}
+
+/* Main */
+main {
+    min-height: 60vh;
+}
+
+/* Footer */
+
+footer {
+    background-color: var(--electric-blue);
+    padding: var(--main-padding);
+    color: var(--primary-text);
+}
+
+footer #container {
+        color: var(--electric-light-blue);
 }
