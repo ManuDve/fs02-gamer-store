@@ -1,59 +1,84 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    --primary-background: #000000;
-    --electric-blue: #1E90FF;
-    --electric-light-blue: #8dc2f7;
-    --primary-text: #FFFFFF;
-    --secondary-text: #D3D3D3;
-    --light-gray: #ecebeb;
-    --primary-font: 'Roboto', sans-serif;
-    --heading-font: 'Orbitron', sans-serif;
-    --light-gray: #e8e8e8;
-    --main-padding: 4rem 2em;
+  --primary-background: #000000;
+  --electric-blue: #1e90ff;
+  --electric-light-blue: #8dc2f7;
+  --neon-green: #3fe48c;
+  --primary-text: #ffffff;
+  --secondary-text: #d3d3d3;
+  --light-gray: #ecebeb;
+  --primary-font: "Roboto", sans-serif;
+  --heading-font: "Orbitron", sans-serif;
+  --light-gray: #e8e8e8;
+  --main-padding: 4rem 2em;
 }
 
 /* Navegación */
 
 #nav {
-    box-shadow: #00000009 5px 5px 5px;
+  box-shadow: #00000009 5px 5px 5px;
 }
 
 #logo-nav {
-    max-height: 80px;
+  max-height: 80px;
 }
 
 .nav-link:hover {
-    color: var(--electric-light-blue);
+  color: var(--electric-light-blue);
 }
 
 .navbar-nav .nav-item .active {
-    color: var(--electric-blue);
+  color: var(--electric-blue);
 }
 
 .navbar-nav {
-    width: 100%;
+  width: 100%;
 }
 
 /* Main */
 main {
-    min-height: 60vh;
+  min-height: 60vh;
 }
 
 /* Footer */
 
 footer {
-    background-color: var(--electric-blue);
-    padding: var(--main-padding);
-    color: var(--primary-text);
+  background-color: var(--electric-blue);
+  padding: var(--main-padding);
+  color: var(--electric-light-blue);
 }
 
-footer #container {
-        color: var(--electric-light-blue);
+footer .container {
+  color: var(--primary-text);
+}
+
+footer .container strong {
+  color: var(--neon-green);
+}
+
+footer .container ul {
+  padding-top: 1rem;
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+footer a {
+  color: var(--neon-green);
+}
+
+#newsletter-button {
+    background-color: var(--neon-green);
+    border: none;
+}
+
+#payment-logos {
+    max-width: 200px;
 }
