@@ -83,3 +83,35 @@ footer a {
 #payment-logos {
     max-width: 200px;
 }
+
+/* Login */
+#logo-login {
+    max-width: 200px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--electric-blue);
+    margin-top: 2rem;
+    margin-bottom: 2em;
+}
+
+#login-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--light-gray);
+    border-radius: 10px;
+    box-shadow: 0 0 2px var(--primary-background);
+    margin-bottom: 1rem;
+}
+
+#login-button {
+    background-color: var(--electric-blue);
+    color: var(--primary-text);
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-top: 0,5rem;
+}
