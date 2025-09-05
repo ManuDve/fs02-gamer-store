@@ -21,8 +21,25 @@
 }
 
 /* Products styles */
+.products h1, .products h2 {
+    font-family: var(--heading-font);
+}
+
+.products h5, .products p {
+    font-family: var(--primary-font);
+}
+
+.products .btn {
+    display: block;
+    margin: 0 auto;
+    background-color: var(--electric-blue);
+    border: none;
+    color: var(--primary-text);
+    font-family: var(--primary-font);
+}
+
 .products .card {
-  height: 360px;
+  height: 370px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
