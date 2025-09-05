@@ -36,6 +36,7 @@
 
 .navbar-nav .nav-item .active {
   color: var(--electric-blue);
+  font-weight: 700;
 }
 
 .navbar-nav {
