@@ -15,3 +15,15 @@
     --primary-font: 'Roboto', sans-serif;
     --heading-font: 'Orbitron', sans-serif;
 }
+
+h1 {
+    color: red;
+}
+
+.titulo-principal {
+    color: blue;
+}
+
+#texto-verde {
+    color: green;
+}
