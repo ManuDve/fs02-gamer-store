@@ -28,6 +28,11 @@
   font-family: "Roboto", Helvetica, arial, sans-serif;
 }
 
+h1 {
+  font-size: 1.5rem;
+  font-family: var(--heading-font);
+}
+
 /* Navegación */
 
 #nav {
@@ -163,3 +168,5 @@ footer a {
   background-color: var(--dark-green) !important;
   color: var(--primary-text);
 }
+
+/* Contacto */
