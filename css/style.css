@@ -169,4 +169,22 @@ footer a {
   color: var(--primary-text);
 }
 
-/* Contacto */
+/* Blog */
+
+.btn-green {
+  background-color: var(--neon-green);
+  color: var(--primary-background);
+  border: none;
+}
+
+.btn-green:hover {
+  background-color: var(--light-green);
+  border: none;
+}
+
+.img-blog {
+  max-height: 400px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
