@@ -56,24 +56,28 @@
             </div>
         </div>
     </nav>
-    
+
     <header>
         <img id="logo-login" src="./../img/logo.jpeg" alt="Login Logo">
+        <!--<h1 class="text-center">Tienda Level-Up Gamer</h1>-->
     </header>
 
     <main>
         <div id="login-form" class="container-fluid">
-            <h6>Inicio de Sesión</h6>
-            <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Correo Electrónico</label>
+            <h1 class="text-center mb-4">Inicio de Sesión</h1>
+            <div class="form-floating mb-2">
+                <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" required>
+                <label for="floatingEmail">Correo Electrónico</label>
             </div>
-            <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Contraseña</label>
+            <div class="form-floating mb-2">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                <label for="floatingPassword">Contraseña</label>
             </div>
             <div class="container-fluid text-center mt-3">
-                <button type="button" id="login-button" onclick="location.href='./../index.html'">Ingresar</button>
+                <button type="submit" id="login-button">Ingresar</button>
+            </div>
+            <div class="container-fluid text-center mt-4">
+                <span>¿No tienes una cuenta? <a href="./register.html">Regístrate aquí</a></span>
             </div>
         </div>
     </main>
