@@ -4,14 +4,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Gamer</title>
+    <title>Tienda Level-Up Gamer</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
-    <h1>Auth - Register</h1>
+    <nav id="nav" class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img id="logo-nav" src="./../img/logo.jpeg" alt="LevelUp Gamer Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav d-flex">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="./../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./../store/products.html">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./../blog/home.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./../store/contact.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./../auth/login.html">Login</a>
+                    </li>
+                    <li class="nav-item ms-lg-auto">
+                        <a class="nav-link" href="./../admin/dashboard.html">Admin</a>
+                    </li>
+                </ul>
+                <div id="shopping-cart-container" class="px-lg-3">
+                    <a href="./store/cart.html" class="d-flex gap-1 align-items-center">
+                        <img src="./../img/cart.svg" alt="icono de carro de compras">
+                        <div>
+                            Carro&nbsp;(0)
+                        </div>
+
+                    </a>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <img id="logo-register" src="./../img/logo.jpeg" alt="Register Logo">
+    </header>
+
+    <main>
+        <div id="register-form" class="container-fluid">
+            <h1 class="text-center mb-4">Registro de Usuario</h1>
+            <form class="row g-3">
+                <div class="col-12">
+                    <label for="inputName" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="inputName">
+                </div>
+                <div class="col-12">
+                    <label for="inputLastName" class="form-label">Apellidos</label>
+                    <input type="text" class="form-control" id="inputLastName">
+                </div>
+                <div class="col-12">
+                    <label for="inputRun" class="form-label">RUN</label>
+                    <input type="text" class="form-control" id="inputRun" placeholder="123456789">
+                </div>
+                <div class="col-12">
+                    <label for="inputEmail" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="correo@ejemplo.com">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPassword" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="·········">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPasswordConfirmation" class="form-label">Confirmar Contraseña</label>
+                    <input type="password" class="form-control" id="inputPasswordConfirmation" placeholder="·········">
+                </div>
+                <div class="col-12">
+                    <label for="inputBirthDate" class="form-label">Fecha de Nacimiento (Opcional)</label>
+                    <input type="date" class="form-control" id="inputBirthDate">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputRegion" class="form-label">Región</label>
+                    <select id="inputRegion" class="form-select">
+                        <option selected>seleccione una...</option>
+                        <option value="XV">XV - Arica y Parinacota</option>
+                        <option value="I">I - Tarapacá</option>
+                        <option value="II">II - Antofagasta</option>
+                        <option value="III">III - Atacama</option>
+                        <option value="IV">IV - Coquimbo</option>
+                        <option value="V">V - Valparaíso</option>
+                        <option value="RM">RM - Metropolitana de Santiago</option>
+                        <option value="VI">VI - Libertador General Bernardo O'Higgins</option>
+                        <option value="VIII">VIII - Maule</option>
+                        <option value="XVI">XVI - Ñuble</option>
+                        <option value="VIII">VIII - Biobío</option>
+                        <option value="IX">IX - La Araucanía</option>
+                        <option value="XIV">XIV - Los Ríos</option>
+                        <option value="X">X - Los Lagos</option>
+                        <option value="XI">XI - Aysén del Gral. C. Ibáñez del Campo</option>
+                        <option value="XII">XII - Magallanes y de la Antártica Chilena</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputComuna" class="form-label">Comuna</label>
+                    <select name="inputComuna" id="inputComuna" class="form-select">
+                        <option selected>seleccione una...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label for="inputAddress" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="calle, número, ciudad">
+                </div>
+                <div class="col-12 text-center">
+                    <button type="submit" id="register-button">Registrarse</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4 pb-4">
+                    <strong>Tienda Level-Up Gaming</strong>
+                    <ul>
+                        <li>Álvarez 2336, Viña del Mar, Chile.</li>
+                        <img class="py-1" src="./../img/payment.png" id="payment-logos" alt="payment sytem logo">
+                    </ul>
+                </div>
+                <div class="col-12 col-md-4 pb-4">
+                    <strong>Contáctanos</strong>
+                    <ul>
+                        <li>
+                            +569 9999 0000
+                        </li>
+                        <li>
+                            <a href="mailto:contacto@lupgamer.cl">contacto@lupgamer.cl</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-4">
+                    <strong>Newsletter</strong>
+                    <form>
+                        <div class="mb-3 py-3">
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                            <div>Ingresa tu correo para suscribirte.</div>
+                        </div>
+                        <button type="submit" id="newsletter-button" class="btn btn-primary">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
