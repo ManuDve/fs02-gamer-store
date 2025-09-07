@@ -33,6 +33,11 @@ h1 {
   font-family: var(--heading-font);
 }
 
+h6 {
+  font-size: 1rem;
+  font-family: var(--heading-font);
+}
+
 /* Navegación */
 
 #nav {
@@ -111,3 +116,146 @@ footer a {
 
 /* Administracion */
 
+#admin-dashboard {
+  min-height: 80vh;
+}
+
+#admin-content h1 {
+  color: var(--primary-font);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+#admin-menu {
+  background-color: var(--dark-electric-blue);
+  padding: var(--main-padding);
+  color: var(--electric-light-blue);
+  min-width: 20vw;
+}
+
+#admin-menu ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#admin-menu ul li {
+  margin-bottom: 1rem;
+}
+
+#admin-menu ul li a {
+  color: var(--electric-light-blue);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+#admin-menu ul li a:hover {
+  color: var(--electric-blue);
+}
+
+#admin-menu h2 {
+  color: var(--neon-green);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+#admin-menu .dashboard-active {
+  font-weight: 700;
+  color: var(--neon-green);
+}
+
+#admin-content {
+  padding: var(--main-padding);
+}
+
+.table-responsive .table .dark-green-background {
+  background-color: var(--dark-green) !important;
+  color: var(--primary-text);
+}
+
+/* Blog */
+
+.btn-green {
+  background-color: var(--neon-green);
+  color: var(--primary-background);
+  border: none;
+}
+
+.btn-green:hover {
+  background-color: var(--light-green);
+  border: none;
+}
+
+.img-blog {
+  max-height: 400px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Login */
+
+#logo-login {
+    max-width: 200px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--electric-blue);
+    margin-top: 2rem;
+    margin-bottom: 2em;
+}
+
+#login-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--light-gray);
+    border-radius: 10px;
+    box-shadow: 0 0 2px var(--primary-background);
+    margin-bottom: 1rem;
+}
+
+#login-button {
+    background-color: var(--electric-blue);
+    color: var(--primary-text);
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+}
+
+/* Register */
+
+#logo-register {
+    max-width: 150px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--electric-blue);
+    margin-top: 2rem;
+    margin-bottom: 2em;
+}
+
+#register-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--light-gray);
+    border-radius: 10px;
+    box-shadow: 0 0 2px var(--primary-background);
+    margin-bottom: 1rem;
+}
+
+#register-button {
+    background-color: var(--electric-blue);
+    color: var(--primary-text);
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+}
