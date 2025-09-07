@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap");
 
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -8,9 +12,12 @@
 
 :root {
   --primary-background: #000000;
+  --dark-electric-blue: #0a4d90;
   --electric-blue: #1e90ff;
   --electric-light-blue: #8dc2f7;
+  --light-green: #a1f0c6;
   --neon-green: #3fe48c;
+  --dark-green: #125d35;
   --primary-text: #ffffff;
   --secondary-text: #d3d3d3;
   --light-gray: #ecebeb;
@@ -18,6 +25,12 @@
   --heading-font: "Orbitron", sans-serif;
   --light-gray: #e8e8e8;
   --main-padding: 4rem 2em;
+  font-family: "Roboto", Helvetica, arial, sans-serif;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-family: var(--heading-font);
 }
 
 /* Navegación */
@@ -55,6 +68,7 @@
 }
 
 /* Main */
+
 main {
   min-height: 60vh;
 }
@@ -87,45 +101,13 @@ footer a {
 }
 
 #newsletter-button {
-    background-color: var(--neon-green);
-    border: none;
+  background-color: var(--neon-green);
+  border: none;
 }
 
 #payment-logos {
-    max-width: 200px;
+  max-width: 200px;
 }
 
 /* Administracion */
 
-
-/* Login */
-#logo-login {
-    max-width: 200px;
-    display: block;
-    margin: 0 auto;
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--electric-blue);
-    margin-top: 2rem;
-    margin-bottom: 2em;
-}
-
-#login-form {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 2rem;
-    background-color: var(--light-gray);
-    border-radius: 10px;
-    box-shadow: 0 0 2px var(--primary-background);
-    margin-bottom: 1rem;
-}
-
-#login-button {
-    background-color: var(--electric-blue);
-    color: var(--primary-text);
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    margin-top: 0,5rem;
-}
