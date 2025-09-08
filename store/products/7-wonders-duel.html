@@ -4,18 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Level-Up Gamer</title>
+    <title>Tienda Gamer</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./../../css/style.css">
 </head>
-
 
 <body>
     <nav id="nav" class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img id="logo-nav" src="./img/logo.jpeg" alt="LevelUp Gamer Logo">
+            <a class="navbar-brand" href="./../../index.html">
+                <img id="logo-nav" src="./../../img/logo.jpeg" alt="LevelUp Gamer Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,27 +23,27 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav d-flex">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./index.html">Inicio</a>
+                        <a class="nav-link active" aria-current="page" href="./../../index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./store/products.html">Productos</a>
+                        <a class="nav-link" href="./../../store/products.html">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./blog/home.html">Blog</a>
+                        <a class="nav-link" href="./../../blog/home.html">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./store/contact.html">Contacto</a>
+                        <a class="nav-link" href="./../../store/contact.html">Contacto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./auth/login.html">Login</a>
+                        <a class="nav-link" href="./../../auth/login.html">Login</a>
                     </li>
                     <li class="nav-item ms-lg-auto">
-                        <a class="nav-link" href="./admin/dashboard.html">Admin</a>
+                        <a class="nav-link" href="./../../admin/dashboard.html">Admin</a>
                     </li>
                 </ul>
                 <div id="shopping-cart-container" class="px-lg-3">
-                    <a href="./store/cart.html" class="d-flex gap-1 align-items-center">
-                        <img src="./img/cart.svg" alt="icono de carro de compras">
+                    <a href="./../store/cart.html" class="d-flex gap-1 align-items-center">
+                        <img src="./../../img/cart.svg" alt="icono de carro de compras">
                         <div>
                             Carro&nbsp;(0)
                         </div>
@@ -57,12 +56,24 @@
             </div>
         </div>
     </nav>
-    <header>
 
-    </header>
-    <main>
-        <!-- Aquí va contenido -->
-    </main>
+    <div class="container">
+        <div class="product-detail">
+            <div class="product-detail-img">
+                <img src="./../../img/7-wonders-duel.jpeg" alt="7 Wonders Duel">
+            </div>
+            <div class="product-detail-info">
+                <h2>7 Wonders Duel</h2>
+                <p class="product-detail-description">7 Wonders Duel es un juego de mesa para dos jugadores que se
+                    desarrolla en tres eras. Cada jugador lidera una civilización y debe construir su ciudad,
+                    desarrollar tecnologías, y competir por la supremacía militar y científica. El juego combina
+                    estrategia, gestión de recursos y toma de decisiones tácticas en un formato rápido y dinámico.</p>
+                <p>$25.000</p>
+                <button id="add-to-cart-button" class="btn btn-primary">Agregar al Carro</button>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <div class="row">
@@ -70,7 +81,7 @@
                     <strong>Tienda Level-Up Gaming</strong>
                     <ul>
                         <li>Álvarez 2336, Viña del Mar, Chile.</li>
-                        <img class="py-1" src="./img/payment.png" id="payment-logos" alt="payment sytem logo">
+                        <img class="py-1" src="./../../img/payment.png"id="payment-logos" alt="payment sytem logo">
                     </ul>
                 </div>
                 <div class="col-12 col-md-4 pb-4">
@@ -88,20 +99,21 @@
                     <strong>Newsletter</strong>
                     <form>
                         <div class="mb-3 py-3">
-                            <input type="email" class="form-control" id="exampleInputEmail1"
+                            <input type="email" class="form-control"id="exampleInputEmail1"
                                 aria-describedby="emailHelp">
                             <div>Ingresa tu correo para suscribirte.</div>
                         </div>
-                        <button type="submit" id="newsletter-button" class="btn btn-primary">Enviar</button>
+                        <button type="submit" id="newsletter-button" class="btnbtn-primary">Enviar</button>
                     </form>
                 </div>
             </div>
         </div>
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-    <script src="./js/main.js"></script>
+    <script src="./../../js/main.js"></script>
 </body>
 
 </html>
