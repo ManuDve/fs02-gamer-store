@@ -49,12 +49,16 @@ h2 {
   height: 200px;
   object-fit: cover;
   object-position: center;
-  margin: 0 0 0 0;
+  margin: 2rem 0 0 0;
 }
 
-.products h1, .products h2 {
+.products h1 {
     font-family: var(--heading-font);
     margin: 1rem 0;
+}
+
+.products h2 {
+  margin: 2.5rem 0 0 0;
 }
 
 .products h5, .products p {
