@@ -61,37 +61,43 @@
         <img id="logo-register" src="./../img/logo.jpeg" alt="Register Logo">
     </header>
 
-    <main>
-        <div id="register-form" class="container-fluid">
+    <main class="px-3">
+        <div id="register-form" class="container">
             <h1 class="text-center mb-4">Registro de Usuario</h1>
             <form class="row g-3">
                 <div class="col-12">
-                    <label for="inputName" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="inputName">
+                    <label for="register-name-input" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="register-name-input" placeholder="">
+                    <div id="register-name-error"></div>
                 </div>
                 <div class="col-12">
-                    <label for="inputLastName" class="form-label">Apellidos</label>
-                    <input type="text" class="form-control" id="inputLastName">
+                    <label for="register-last-name-input" class="form-label">Apellidos</label>
+                    <input type="text" class="form-control" id="register-last-name-input" placeholder="">
+                    <div id="register-last-name-error"></div>
                 </div>
                 <div class="col-12">
-                    <label for="inputRun" class="form-label">RUN</label>
-                    <input type="text" class="form-control" id="inputRun" placeholder="123456789">
+                    <label for="register-run-input" class="form-label">RUN</label>
+                    <input type="text" class="form-control" id="register-run-input" placeholder="123456789">
+                    <div id="register-run-error"></div>
                 </div>
                 <div class="col-12">
-                    <label for="inputEmail" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="correo@ejemplo.com">
+                    <label for="register-email-input" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="register-email-input" placeholder="ejemplo@gmail.com">
+                    <div id="register-email-error"></div>
                 </div>
                 <div class="col-md-6">
-                    <label for="inputPassword" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="inputPassword" placeholder="·········">
+                    <label for="register-password-input" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="register-password-input" placeholder="·········">
+                    <div id="register-password-error"></div>
                 </div>
                 <div class="col-md-6">
-                    <label for="inputPasswordConfirmation" class="form-label">Confirmar Contraseña</label>
-                    <input type="password" class="form-control" id="inputPasswordConfirmation" placeholder="·········">
+                    <label for="register-password-confirmation-input" class="form-label">Confirmar Contraseña</label>
+                    <input type="password" class="form-control" id="register-password-confirmation-input" placeholder="·········">
+                    <div id="register-password-confirmation-error"></div>
                 </div>
                 <div class="col-12">
-                    <label for="inputBirthDate" class="form-label">Fecha de Nacimiento (Opcional)</label>
-                    <input type="date" class="form-control" id="inputBirthDate">
+                    <label for="register-birthdate-input" class="form-label">Fecha de Nacimiento (Opcional)</label>
+                    <input type="date" class="form-control" id="register-birthdate-input">
                 </div>
                 <div class="col-md-6">
                     <label for="inputRegion" class="form-label">Región</label>
@@ -116,18 +122,19 @@
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label for="inputComuna" class="form-label">Comuna</label>
-                    <select name="inputComuna" id="inputComuna" class="form-select">
+                    <label for="register-comuna-input" class="form-label">Comuna</label>
+                    <select name="register-comuna-input" id="register-comuna-input" class="form-select">
                         <option selected>seleccione una...</option>
                         <option>...</option>
                     </select>
                 </div>
                 <div class="col-12">
-                    <label for="inputAddress" class="form-label">Dirección</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="calle, número, ciudad">
+                    <label for="register-address-input" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" id="register-address-input" placeholder="calle, número, ciudad">
+                    <div id="register-address-error"></div>
                 </div>
                 <div class="col-12 text-center">
-                    <button type="submit" id="register-button">Registrarse</button>
+                    <button id="register-button">Registrarse</button>
                 </div>
             </form>
         </div>
@@ -172,7 +179,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-    <script src="../js/main.js"></script>
+    <script src="./../js/main.js"></script>
 </body>
 
 </html>
