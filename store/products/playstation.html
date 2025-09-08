@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Gamer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./../../css/style.css">
+</head>
+
+<body>
+    <nav id="nav" class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./../../index.html">
+                <img id="logo-nav" src="./../../img/logo.jpeg" alt="LevelUp Gamer Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav d-flex">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="./../../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./../../store/products.html">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./../../blog/home.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./../../store/contact.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./../../auth/login.html">Login</a>
+                    </li>
+                    <li class="nav-item ms-lg-auto">
+                        <a class="nav-link" href="./../../admin/dashboard.html">Admin</a>
+                    </li>
+                </ul>
+                <div id="shopping-cart-container" class="px-lg-3">
+                    <a href="./../store/cart.html" class="d-flex gap-1 align-items-center">
+                        <img src="./../../img/cart.svg" alt="icono de carro de compras">
+                        <div>
+                            Carro&nbsp;(0)
+                        </div>
+
+                    </a>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 product-detail-img">
+                <img src="./../../img/playstation-5.webp" alt="PlayStation 5">
+            </div>
+            <div class="col-12 col-md-6 product-detail-info">
+                <h2>PlayStation 5</h2>
+                <p class="product-detail-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet
+                    libero voluptates adipisci totam accusantium excepturi laudantium natus et sed similique pariatur
+                    magnam odio laboriosam, consequatur, sequi, veniam in! Expedita, commodi.
+                    Saepe sapiente aliquam error eaque atque molestiae unde ullam labore nam, at quod quo dicta
+                    voluptates commodi, voluptatem cupiditate in incidunt soluta. Veniam architecto et deleniti.
+                    Laudantium, incidunt accusantium. Ipsum.</p>
+                <p>$499.990</p>
+                <button id="add-to-cart-button" class="btn btn-primary">Agregar al Carro</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container product-description">
+        <h3>Descripción del Producto</h3>
+        <p>La PlayStation 5 es una consola de videojuegos de última generación que ofrece un rendimiento excepcional y gráficos impresionantes, diseñada para los jugadores más exigentes.</p>
+        <p>Con su diseño elegante y moderno, la PlayStation 5 se integra perfectamente en cualquier configuración de entretenimiento. Además, cuenta con un sistema de refrigeración avanzado que garantiza un rendimiento óptimo incluso durante las sesiones de juego más intensas.</p>
+        <p>Esta edición exclusiva combina la ingeniería avanzada de PlayStation con la estética oficial de los videojuegos, proporcionando un control preciso, comunicaciones nítidas y durabilidad para largas sesiones de juego.</p>
+        <h3>Características del Producto:</h3>
+        <ul>
+            <li><strong>Almacenamiento SSD de 1 TB:</strong>Permite tiempos de carga ultrarrápidos y una experiencia de juego sin interrupciones.</li>
+            <li><strong>Control inalámbrico DualSense edición limitada</strong> Incluye retroalimentación háptica y gatillos adaptativos para una experiencia de juego inmersiva.</li>
+            <li><strong>Conectividad completa</strong> WiFi, Bluetooth, 4 puertos USB (2 Tipo A y 2 Tipo C), HDMI y Ethernet para múltiples opciones de conexión.</li>
+        </ul>
+    </div>
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4 pb-4">
+                    <strong>Tienda Level-Up Gaming</strong>
+                    <ul>
+                        <li>Álvarez 2336, Viña del Mar, Chile.</li>
+                        <img class="py-1" src="./../../img/payment.png" id="payment-logos" alt="payment sytem logo">
+                    </ul>
+                </div>
+                <div class="col-12 col-md-4 pb-4">
+                    <strong>Contáctanos</strong>
+                    <ul>
+                        <li>
+                            +569 9999 0000
+                        </li>
+                        <li>
+                            <a href="mailto:contacto@lupgamer.cl">contacto@lupgamer.cl</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-4">
+                    <strong>Newsletter</strong>
+                    <form>
+                        <div class="mb-3 py-3">
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                            <div>Ingresa tu correo para suscribirte.</div>
+                        </div>
+                        <button type="submit" id="newsletter-button" class="btnbtn-primary">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="./../../js/main.js"></script>
+</body>
+
+</html>
