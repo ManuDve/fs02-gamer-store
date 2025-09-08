@@ -35,7 +35,7 @@ h1 {
 }
 
 /* Products styles */
-h2 {
+.products h2 {
   font-size: 1.25rem;
   font-family: var(--heading-font);
 }
