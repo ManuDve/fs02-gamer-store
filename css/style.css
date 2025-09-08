@@ -13,11 +13,6 @@
 
 :root {
   --primary-background: #000000;
-  --electric-blue: #1E90FF;
-  --electric-light-blue: #8dc2f7;
-  --neon-green: #39FF14;
-  --primary-text: #FFFFFF;
-  --secondary-text: #D3D3D3;
   --dark-electric-blue: #0a4d90;
   --electric-blue: #1e90ff;
   --electric-light-blue: #8dc2f7;
@@ -27,8 +22,9 @@
   --primary-text: #ffffff;
   --secondary-text: #d3d3d3;
   --light-gray: #ecebeb;
-  --primary-font: 'Roboto', sans-serif;
-  --heading-font: 'Orbitron', sans-serif;
+  --primary-font: "Roboto", sans-serif;
+  --heading-font: "Orbitron", sans-serif;
+  --light-gray: #e8e8e8;
   --main-padding: 4rem 2em;
   font-family: "Roboto", Helvetica, arial, sans-serif;
 }
