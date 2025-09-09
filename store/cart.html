@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Level-Up Gamer - Carro</title>
+    <title>Tienda Level-Up Gamer - Carro de Compras</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="./../css/style.css">
@@ -46,7 +46,7 @@
                     <a href="./../store/cart.html" class="d-flex gap-1 align-items-center">
                         <img src="./../img/cart.svg" alt="icono de carro de compras">
                         <div>
-                            Carro&nbsp;(0)
+                            Carro&nbsp;(3)
                         </div>
 
                     </a>
@@ -60,8 +60,109 @@
     <header>
 
     </header>
-    <main>
-        <!-- Aquí va contenido -->
+    <main class="p-3">
+        <div class="container">
+            <div class="row">
+                <h1>Carro de Compras</h1>
+                <div class="col-12 col-md-8 p-3">
+                    <div class="container">
+                        <div class="row cart-item">
+                            <div class="col-12 col-md-3">
+                                <img src="./../img/catan.webp" alt="Producto Catan" class="img-fluid">
+                            </div>
+                            <div class="col-12 col-md-4 py-3">
+                                <h5>Catan</h5>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, commodi cumque
+                                    labore in beatae non obcaecati.</p>
+                                <p>Precio Unitario: $29.990</p>
+                            </div>
+                            <div
+                                class="col-12 col-md-5 d-flex align-items-center justify-content-start justify-content-md-end">
+                                <p class="mb-0 me-3 text-center">Total: $29.990</p>
+                                <div class="input-group w-50">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        id="decrement-btn">-</button>
+                                    <input type="number" class="form-control text-center" id="quantity-input" value="1"
+                                        min="1">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        id="increment-btn">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row cart-item">
+                            <div class="col-12 col-md-3">
+                                <img src="./../img/walkie-talkie.jpg" alt="Producto Walkie Talkie" class="img-fluid">
+                            </div>
+                            <div class="col-12 col-md-4 py-3">
+                                <h5>Walkie Talkie</h5>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, commodi cumque
+                                    labore in beatae non obcaecati.</p>
+                                <p>Precio Unitario: $15.990</p>
+                            </div>
+                            <div
+                                class="col-12 col-md-5 d-flex align-items-center justify-content-start justify-content-md-end">
+                                <p class="mb-0 me-3 text-center">Total: $15.990</p>
+                                <div class="input-group w-50">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        id="decrement-btn">-</button>
+                                    <input type="number" class="form-control text-center" id="quantity-input" value="1"
+                                        min="1">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        id="increment-btn">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row cart-item">
+                            <div class="col-12 col-md-3">
+                                <img src="./../img/monopoly.jpg" alt="Producto Monopoly" class="img-fluid">
+                            </div>
+                            <div class="col-12 col-md-4 py-3">
+                                <h5>Monopoly</h5>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, commodi cumque
+                                    labore in beatae non obcaecati.</p>
+                                <p>Precio Unitario: $19.990</p>
+                            </div>
+                            <div
+                                class="col-12 col-md-5 d-flex align-items-center justify-content-start justify-content-md-end">
+                                <p class="mb-0 me-3 text-center">Total: $19.990</p>
+                                <div class="input-group w-50">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        id="decrement-btn">-</button>
+                                    <input type="number" class="form-control text-center" id="quantity-input" value="1"
+                                        min="1">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        id="increment-btn">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 p-3">
+                    <div class="d-flex cart-divider">
+                        <h4>Total:</h4>
+                        <h4 class="ms-auto">$65.970</h4>
+                    </div>
+                    <div class="cart-divider">
+                        <p>Ingrese cupón de descuento:</p>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Cupón de descuento"
+                                aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Aplicar</button>
+                        </div>
+                    </div>
+                    <div class="cart-divider">
+                        <select class="form-select mb-3" aria-label="Default select example">
+                            <option selected>Seleccione método de pago</option>
+                            <option value="1">Tarjeta de Crédito</option>
+                            <option value="2">Tarjeta de Débito</option>
+                            <option value="3">PayPal</option>
+                            <option value="4">Transferencia Bancaria</option>
+                        </select>
+                        <button class="btn btn-primary w-100">Pagar</button>
+                        <img src="./../img/payment.png" alt="metodos de pago" class="img-fluid mt-3">
+                    </div>
+                </div>
+            </div>
     </main>
     <footer>
         <div class="container">
