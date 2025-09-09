@@ -266,3 +266,15 @@ footer a {
   object-fit: cover;
   object-position: center;
 }
+
+/* Cart */
+
+.cart-divider {
+  border-top: 2px solid var(--light-gray);
+  padding-top: 2rem;
+}
+
+.cart-item {
+  margin: 3rem 0;
+  box-shadow: 2px 2px 5px #0000000a;
+}
