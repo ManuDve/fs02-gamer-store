@@ -39,7 +39,6 @@ h6 {
   font-family: var(--heading-font);
 }
 
-=======
 /* Products styles */
 .products h2 {
   font-size: 1.25rem;
@@ -339,7 +338,6 @@ footer a {
     border-radius: 5px;
     margin-top: 0.5rem;
 }
-=======
 /* Cart */
 
 .cart-divider {
@@ -350,4 +348,23 @@ footer a {
 .cart-item {
   margin: 3rem 0;
   box-shadow: 2px 2px 5px #0000000a;
+}
+
+/* Home Page */
+#home-about h1 {
+  font-size: 2rem;
+  font-family: var(--heading-font);
+  margin-bottom: 1rem;
+}
+
+#logo-home {
+  max-width: 100%;
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--electric-blue);
+  margin-left: 4rem;
+}
+
+#home-products {
+  background-color: var(--light-gray);
+  text-align: center;
 }
