@@ -273,6 +273,33 @@ footer a {
 }
 
 
+/* About Us */
+#about-us {
+  padding: var(--main-padding);
+  background-color: var(--light-gray);
+  box-shadow: #00000009 5px 5px 5px;
+}
+
+#about-mission {
+  padding: var(--main-padding);
+  background-color: var(--electric-light-blue);
+  color: var(--primary-text);
+  box-shadow: #00000009 5px 5px 5px;
+}
+
+#about-vision {
+  padding: var(--main-padding);
+  background-color: var(--dark-electric-blue);
+  color: var(--primary-text);
+  box-shadow: #00000009 5px 5px 5px;
+}
+
+#about-developers {
+  background-color: var(--primary-text);
+  color: var(--dark-electric-blue);
+  box-shadow: #00000009 5px 5px 5px;
+=======
+
 /* Login */
 
 #logo-login {
@@ -338,6 +365,7 @@ footer a {
     border-radius: 5px;
     margin-top: 0.5rem;
 }
+
 /* Cart */
 
 .cart-divider {
