@@ -33,6 +33,7 @@
     "eslint-plugin-react-refresh": "^0.4.22",
     "globals": "^16.4.0",
     "jsdom": "^27.0.0",
+    "standard": "^17.1.2",
     "vite": "^7.1.7",
     "vitest": "^3.2.4"
   }
