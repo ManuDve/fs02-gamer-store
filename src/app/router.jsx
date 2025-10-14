@@ -21,13 +21,15 @@ import AdminProducts from "../features/admin/pages/Products.jsx";
 
 import NotFound from "../shared/pages/NotFound.jsx";
 
+import { products } from "../assets/mocks/products.json"
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
       { index: true, element: <Home /> },
-      { path: "products", element: <Products /> },
+      { path: "products", element: <Products products={products}/> },
       { path: "products/:slug", element: <ProductDetail /> },
       { path: "cart", element: <Cart /> },
     ],
