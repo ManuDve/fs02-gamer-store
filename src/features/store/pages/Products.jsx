@@ -1,10 +1,8 @@
-import Button from 'react-bootstrap/Button';
+import Product from '../components/Product';
 import './Products.css'
-import { AddToCartIcon } from '../../../shared/components/AddToCartIcon';
-
 
 const Products = ({ products }) => {
-  
+
   const juegosDeMesa = products.filter(product => product.category === "Juego de Mesa");
   const perifericosGamer = products.filter(product => product.category === "Periférico Gamer");
   const consolas = products.filter(product => product.category === "Consola");
@@ -16,53 +14,29 @@ const Products = ({ products }) => {
       <div className='products'>
         <ul>
           {juegosDeMesa.map(product => (
-            <li key={product.id}>
-              <img src={product.img} alt={product.name} />
-              <div>
-                <strong>{product.name}</strong>
-                <p>$ {product.price}</p>
-              </div>
-              <div>
-                <Button variant="primary">{<AddToCartIcon />} Agregar al carro</Button>
-              </div>
-            </li>
+            <Product key={product.id} img={product.img} name={product.name} price={product.price} />
           ))}
         </ul>
       </div>
-      <h2>Periféricos Gamer</h2>
+
+      <h2 className='products-heading-h2'>Periféricos Gamer</h2>
       <div className='products'>
         <ul>
           {perifericosGamer.map(product => (
-            <li key={product.id}>
-              <img src={product.img} alt={product.name} />
-              <div>
-                <strong>{product.name}</strong>
-                <p>$ {product.price}</p>
-              </div>
-              <div>
-                <Button variant="primary">{<AddToCartIcon />} Agregar al carro</Button>
-              </div>
-            </li>
+            <Product key={product.id} img={product.img} name={product.name} price={product.price} />
           ))}
         </ul>
       </div>
-      <h2>Consolas</h2>
+      <h2 className='products-heading-h2'>Consolas</h2>
       <div className='products'>
         <ul>
           {consolas.map(product => (
-            <li key={product.id}>
-              <img src={product.img} alt={product.name} />
-              <div>
-                <strong>{product.name}</strong>
-                <p>$ {product.price}</p>
-              </div>
-              <div>
-                <Button variant="primary">{<AddToCartIcon />} Agregar al carro</Button>
-              </div>
-            </li>
+            <Product key={product.id} img={product.img} name={product.name} price={product.price} />
           ))}
         </ul>
       </div>
+
+
     </div>
   )
 }
