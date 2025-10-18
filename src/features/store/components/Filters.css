@@ -1,0 +1,10 @@
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 14px;
+    font-weight: 700;
+    gap: 1rem;
+    margin: 1rem 2rem;
+    font-family: "Orbitron", sans-serif;
+}
