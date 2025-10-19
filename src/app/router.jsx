@@ -22,6 +22,7 @@ import AdminProducts from "../features/admin/pages/Products.jsx";
 import NotFound from "../shared/pages/NotFound.jsx";
 
 import { products } from "../assets/mocks/products.json"
+import { blog_posts } from "../assets/mocks/blog_posts.json"
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home products={products}/> },
       { path: "products", element: <Products products={products}/> },
-      { path: "products/:slug", element: <ProductDetail /> },
+  { path: "products/:id", element: <ProductDetail /> },
       { path: "cart", element: <Cart /> },
     ],
   },
@@ -38,8 +39,8 @@ const router = createBrowserRouter([
     path: "/blog",
     element: <BlogLayout />,
     children: [
-      { index: true, element: <BlogHome /> },
-      { path: ":slug", element: <BlogPost /> },
+      { index: true, element: <BlogHome posts={blog_posts}/> },
+  { path: ":id", element: <BlogPost /> },
     ],
   },
   {
@@ -51,7 +52,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/admin",
+    path: "/admin", 
     element: <AdminLayout />,
     children: [
       { index: true, element: <AdminDashboard /> },

@@ -17,12 +17,12 @@ function useFilters() {
     })
   }
 
-  return {filterProducts, setFilters}
+  return {filterProducts, setFilters, filters}
 }
 
 const Products = ({ products }) => {
 
-  const {filterProducts, setFilters} = useFilters()
+  const {filterProducts, setFilters, filters} = useFilters()
   const filteredProducts = filterProducts(products)
   const juegosDeMesa = filteredProducts.filter(product => product.category === "Juego de Mesa");
   const perifericosGamer = filteredProducts.filter(product => product.category === "Periférico Gamer");
@@ -32,32 +32,45 @@ const Products = ({ products }) => {
     <div className='container'>
       <h1 className='products-heading-h1'>Nuestros productos</h1>
       <Filters onChange={setFilters} />
-      <Banner img='src/assets/img/juegos-de-mesa-banner.png' alt="juegos de mesa" />
-      <h2 className='products-heading-h2'>Juegos de Mesa</h2>
+      {(filters.category === 'all' || filters.category === 'Juego de Mesa') && 
+        <>
+          <Banner img='src/assets/img/juegos-de-mesa-banner.png' alt="juegos de mesa" />
+          <h2 className='products-heading-h2'>Juegos de Mesa</h2>
+        </>
+      }
+      
       <div className='products'>
         <ul>
           {juegosDeMesa.map(product => (
-            <Product key={product.id} img={product.img} name={product.name} price={product.price} />
+            <Product key={product.id} id={product.id} img={product.img} name={product.name} price={product.price} />
           ))}
         </ul>
       </div>
 
-      <Banner img='src/assets/img/perifericos-banner.png' alt="periféricos gamer" />
-      <h2 className='products-heading-h2'>Periféricos Gamer</h2>
+      {(filters.category === 'all' || filters.category === 'Periférico Gamer') && 
+        <>
+          <Banner img='src/assets/img/perifericos-banner.png' alt="periféricos gamer" />
+          <h2 className='products-heading-h2'>Periféricos Gamer</h2>
+        </>
+      }
       <div className='products'>
         <ul>
           {perifericosGamer.map(product => (
-            <Product key={product.id} img={product.img} name={product.name} price={product.price} />
+            <Product key={product.id} id={product.id} img={product.img} name={product.name} price={product.price} />
           ))}
         </ul>
       </div>
 
-      <Banner img='src/assets/img/consolas-banner.png' alt="consolas" />
-      <h2 className='products-heading-h2'>Consolas</h2>
+      {(filters.category === 'all' || filters.category === 'Consola') && 
+        <>
+          <Banner img='src/assets/img/consolas-banner.png' alt="consolas" />
+          <h2 className='products-heading-h2'>Consolas</h2>
+        </>
+      }
       <div className='products'>
         <ul>
           {consolas.map(product => (
-            <Product key={product.id} img={product.img} name={product.name} price={product.price} />
+            <Product key={product.id} id={product.id} img={product.img} name={product.name} price={product.price} />
           ))}
         </ul>
       </div>

@@ -1,0 +1,167 @@
+{
+    "blog_posts": [
+        {
+            "id": "BP001",
+            "titulo": "Los 5 Mejores Juegos de Mesa Cooperativos para Principiantes",
+            "autor": "Sofía 'Boardgame' Reyes",
+            "fecha": "2024-09-15",
+            "imagen": "https://franciscojosg10.sg-host.com/tiradados/wp-content/uploads/sites/5/2023/12/Los-mejores-Juegos-de-Mesa-Cooperativos.jpg",
+            "articulo": "En un mundo lleno de competencia, a veces lo que necesitamos es unir fuerzas. Exploramos títulos como Pandemic y El Descenso, ideales para empezar a jugar en equipo, enfocándonos en la comunicación y la estrategia conjunta para vencer al juego. Un análisis de sus mecánicas y por qué son perfectos para introducir a nuevos jugadores.",
+            "etiquetas": [
+                "Juego de Mesa",
+                "Cooperativo",
+                "Recomendaciones"
+            ]
+        },
+        {
+            "id": "BP002",
+            "titulo": "Guía Definitiva: ¿Teclado Mecánico o de Membrana para Gaming?",
+            "autor": "Roberto 'Tech' Gómez",
+            "fecha": "2024-09-20",
+            "imagen": "https://tse1.mm.bing.net/th/id/OIP.buHIQlRKru15cIcOL_Ck5QHaEv?rs=1&pid=ImgDetMain&o=7&rm=3",
+            "descripcion": "Una inmersión profunda en la tecnología detrás de los teclados. Comparativa de velocidad, tacto, sonido y durabilidad. Te ayudamos a elegir el *switch* perfecto (Red, Blue, Brown) según tu estilo de juego, ya sea FPS, MOBA o simplemente para escritura.",
+            "articulo": "El debate es eterno. Desglosamos las diferencias clave entre un teclado mecánico (con su tacto inconfundible y durabilidad) y uno de membrana (más silencioso y económico). Detallamos qué son los *switches* y cómo impactan en tu rendimiento *gamer*, con recomendaciones específicas para cada tipo de jugador.",
+            "etiquetas": [
+                "Periféricos",
+                "Hardware",
+                "Guía",
+                "Teclado"
+            ]
+        },
+        {
+            "id": "BP003",
+            "titulo": "Análisis: NovaPlay 5 Pro, ¿Vale la Pena la Actualización de la Consola?",
+            "autor": "Andrés 'Console' Castro",
+            "fecha": "2024-09-25",
+            "imagen": "https://www.yzlm.com.tr/wp-content/uploads/2024/03/b870d16c-11fa-4345-bb33-2a10179c5e1a.jpg",
+            "descripcion": "Revisamos a fondo las supuestas mejoras de hardware: Ray Tracing, SSD más rápido y resolución nativa 4K. Comparamos la versión Pro con el modelo base y evaluamos el impacto real en los títulos de lanzamiento.",
+            "articulo": "Con la llegada de rumores y algunas especificaciones confirmadas, analizamos si el salto de rendimiento de la 'NovaPlay 5 Pro' justifica la inversión. Hablamos de la nueva GPU, el rendimiento en 4K y la promesa de tasas de refresco más estables. ¿Es un cambio esencial o solo para entusiastas del *hardware*?",
+            "etiquetas": [
+                "Consolas",
+                "Review",
+                "Hardware",
+                "NovaPlay"
+            ]
+        },
+        {
+            "id": "BP004",
+            "titulo": "Estrategias Avanzadas en Catan: Dominando el Intercambio y la Colocación",
+            "autor": "Sofía 'Boardgame' Reyes",
+            "fecha": "2024-10-01",
+            "imagen": "https://cuevadelobo.com/wp-content/uploads/2022/05/Catan.jpg",
+            "descripcion": "Más allá de construir caminos, te mostramos cómo negociar de manera efectiva y dónde colocar tus asentamientos iniciales para garantizar una ventaja de recursos y victoria.",
+            "articulo": "Catan es un juego de estrategia económica. Este artículo se sumerge en las matemáticas de los dados, las probabilidades de los números '6' y '8', y cómo maximizar el ladrillo y el mineral en las primeras rondas. Consejos sobre cómo usar el Ladrón a tu favor y cuándo es momento de invertir en Cartas de Desarrollo.",
+            "etiquetas": [
+                "Juego de Mesa",
+                "Estrategia",
+                "Catan",
+                "Guía"
+            ]
+        },
+        {
+            "id": "BP005",
+            "titulo": "Los Mejores Auriculares 7.1 para E-Sports: Escucha cada paso.",
+            "autor": "Roberto 'Tech' Gómez",
+            "fecha": "2024-10-05",
+            "imagen": "https://www.2playbook.com/uploads/s1/18/19/10/esports-auriculares-recurso.jpeg",
+            "descripcion": "Un vistazo a los modelos líderes en audio posicional, analizando la calidad del micrófono y la comodidad para torneos largos. Imprescindible para juegos como CS:GO o Valorant.",
+            "articulo": "En los *e-sports*, el audio es tan importante como el video. Revisamos auriculares con sonido envolvente 7.1 o Spatial Audio, crucial para identificar la posición exacta de los enemigos. Analizamos la latencia, la calidad del micrófono con cancelación de ruido y la durabilidad de la diadema.",
+            "etiquetas": [
+                "Periféricos",
+                "Audio",
+                "E-Sports",
+                "Recomendaciones"
+            ]
+        },
+        {
+            "id": "BP006",
+            "titulo": "¿El Fin de lo Físico? La Transición de X-Fusion hacia lo Digital",
+            "autor": "Andrés 'Console' Castro",
+            "fecha": "2024-10-10",
+            "imagen": "https://log-wp-media.s3.amazonaws.com/wp-content/uploads/2023/12/xbox-cloud-gaming-game-pass-meta-quest.jpg",
+            "descripcion": "Discutimos las implicaciones de las consolas 'Solo Digital'. ¿Es más económico para el consumidor? ¿Qué pasa con la retrocompatibilidad y la reventa de juegos?",
+            "articulo": "La industria se mueve hacia un futuro sin discos. Analizamos el modelo de negocio de X-Fusion, centrado en el servicio de suscripción y las ediciones sin lector de discos. Examinamos las ventajas (precios más bajos, menos desorden) y las desventajas (pérdida de la propiedad física y el mercado de segunda mano).",
+            "etiquetas": [
+                "Consolas",
+                "Digital",
+                "Industria",
+                "X-Fusion"
+            ]
+        },
+        {
+            "id": "BP007",
+            "titulo": "Micro-Reseña: 'Terraforming Mars' en Solitario. ¿Desafío o Aburrimiento?",
+            "autor": "Sofía 'Boardgame' Reyes",
+            "fecha": "2024-10-15",
+            "imagen": "https://m.media-amazon.com/images/I/71yT4-HOtiL._AC_SL1500_.jpg",
+            "descripcion": "Probamos el modo solitario del popular juego de estrategia. Descubre si la versión de un solo jugador mantiene la profundidad y tensión de la experiencia multijugador.",
+            "articulo": "Muchos juegos de mesa modernos ofrecen modos en solitario. Analizamos la experiencia de 'Terraforming Mars' bajo esta modalidad. El objetivo es conseguir un índice de terraformación de 125 antes del final de la Generación 14. Detallamos las reglas específicas y si la ausencia de interacción con otros jugadores afecta la sensación de logro.",
+            "etiquetas": [
+                "Juego de Mesa",
+                "Solitario",
+                "Review",
+                "Estrategia"
+            ]
+        },
+        {
+            "id": "BP008",
+            "titulo": "La Importancia del DPI en tu Ratón Gamer: ¿Más es Siempre Mejor?",
+            "autor": "Roberto 'Tech' Gómez",
+            "fecha": "2024-10-18",
+            "imagen": "https://www.tien21.es/blog/wp-content/uploads/2021/12/mejor-raton-gamer.png",
+            "descripcion": "Desmentimos el mito del 'Máximo DPI'. Explicamos qué es realmente el DPI, cómo afecta la sensibilidad en pantalla y por qué los profesionales rara vez usan la configuración más alta.",
+            "articulo": "DPI (Dots Per Inch) se ha convertido en una cifra de marketing. Este artículo explica que, si bien un sensor de alto DPI es esencial para la precisión, la mayoría de los *gamers* competitivos prefieren sensibilidades mucho más bajas (400-1600 DPI). Hablamos sobre la relación entre DPI, sensibilidad en el juego y el tamaño de tu alfombrilla (*mousepad*).",
+            "etiquetas": [
+                "Periféricos",
+                "Hardware",
+                "Ratón",
+                "Guía"
+            ]
+        },
+        {
+            "id": "BP009",
+            "titulo": "El Retorno de los Clásicos: La Retrocompatibilidad de 'Switch Go'",
+            "autor": "Andrés 'Console' Castro",
+            "fecha": "2024-10-22",
+            "imagen": "https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2021/10/analisis-nintendo-switch-oled-2508427.jpg?tf=3840x",
+            "descripcion": "Analizamos la oferta de juegos clásicos de la consola Switch Go. Desde juegos de NES hasta la llegada rumoreada de títulos de GameCube. ¿Qué tan efectiva es su librería retro?",
+            "articulo": "El servicio de suscripción de 'Switch Go' ha sido clave para mantener a los *gamers* nostálgicos. Hacemos un repaso de los emuladores disponibles y la calidad de la adaptación de títulos retro. Discutimos la posibilidad de nuevas plataformas clásicas y cómo esto podría influir en futuras decisiones de compra de los usuarios de la consola.",
+            "etiquetas": [
+                "Consolas",
+                "Retro",
+                "Switch",
+                "Historia"
+            ]
+        },
+        {
+            "id": "BP010",
+            "titulo": "Cómo Organizar una Noche de Juegos de Mesa Épica: Logística y Snacks",
+            "autor": "Sofía 'Boardgame' Reyes",
+            "fecha": "2024-10-25",
+            "imagen": "https://img.freepik.com/premium-photo/friends-are-playing-board-game-together-table_14117-864112.jpg",
+            "descripcion": "Consejos prácticos para anfitriones: desde la selección de juegos basada en el grupo, hasta la ambientación y los mejores aperitivos que no arruinarán tus cartas.",
+            "articulo": "Ser un buen anfitrión de una noche de juegos va más allá de tener la caja correcta. Cubrimos la 'regla de la triple C': Conocer a los invitados, Calibrar la dificultad del juego, y la Comodidad. También ofrecemos sugerencias sobre protectores de cartas, organizadores internos y la lista definitiva de *snacks* 'anti-grasa' para mantener tu material impecable.",
+            "etiquetas": [
+                "Juego de Mesa",
+                "Comunidad",
+                "Consejos",
+                "Entretenimiento"
+            ]
+        },
+        {
+            "id": "BP011",
+            "titulo": "Review: Monitor 'Quantum' 144Hz - El Punto Dulce del Gaming Competitivo",
+            "autor": "Roberto 'Tech' Gómez",
+            "fecha": "2024-10-29",
+            "imagen": "https://www.wepc.com/wp-content/uploads/2019/05/DSC02079-1-scaled.jpg",
+            "descripcion": "Ponemos a prueba el monitor curvo de 27 pulgadas. ¿Es la tasa de refresco de 144Hz suficiente, o es necesario el salto a 240Hz? Un análisis de precio, rendimiento y experiencia.",
+            "articulo": "El monitor 'Quantum' ofrece un equilibrio casi perfecto entre precio y rendimiento. Analizamos la fidelidad del color del panel VA, la fluidez de los 144Hz y el tiempo de respuesta de 1ms. Concluimos que para la gran mayoría de *gamers* que no son profesionales de e-Sports de élite, 144Hz es el estándar ideal para una ventaja competitiva sin romper el banco.",
+            "etiquetas": [
+                "Periféricos",
+                "Review",
+                "Monitor",
+                "E-Sports"
+            ]
+        }
+    ]
+}

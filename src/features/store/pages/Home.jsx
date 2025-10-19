@@ -25,7 +25,7 @@ const Home = ({ products }) => {
         <h2 className="home-heading">Productos destacados</h2>
         <ul>
           {products.slice(0, 4).map(product => (
-            <Product key={product.id} img={product.img} name={product.name} price={product.price} />
+            <Product key={product.id} id={product.id} img={product.img} name={product.name} price={product.price} />
           ))}
         </ul>
       </div>
