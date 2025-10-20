@@ -1,5 +1,57 @@
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes floatHover {
+    0% {
+        transform: translateY(0px) scale(1.1) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-10px) scale(1.1) rotate(2deg);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.1) rotate(5deg);
+    }
+    75% {
+        transform: translateY(-10px) scale(1.1) rotate(2deg);
+    }
+    100% {
+        transform: translateY(0px) scale(1.1) rotate(0deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 10px #1e90ff, 0 0 8px #1e90ff;
+    }
+    50% {
+        box-shadow: 0 0 20px #1e90ff, 0 0 10px #1e90ff, 0 0 60px #1e90ff;
+    }
+}
+
+@keyframes pulseHover {
+    0%, 100% {
+        box-shadow: 0 0 15px #1e90ff, 0 0 20px #1e90ff, 0 0 90px #00bfff;
+    }
+    50% {
+        box-shadow: 0 0 20px #1e90ff, 0 0 20px #1e90ff, 0 0 120px #00bfff;
+    }
+}
+
 .logo {
     max-width: 100%;
     border-radius: 50%;
     box-shadow: 0 0 10px #1e90ff;
+    animation: float 3s ease-in-out infinite, pulse 2s ease-in-out infinite;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.logo:hover {
+    animation: floatHover 3s ease-in-out infinite, pulseHover 2s ease-in-out infinite;
 }

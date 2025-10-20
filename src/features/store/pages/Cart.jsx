@@ -1,6 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import { useCartState, useCartDispatch, removeFromCart, updateQuantity, clearCart } from '../../../app/context/CartContext';
 
 const Cart = () => {
+  const navigate = useNavigate();
   const { items } = useCartState();
   const dispatch = useCartDispatch();
 
@@ -39,7 +41,7 @@ const Cart = () => {
         <h4>Total: $ {total}</h4>
         <div className="mt-3">
           <button className="btn btn-secondary me-2" onClick={() => clearCart(dispatch)}>Vaciar carrito</button>
-          <button className="btn btn-primary">Ir a pagar</button>
+          <button className="btn btn-primary" onClick={() => navigate('/pay')}>Ir a pagar</button>
         </div>
       </div>
     </main>

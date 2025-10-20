@@ -15,7 +15,7 @@ describe('Cart page', () => {
             return <Cart />;
         }
 
-        renderWithProviders(<TestApp />, { withRouter: false });
+        renderWithProviders(<TestApp />);
 
         // The UI should display the product name
         expect(screen.getByText(/Catan/i)).toBeTruthy();

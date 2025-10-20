@@ -4,11 +4,15 @@ import MainLayout from "./layouts/MainLayout.jsx";
 import BlogLayout from "./layouts/BlogLayout.jsx";
 import AuthLayout from "./layouts/AuthLayout.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 import Home from "../features/store/pages/Home.jsx";
 import Products from "../features/store/pages/Products.jsx";
 import ProductDetail from "../features/store/pages/ProductDetail.jsx";
 import Cart from "../features/store/pages/Cart.jsx";
+import Pay from "../features/store/pages/Pay.jsx";
+import PaymentSuccess from "../features/store/pages/PaymentSuccess.jsx";
+import PaymentError from "../features/store/pages/PaymentError.jsx";
 
 import BlogHome from "../features/blog/pages/BlogHome.jsx";
 import BlogPost from "../features/blog/pages/BlogPost.jsx";
@@ -33,6 +37,9 @@ const router = createBrowserRouter([
       { path: "products", element: <Products products={products}/> },
   { path: "products/:id", element: <ProductDetail /> },
       { path: "cart", element: <Cart /> },
+      { path: "pay", element: <Pay /> },
+      { path: "payment-success", element: <PaymentSuccess /> },
+      { path: "payment-error", element: <PaymentError /> },
     ],
   },
   {
@@ -44,18 +51,22 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/auth",
-    element: <AuthLayout />,
-    children: [
-      { path: "login", element: <Login /> },
-      { path: "register", element: <Register /> },
-    ],
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
   {
     path: "/admin", 
-    element: <AdminLayout />,
+    element: (
+      <ProtectedRoute requireAdmin={true}>
+        <AdminLayout />
+      </ProtectedRoute>
+    ),
     children: [
-      { index: true, element: <AdminDashboard /> },
+      { path: "dashboard", element: <AdminDashboard /> },
       { path: "products", element: <AdminProducts /> },
     ],
   },

@@ -26,8 +26,7 @@ describe('Cart Integration Tests', () => {
     describe('Cálculos de totales', () => {
         it('calcula correctamente el total con un producto', () => {
             renderWithProviders(
-                <CartWithItems items={[mockProducts[0]]} />,
-                { withRouter: false }
+                <CartWithItems items={[mockProducts[0]]} />
             );
 
             expect(screen.getByText(/total: \$ 35\.99/i)).toBeInTheDocument();
@@ -35,8 +34,7 @@ describe('Cart Integration Tests', () => {
 
         it('calcula correctamente el total con múltiples productos', () => {
             renderWithProviders(
-                <CartWithItems items={mockProducts} />,
-                { withRouter: false }
+                <CartWithItems items={mockProducts} />
             );
 
             // Total: 35.99 * 1 + 25.50 * 2 = 86.99
@@ -45,8 +43,7 @@ describe('Cart Integration Tests', () => {
 
         it('actualiza el total después de incrementar cantidad', () => {
             renderWithProviders(
-                <CartWithItems items={[mockProducts[0]]} />,
-                { withRouter: false }
+                <CartWithItems items={[mockProducts[0]]} />
             );
 
             const incrementBtn = screen.getAllByRole('button', { name: '+' })[0];
@@ -58,8 +55,7 @@ describe('Cart Integration Tests', () => {
 
         it('actualiza el total después de decrementar cantidad', () => {
             renderWithProviders(
-                <CartWithItems items={[{ ...mockProducts[1], quantity: 3 }]} />,
-                { withRouter: false }
+                <CartWithItems items={[{ ...mockProducts[1], quantity: 3 }]} />
             );
 
             const decrementBtn = screen.getAllByRole('button', { name: '-' })[0];
@@ -71,8 +67,7 @@ describe('Cart Integration Tests', () => {
 
         it('actualiza el total después de eliminar un producto', () => {
             renderWithProviders(
-                <CartWithItems items={mockProducts} />,
-                { withRouter: false }
+                <CartWithItems items={mockProducts} />
             );
 
             const removeBtn = screen.getAllByRole('button', { name: /eliminar/i })[0];
@@ -86,8 +81,7 @@ describe('Cart Integration Tests', () => {
     describe('Gestión de productos', () => {
         it('permite agregar múltiples unidades del mismo producto', () => {
             renderWithProviders(
-                <CartWithItems items={[mockProducts[0]]} />,
-                { withRouter: false }
+                <CartWithItems items={[mockProducts[0]]} />
             );
 
             const incrementBtn = screen.getAllByRole('button', { name: '+' })[0];
@@ -102,8 +96,7 @@ describe('Cart Integration Tests', () => {
 
         it('elimina todos los productos correctamente', () => {
             renderWithProviders(
-                <CartWithItems items={mockProducts} />,
-                { withRouter: false }
+                <CartWithItems items={mockProducts} />
             );
 
             // Eliminar el primer producto
@@ -122,8 +115,7 @@ describe('Cart Integration Tests', () => {
             const product = { id: 'P1', name: 'Test', price: 10.00, img: '/test.jpg', quantity: 1 };
 
             renderWithProviders(
-                <CartWithItems items={[product]} />,
-                { withRouter: false }
+                <CartWithItems items={[product]} />
             );
 
             const incrementBtn = screen.getAllByRole('button', { name: '+' })[0];
@@ -136,7 +128,7 @@ describe('Cart Integration Tests', () => {
 
     describe('Estado del carrito', () => {
         it('muestra estado vacío cuando no hay productos', () => {
-            renderWithProviders(<Cart />, { withRouter: false });
+            renderWithProviders(<Cart />);
 
             expect(screen.getByText(/tu carrito está vacío/i)).toBeInTheDocument();
             expect(screen.queryByRole('button', { name: /vaciar carrito/i })).not.toBeInTheDocument();
@@ -144,8 +136,7 @@ describe('Cart Integration Tests', () => {
 
         it('muestra botones de acción cuando hay productos', () => {
             renderWithProviders(
-                <CartWithItems items={[mockProducts[0]]} />,
-                { withRouter: false }
+                <CartWithItems items={[mockProducts[0]]} />
             );
 
             expect(screen.getByRole('button', { name: /vaciar carrito/i })).toBeInTheDocument();
@@ -154,8 +145,7 @@ describe('Cart Integration Tests', () => {
 
         it('limpia el carrito y muestra mensaje correcto', () => {
             renderWithProviders(
-                <CartWithItems items={mockProducts} />,
-                { withRouter: false }
+                <CartWithItems items={mockProducts} />
             );
 
             const clearBtn = screen.getByRole('button', { name: /vaciar carrito/i });
@@ -170,8 +160,7 @@ describe('Cart Integration Tests', () => {
     describe('Renderizado de productos', () => {
         it('muestra todos los datos del producto correctamente', () => {
             renderWithProviders(
-                <CartWithItems items={[mockProducts[0]]} />,
-                { withRouter: false }
+                <CartWithItems items={[mockProducts[0]]} />
             );
 
             expect(screen.getByText('Catan')).toBeInTheDocument();
@@ -181,8 +170,7 @@ describe('Cart Integration Tests', () => {
 
         it('renderiza múltiples productos en orden', () => {
             renderWithProviders(
-                <CartWithItems items={mockProducts} />,
-                { withRouter: false }
+                <CartWithItems items={mockProducts} />
             );
 
             const productNames = screen.getAllByRole('strong');

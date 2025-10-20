@@ -28,7 +28,7 @@ describe('Navbar Component', () => {
         expect(screen.getByRole('link', { name: /productos/i })).toHaveAttribute('href', '/products');
         expect(screen.getByRole('link', { name: /blog/i })).toHaveAttribute('href', '/blog');
         expect(screen.getByRole('link', { name: /carrito/i })).toHaveAttribute('href', '/cart');
-        expect(screen.getByRole('link', { name: /login/i })).toHaveAttribute('href', '/auth/login');
+        expect(screen.getByRole('link', { name: /login/i })).toHaveAttribute('href', '/login');
     });
 
     it('tiene el botón toggle para dispositivos móviles', () => {

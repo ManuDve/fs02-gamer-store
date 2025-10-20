@@ -1,17 +1,25 @@
 import React, { useContext } from 'react';
 import { renderWithProviders, screen, fireEvent } from './test-utils';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { AuthProvider, AuthContext } from '../src/app/context/AuthContext.jsx';
 
 // Componente helper para probar el contexto
 function TestComponent() {
-    const { user, login, logout } = useContext(AuthContext);
+    const { user, login, logout, register } = useContext(AuthContext);
 
     return (
         <div>
             <div data-testid="user-status">{user ? user.name : 'Not logged in'}</div>
-            <button onClick={() => login({ name: 'Test User', email: 'test@example.com' })}>
+            <button onClick={() => login('admin@levelupgamer.cl', 'admin123')}>
                 Login
+            </button>
+            <button onClick={() => register({ 
+                name: 'Test User', 
+                email: 'test@example.com',
+                password: 'Test123',
+                phone: '123456789'
+            })}>
+                Register
             </button>
             <button onClick={logout}>Logout</button>
         </div>
@@ -19,6 +27,11 @@ function TestComponent() {
 }
 
 describe('AuthContext', () => {
+    beforeEach(() => {
+        // Limpiar localStorage antes de cada test
+        localStorage.clear();
+    });
+
     it('proporciona el estado inicial (usuario no autenticado)', () => {
         renderWithProviders(
             <AuthProvider>
@@ -41,7 +54,7 @@ describe('AuthContext', () => {
         const loginBtn = screen.getByRole('button', { name: /login/i });
         fireEvent.click(loginBtn);
 
-        expect(screen.getByTestId('user-status')).toHaveTextContent('Test User');
+        expect(screen.getByTestId('user-status')).toHaveTextContent('Administrador');
     });
 
     it('permite hacer logout', () => {
@@ -55,7 +68,7 @@ describe('AuthContext', () => {
         // Primero hacer login
         const loginBtn = screen.getByRole('button', { name: /login/i });
         fireEvent.click(loginBtn);
-        expect(screen.getByTestId('user-status')).toHaveTextContent('Test User');
+        expect(screen.getByTestId('user-status')).toHaveTextContent('Administrador');
 
         // Luego hacer logout
         const logoutBtn = screen.getByRole('button', { name: /logout/i });
@@ -64,26 +77,17 @@ describe('AuthContext', () => {
     });
 
     it('mantiene el estado del usuario entre renders', () => {
-        const { rerender } = renderWithProviders(
+        renderWithProviders(
             <AuthProvider>
                 <TestComponent />
             </AuthProvider>,
             { withCart: false, withRouter: false }
         );
 
-        const loginBtn = screen.getByRole('button', { name: /login/i });
-        loginBtn.click();
+        const registerBtn = screen.getByRole('button', { name: /register/i });
+        fireEvent.click(registerBtn);
 
-        // Re-renderizar
-        rerender(
-            <AuthProvider>
-                <TestComponent />
-            </AuthProvider>
-        );
-
-        // El usuario debería seguir autenticado después del re-render
-        // Nota: En la implementación actual, AuthProvider crea un nuevo estado en cada instancia
-        // Este test verifica el comportamiento esperado
-        expect(screen.getByTestId('user-status')).toBeDefined();
+        // El usuario debería estar registrado y autenticado
+        expect(screen.getByTestId('user-status')).toHaveTextContent('Test User');
     });
 });
