@@ -264,7 +264,7 @@ describe('Application Router', () => {
             renderWithRouter(routes, ['/admin/dashboard']);
 
             await waitFor(() => {
-                expect(screen.getAllByText(/Gamer Store/i).length).toBeGreaterThan(0);
+                expect(screen.getByAltText('LevelUp Gamer Logo')).toBeInTheDocument();
             });
         });
 
@@ -359,7 +359,7 @@ describe('Application Router', () => {
 
             renderWithRouter(routes, ['/']);
             // MainLayout debe tener el Navbar
-            expect(screen.getAllByText(/Gamer Store/i).length).toBeGreaterThan(0);
+            expect(screen.getByAltText('LevelUp Gamer Logo')).toBeInTheDocument();
         });
 
         it('debería tener BlogLayout en rutas de blog', () => {
