@@ -1,0 +1,44 @@
+/* Estilos para BlogPostCard */
+.blog-post-card__card {
+    overflow: hidden;
+    /* antes inline */
+}
+
+.blog-post-card__img-wrap {
+    height: 200px;
+    overflow: hidden;
+}
+
+.blog-post-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.category-badge {
+    background-color: #1E90FF;
+    /* mismo color usado */
+    color: #fff;
+}
+
+.post-title {
+    margin-bottom: 8px;
+    /* reemplaza margin inline */
+}
+
+.post-excerpt {
+    flex-grow: 1;
+}
+
+.blog-post-card__footer {
+    background-color: #ffffff;
+    /* bg-white */
+    border: 0;
+    /* border-0 */
+}
+
+.blog-post-card .btn-outline-primary {
+    border-color: #1E90FF;
+    color: #1E90FF;
+}

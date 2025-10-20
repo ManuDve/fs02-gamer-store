@@ -1,5 +1,7 @@
-export default RegisterForm = () => {
+const RegisterForm = () => {
   return (
     <div>RegisterForm</div>
   )
 }
+
+export default RegisterForm;

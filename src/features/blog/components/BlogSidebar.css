@@ -1,0 +1,17 @@
+.blog-sidebar-authors a {
+    text-decoration: none;
+}
+
+.blog-sidebar-author {
+    display: inline-block;
+    border: 0;
+    background: none;
+    padding: 0;
+    color: #0d6efd;
+    cursor: pointer;
+}
+
+.blog-sidebar-author.active {
+    font-weight: 600;
+    color: #0b5ed7;
+}

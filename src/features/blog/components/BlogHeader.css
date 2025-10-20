@@ -1,0 +1,21 @@
+/* Estilos para BlogHeader */
+header.blog-header p.blog-header-p {
+    color: #000000;
+}
+
+.blog-header .display-4 {
+    color: #39FF14;
+}
+
+
+.blog-header hr.custom-sep {
+    background-color: #1E90FF;
+    height: 2px;
+    opacity: 1;
+    border: 0;
+}
+
+.blog-header-container {
+    background-color: #000000;
+    border-bottom: 3px solid #1E90FF;
+}
