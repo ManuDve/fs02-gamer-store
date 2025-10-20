@@ -3,24 +3,25 @@ import { describe, it, expect } from 'vitest';
 import Footer from '../src/shared/components/Footer.jsx';
 
 describe('Footer Component', () => {
-    it('renderiza el texto de copyright', () => {
+    it('renderiza las secciones principales del footer', () => {
         renderWithProviders(
             <Footer />,
             { withCart: false, withRouter: false }
         );
 
-        expect(screen.getByText(/gamer store/i)).toBeInTheDocument();
-        expect(screen.getByText(/todos los derechos reservados/i)).toBeInTheDocument();
+        expect(screen.getByText(/tienda level-up gaming/i)).toBeInTheDocument();
+        expect(screen.getByText(/contáctanos/i)).toBeInTheDocument();
+        expect(screen.getByText(/newsletter/i)).toBeInTheDocument();
     });
 
-    it('muestra el año actual dinámicamente', () => {
+    it('muestra la información de contacto', () => {
         renderWithProviders(
             <Footer />,
             { withCart: false, withRouter: false }
         );
 
-        const currentYear = new Date().getFullYear();
-        expect(screen.getByText(new RegExp(currentYear.toString()))).toBeInTheDocument();
+        expect(screen.getByText(/\+569 9999 0000/)).toBeInTheDocument();
+        expect(screen.getByText('contacto@lupgamer.cl')).toBeInTheDocument();
     });
 
     it('tiene la estructura de footer correcta', () => {
@@ -40,28 +41,32 @@ describe('Footer Component', () => {
         );
 
         const footer = container.querySelector('footer');
-        expect(footer).toHaveClass('bg-dark', 'text-white', 'py-4', 'mt-4');
+        expect(footer).toBeInTheDocument();
+        const rows = container.querySelectorAll('.row');
+        expect(rows.length).toBeGreaterThan(0);
     });
 
-    it('el contenido está centrado', () => {
+    it('el contenido tiene estructura de grid', () => {
         const { container } = renderWithProviders(
             <Footer />,
             { withCart: false, withRouter: false }
         );
 
-        const centerDiv = container.querySelector('.text-center');
-        expect(centerDiv).toBeInTheDocument();
+        const container_div = container.querySelector('.container');
+        const cols = container.querySelectorAll('.col-12');
+        expect(container_div).toBeInTheDocument();
+        expect(cols.length).toBeGreaterThan(0);
     });
 
-    it('renderiza el copyright completo con formato correcto', () => {
+    it('renderiza el formulario de newsletter', () => {
         renderWithProviders(
             <Footer />,
             { withCart: false, withRouter: false }
         );
 
-        const currentYear = new Date().getFullYear();
-        const copyrightText = `© ${currentYear} Gamer Store. Todos los derechos reservados.`;
-
-        expect(screen.getByText(copyrightText)).toBeInTheDocument();
+        const input = screen.getByRole('textbox');
+        expect(input).toBeInTheDocument();
+        const button = screen.getByRole('button', { name: /enviar/i });
+        expect(button).toBeInTheDocument();
     });
 });
