@@ -37,7 +37,7 @@ export default function Navbar() {
               <Link className="nav-link" to="/blog">Blog</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/">Contacto</Link>
+              <Link className="nav-link" to="/contact">Contacto</Link>
             </li>
             {!user && (
               <li className="nav-item">

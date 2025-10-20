@@ -9,7 +9,7 @@ export default function MainLayout({ children }) {
   return (
     <CartProvider>
       <Navbar />
-      <main className="min-vh-100">
+      <main className="min-vh-60">
         {children ? children : <Outlet />}
       </main>
       <Footer />

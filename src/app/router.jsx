@@ -10,6 +10,7 @@ import Home from "../features/store/pages/Home.jsx";
 import Products from "../features/store/pages/Products.jsx";
 import ProductDetail from "../features/store/pages/ProductDetail.jsx";
 import Cart from "../features/store/pages/Cart.jsx";
+import Contact from "../features/store/pages/Contact.jsx";
 import Pay from "../features/store/pages/Pay.jsx";
 import PaymentSuccess from "../features/store/pages/PaymentSuccess.jsx";
 import PaymentError from "../features/store/pages/PaymentError.jsx";
@@ -35,8 +36,9 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home products={products}/> },
       { path: "products", element: <Products products={products}/> },
-  { path: "products/:id", element: <ProductDetail /> },
+      { path: "products/:id", element: <ProductDetail /> },
       { path: "cart", element: <Cart /> },
+      { path: "contact", element: <Contact /> },
       { path: "pay", element: <Pay /> },
       { path: "payment-success", element: <PaymentSuccess /> },
       { path: "payment-error", element: <PaymentError /> },

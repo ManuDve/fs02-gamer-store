@@ -27,7 +27,7 @@ describe('Navbar Component', () => {
         expect(screen.getByRole('link', { name: /inicio/i })).toHaveAttribute('href', '/');
         expect(screen.getByRole('link', { name: /productos/i })).toHaveAttribute('href', '/products');
         expect(screen.getByRole('link', { name: /blog/i })).toHaveAttribute('href', '/blog');
-        expect(screen.getByRole('link', { name: /contacto/i })).toHaveAttribute('href', '/');
+        expect(screen.getByRole('link', { name: /contacto/i })).toHaveAttribute('href', '/contact');
         expect(screen.getByRole('link', { name: /login/i })).toHaveAttribute('href', '/login');
     });
 
