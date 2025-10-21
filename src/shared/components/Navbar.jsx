@@ -60,13 +60,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link 
-                className={`nav-link ${isActive("/contact") ? "active" : ""}`}
-                aria-current={isActive("/contact") ? "page" : undefined}
-                to="/contact"
-              >
-                Contacto
-              </Link>
+              <Link className="nav-link" to="/contact">Contacto</Link>
             </li>
             {!user && (
               <li className="nav-item">
