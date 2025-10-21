@@ -78,7 +78,7 @@ describe('PaymentSuccess', () => {
         renderWithProviders(<PaymentSuccess />);
 
         expect(screen.getByText('Total Pagado:')).toBeInTheDocument();
-        expect(screen.getByText('$ 250.00')).toBeInTheDocument();
+        expect(screen.getByText('$250')).toBeInTheDocument();
     });
 
     it('debería mostrar la sección "¿Qué sigue?"', () => {
@@ -125,9 +125,9 @@ describe('PaymentSuccess', () => {
     it('debería mostrar precios calculados correctamente para cada producto', () => {
         renderWithProviders(<PaymentSuccess />);
 
-        // Producto 1: 100 * 2 = 200
-        expect(screen.getByText('$ 200.00')).toBeInTheDocument();
-        // Producto 2: 50 * 1 = 50
-        expect(screen.getByText('$ 50.00')).toBeInTheDocument();
+        // Producto 1: 100 * 2 = 200 -> $200 (CLP)
+        expect(screen.getByText('$200')).toBeInTheDocument();
+        // Producto 2: 50 * 1 = 50 -> $50 (CLP)
+        expect(screen.getByText('$50')).toBeInTheDocument();
     });
 });

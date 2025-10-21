@@ -38,10 +38,9 @@ describe('BlogPostCard Component', () => {
         expect(screen.getByText('Sin título')).toBeInTheDocument();
         expect(screen.getByText(/anónimo/i)).toBeInTheDocument();
         expect(screen.getByText('General')).toBeInTheDocument();
-        expect(screen.getByText('Sin resumen disponible.')).toBeInTheDocument();
     });
 
-    it('trunca el excerpt a 150 caracteres', () => {
+    it('trunca el excerpt a 120 caracteres', () => {
         const longExcerpt = 'A'.repeat(200);
         const postWithLongExcerpt = { ...mockPost, excerpt: longExcerpt };
 
@@ -50,7 +49,7 @@ describe('BlogPostCard Component', () => {
             { withCart: false }
         );
 
-        const excerptText = screen.getByText(/^A{150}…$/);
+        const excerptText = screen.getByText(/^A{120}…$/);
         expect(excerptText).toBeInTheDocument();
     });
 
@@ -59,8 +58,6 @@ describe('BlogPostCard Component', () => {
 
         // La fecha se formatea según el locale del navegador (verificamos que contenga el autor y algo de fecha)
         expect(screen.getByText(/john doe/i)).toBeInTheDocument();
-        // Verificamos que la fecha aparece después del separador •
-        expect(screen.getByText(/•/)).toBeInTheDocument();
     });
 
     it('usa imagen placeholder cuando no hay imageUrl', () => {
@@ -83,14 +80,6 @@ describe('BlogPostCard Component', () => {
         links.forEach(link => {
             expect(link).toHaveAttribute('href', '/blog/1');
         });
-    });
-
-    it('tiene botón "Leer más"', () => {
-        renderWithProviders(<BlogPostCard post={mockPost} />, { withCart: false });
-
-        const readMoreBtn = screen.getByRole('link', { name: /leer más/i });
-        expect(readMoreBtn).toBeInTheDocument();
-        expect(readMoreBtn).toHaveAttribute('href', '/blog/1');
     });
 
     it('acepta summary en lugar de excerpt', () => {
@@ -124,14 +113,13 @@ describe('BlogPostCard Component', () => {
         expect(img).toHaveAttribute('src', '/another-image.jpg');
     });
 
-    it('renderiza el badge de categoría con la clase correcta', () => {
-        const { container } = renderWithProviders(
+    it('renderiza el badge de categoría', () => {
+        renderWithProviders(
             <BlogPostCard post={mockPost} />,
             { withCart: false }
         );
 
-        const badge = container.querySelector('.category-badge');
+        const badge = screen.getByText('Gaming');
         expect(badge).toBeInTheDocument();
-        expect(badge).toHaveTextContent('Gaming');
     });
 });

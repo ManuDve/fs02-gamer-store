@@ -35,44 +35,44 @@ const Products = ({ products }) => {
       {(filters.category === 'all' || filters.category === 'Juego de Mesa') && 
         <>
           <Banner img='src/assets/img/juegos-de-mesa-banner.png' alt="juegos de mesa" />
-          <h2 className='products-heading-h2'>Juegos de Mesa</h2>
+          <h2 className='products-heading-h2 mt-5 mb-4'>Juegos de Mesa</h2>
         </>
       }
       
-      <div className='products'>
-        <ul>
-          {juegosDeMesa.map(product => (
-            <Product key={product.id} id={product.id} img={product.img} name={product.name} price={product.price} />
-          ))}
-        </ul>
+      <div className='row g-4 justify-content-center mb-5'>
+        {juegosDeMesa.map(product => (
+          <div key={product.id} className="col-12 col-md-6 col-lg-3">
+            <Product id={product.id} img={product.img} name={product.name} price={product.price} />
+          </div>
+        ))}
       </div>
 
       {(filters.category === 'all' || filters.category === 'Periférico Gamer') && 
         <>
           <Banner img='src/assets/img/perifericos-banner.png' alt="periféricos gamer" />
-          <h2 className='products-heading-h2'>Periféricos Gamer</h2>
+          <h2 className='products-heading-h2 mt-5 mb-4'>Periféricos Gamer</h2>
         </>
       }
-      <div className='products'>
-        <ul>
-          {perifericosGamer.map(product => (
-            <Product key={product.id} id={product.id} img={product.img} name={product.name} price={product.price} />
-          ))}
-        </ul>
+      <div className='row g-4 justify-content-center mb-5'>
+        {perifericosGamer.map(product => (
+          <div key={product.id} className="col-12 col-md-6 col-lg-3">
+            <Product id={product.id} img={product.img} name={product.name} price={product.price} />
+          </div>
+        ))}
       </div>
 
       {(filters.category === 'all' || filters.category === 'Consola') && 
         <>
           <Banner img='src/assets/img/consolas-banner.png' alt="consolas" />
-          <h2 className='products-heading-h2'>Consolas</h2>
+          <h2 className='products-heading-h2 mt-5 mb-4'>Consolas</h2>
         </>
       }
-      <div className='products'>
-        <ul>
-          {consolas.map(product => (
-            <Product key={product.id} id={product.id} img={product.img} name={product.name} price={product.price} />
-          ))}
-        </ul>
+      <div className='row g-4 justify-content-center mb-5'>
+        {consolas.map(product => (
+          <div key={product.id} className="col-12 col-md-6 col-lg-3">
+            <Product id={product.id} img={product.img} name={product.name} price={product.price} />
+          </div>
+        ))}
       </div>
 
 

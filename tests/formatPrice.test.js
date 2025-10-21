@@ -46,4 +46,9 @@ describe('formatPrice utility', () => {
         // CLP usa punto como separador de miles y redondea decimales
         expect(formatPrice(123456.78)).toBe('$123.457');
     });
+
+    it('debería formatear precios de productos del store', () => {
+        expect(formatPrice(34990)).toBe('$34.990');
+        expect(formatPrice(473990)).toBe('$473.990');
+    });
 });

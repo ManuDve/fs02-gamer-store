@@ -1,12 +1,23 @@
 /* Estilos para la página BlogHome */
 .blog-home {
-    min-height: 100vh;
+    min-height: 60vh;
 }
 
-.blog-home h2 {
-    color: #000000;
+.blog-section-title {
+    font-family: var(--heading-font);
+    font-size: 1.8rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 1rem;
 }
 
-.blog-home .text-muted {
-    color: rgba(0, 0, 0, 0.9) !important;
+.blog-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #1e90ff, #3fe48c);
+    border-radius: 2px;
 }

@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import productsData from '../../../assets/mocks/products.json';
 import './ProductDetail.css';
 import { useCartDispatch, addToCart } from '../../../app/context/CartContext';
+import { formatPrice } from '../utils/formatPrice';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -38,7 +39,7 @@ const ProductDetail = () => {
         </div>
         <div className="col-md-6">
           <h1>{product.name}</h1>
-          <p className="h4 text-primary">$ {product.price}</p>
+          <p className="h4 text-primary">{formatPrice(product.price)}</p>
           <p>{product.description}</p>
 
           {Object.keys(product.characteristics).length > 0 && (

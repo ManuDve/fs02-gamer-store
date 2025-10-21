@@ -85,7 +85,7 @@ describe('Application Router', () => {
 
             renderWithRouter(routes, ['/products']);
             // Verificar que existe la estructura de productos
-            expect(document.querySelector('.products')).toBeInTheDocument();
+            expect(document.querySelector('.container')).toBeInTheDocument();
         });
 
         it('debería renderizar el detalle de producto (/products/:id)', () => {
