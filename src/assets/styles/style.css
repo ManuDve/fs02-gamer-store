@@ -130,6 +130,7 @@ h6 {
   transition: all 0.2s ease;
   position: relative;
   padding-bottom: 0.5rem !important;
+  cursor: pointer;
 }
 
 .nav-link:hover {
