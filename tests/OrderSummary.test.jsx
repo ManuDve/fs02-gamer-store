@@ -94,7 +94,7 @@ describe('OrderSummary', () => {
 
         expect(screen.getByText(/Único Producto x 1/)).toBeInTheDocument();
         // Usar getAllByText porque el precio aparece múltiples veces
-        const prices = screen.getAllByText('$100');
+        const prices = screen.getAllByText('$99,99');
         expect(prices.length).toBeGreaterThan(0);
     });
 

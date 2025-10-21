@@ -188,11 +188,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-yes">29x</span>
-<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">47x</span>
+<span class="cline-any cline-yes">47x</span>
 <span class="cline-any cline-yes">47x</span>
 <span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-yes">29x</span>
-<span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-yes">22x</span>
@@ -200,11 +200,11 @@
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-yes">32x</span>
-<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -214,11 +214,11 @@
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-yes">30x</span>
-<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -264,44 +264,44 @@ const Products = ({ products }) =&gt; {
       {(filters.category === 'all' || filters.category === 'Juego de Mesa') &amp;&amp; 
         &lt;&gt;
           &lt;Banner img='src/assets/img/juegos-de-mesa-banner.png' alt="juegos de mesa" /&gt;
-          &lt;h2 className='products-heading-h2'&gt;Juegos de Mesa&lt;/h2&gt;
+          &lt;h2 className='products-heading-h2 mt-5 mb-4'&gt;Juegos de Mesa&lt;/h2&gt;
         &lt;/&gt;
       }
       
-      &lt;div className='products'&gt;
-        &lt;ul&gt;
-          {juegosDeMesa.map(product =&gt; (
-            &lt;Product key={product.id} id={product.id} img={product.img} name={product.name} price={product.price} /&gt;
-          ))}
-        &lt;/ul&gt;
+      &lt;div className='row g-4 justify-content-center mb-5'&gt;
+        {juegosDeMesa.map(product =&gt; (
+          &lt;div key={product.id} className="col-12 col-md-6 col-lg-3"&gt;
+            &lt;Product id={product.id} img={product.img} name={product.name} price={product.price} /&gt;
+          &lt;/div&gt;
+        ))}
       &lt;/div&gt;
 &nbsp;
       {(filters.category === 'all' || filters.category === 'Periférico Gamer') &amp;&amp; 
         &lt;&gt;
           &lt;Banner img='src/assets/img/perifericos-banner.png' alt="periféricos gamer" /&gt;
-          &lt;h2 className='products-heading-h2'&gt;Periféricos Gamer&lt;/h2&gt;
+          &lt;h2 className='products-heading-h2 mt-5 mb-4'&gt;Periféricos Gamer&lt;/h2&gt;
         &lt;/&gt;
       }
-      &lt;div className='products'&gt;
-        &lt;ul&gt;
-          {perifericosGamer.map(product =&gt; (
-            &lt;Product key={product.id} id={product.id} img={product.img} name={product.name} price={product.price} /&gt;
-          ))}
-        &lt;/ul&gt;
+      &lt;div className='row g-4 justify-content-center mb-5'&gt;
+        {perifericosGamer.map(product =&gt; (
+          &lt;div key={product.id} className="col-12 col-md-6 col-lg-3"&gt;
+            &lt;Product id={product.id} img={product.img} name={product.name} price={product.price} /&gt;
+          &lt;/div&gt;
+        ))}
       &lt;/div&gt;
 &nbsp;
       {(filters.category === 'all' || filters.category === 'Consola') &amp;&amp; 
         &lt;&gt;
           &lt;Banner img='src/assets/img/consolas-banner.png' alt="consolas" /&gt;
-          &lt;h2 className='products-heading-h2'&gt;Consolas&lt;/h2&gt;
+          &lt;h2 className='products-heading-h2 mt-5 mb-4'&gt;Consolas&lt;/h2&gt;
         &lt;/&gt;
       }
-      &lt;div className='products'&gt;
-        &lt;ul&gt;
-          {consolas.map(product =&gt; (
-            &lt;Product key={product.id} id={product.id} img={product.img} name={product.name} price={product.price} /&gt;
-          ))}
-        &lt;/ul&gt;
+      &lt;div className='row g-4 justify-content-center mb-5'&gt;
+        {consolas.map(product =&gt; (
+          &lt;div key={product.id} className="col-12 col-md-6 col-lg-3"&gt;
+            &lt;Product id={product.id} img={product.img} name={product.name} price={product.price} /&gt;
+          &lt;/div&gt;
+        ))}
       &lt;/div&gt;
 &nbsp;
 &nbsp;
@@ -316,7 +316,7 @@ export default Products;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-21T00:09:57.973Z
+                at 2025-10-21T00:33:02.650Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
