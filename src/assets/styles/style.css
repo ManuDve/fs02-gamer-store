@@ -124,7 +124,7 @@ h6 {
   max-height: 80px;
 }
 
-.nav-link {
+#nav .nav-link {
   color: #333333 !important;
   font-weight: 500;
   transition: all 0.2s ease;
@@ -133,11 +133,11 @@ h6 {
   cursor: pointer;
 }
 
-.nav-link:hover {
+#nav .nav-link:hover {
   color: var(--neon-green) !important;
 }
 
-.nav-link.active {
+#nav .nav-link.active {
   color: var(--neon-green) !important;
   font-weight: 700;
   border-bottom: 2px solid var(--neon-green);
