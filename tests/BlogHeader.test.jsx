@@ -49,10 +49,9 @@ describe('BlogHeader Component', () => {
             { withCart: false, withRouter: false }
         );
 
-        const textCenter = container.querySelector('.text-center');
-        expect(textCenter).toBeInTheDocument();
-
-        const textWhite = container.querySelector('.text-white');
-        expect(textWhite).toBeInTheDocument();
+        const header = container.querySelector('header.blog-header');
+        expect(header).toBeInTheDocument();
+        expect(header).toHaveClass('py-5');
+        expect(header).toHaveClass('mb-4');
     });
 });

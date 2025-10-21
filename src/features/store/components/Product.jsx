@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AddToCartIcon } from '../../../shared/components/AddToCartIcon';
 import { useCartDispatch, addToCart } from '../../../app/context/CartContext';
+import { formatPrice } from '../utils/formatPrice';
 
 const Product = (props) => {
     return (
@@ -8,7 +9,7 @@ const Product = (props) => {
             <Link to={`/products/${props.id}`}><img src={props.img} alt={props.name} /></Link>
             <div>
                 <strong>{props.name}</strong>
-                <p>$ {props.price}</p>
+                <p>{formatPrice(props.price)}</p>
             </div>
             <div>
                 <CartButton id={props.id} name={props.name} price={props.price} img={props.img} />

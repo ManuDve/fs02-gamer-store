@@ -21,7 +21,7 @@ const BlogPostCard = ({ post }) => {
     } = post;
 
     const preview = (excerpt || summary || '')
-        ? (excerpt || summary).slice(0, 150).trim()
+        ? (excerpt || summary).slice(0, 120).trim()
         : '';
 
     const imgSrc = imageUrl || image || 'https://via.placeholder.com/800x450?text=Blog+Post';
@@ -29,47 +29,46 @@ const BlogPostCard = ({ post }) => {
     let formattedDate = '';
     if (date) {
         try {
-            formattedDate = new Date(date).toLocaleDateString();
+            formattedDate = new Date(date).toLocaleDateString('es-ES', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            });
         } catch (e) {
             formattedDate = String(date);
         }
     }
 
     return (
-        <article className="col-md-6 col-lg-4 mb-4 blog-post-card">
-            <div className="card h-100 shadow-sm blog-post-card__card">
-                <Link to={`/blog/${id}`} className="text-reset" aria-label={`Leer ${title}`}>
-                    <div className="blog-post-card__img-wrap">
+        <article className="col-md-6 col-lg-4 mb-4">
+            <div className="card h-100 blog-post-card">
+                <Link to={`/blog/${id}`} className="text-reset text-decoration-none">
+                    <div className="card-img-container">
                         <img
                             src={imgSrc}
                             alt={title}
-                            className="card-img-top blog-post-card__img"
+                            className="card-img-top"
                         />
                     </div>
                 </Link>
 
                 <div className="card-body d-flex flex-column">
                     <div className="mb-2">
-                        <span className="badge category-badge">{category}</span>
+                        <span className="badge bg-light text-dark fs-7">{category}</span>
                     </div>
 
-                    <h5 className="card-title post-title">
+                    <h5 className="card-title mb-2">
                         <Link to={`/blog/${id}`} className="text-decoration-none text-dark">{title}</Link>
                     </h5>
 
-                    {preview ? (
-                        <p className="card-text text-muted post-excerpt">{preview}{preview.length >= 150 ? '…' : ''}</p>
-                    ) : (
-                        <p className="card-text text-muted post-excerpt">Sin resumen disponible.</p>
-                    )}
+                    <p className="card-text text-muted flex-grow-1 mb-4 small">
+                        {preview}{preview.length >= 120 ? '…' : ''}
+                    </p>
 
-                    <div className="mt-3">
-                        <Link to={`/blog/${id}`} className="btn btn-outline-primary btn-sm">Leer más</Link>
+                    <div className="blog-post-footer">
+                        <div className="blog-post-author">{author}</div>
+                        {formattedDate && <div className="blog-post-date">{formattedDate}</div>}
                     </div>
-                </div>
-
-                <div className="card-footer blog-post-card__footer">
-                    <small className="text-muted">Por {author}{formattedDate ? ` • ${formattedDate}` : ''}</small>
                 </div>
             </div>
         </article>

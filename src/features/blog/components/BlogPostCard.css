@@ -1,44 +1,97 @@
 /* Estilos para BlogPostCard */
-.blog-post-card__card {
-    overflow: hidden;
-    /* antes inline */
+.blog-post-card {
+    border: none;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.blog-post-card__img-wrap {
+.blog-post-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+}
+
+.card-img-container {
+    width: 100%;
     height: 200px;
     overflow: hidden;
+    display: block;
+    background: linear-gradient(135deg, #f5f5f5, #eeeeee);
 }
 
-.blog-post-card__img {
+.card-img-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.4s ease;
 }
 
-.category-badge {
-    background-color: #1E90FF;
-    /* mismo color usado */
-    color: #fff;
+.blog-post-card:hover .card-img-container img {
+    transform: scale(1.05);
 }
 
-.post-title {
-    margin-bottom: 8px;
-    /* reemplaza margin inline */
+.blog-post-card .badge {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    font-weight: 600;
+    background-color: #f0f7ff;
+    color: #1e90ff;
+    border: 1px solid #d0e8ff;
 }
 
-.post-excerpt {
-    flex-grow: 1;
+.blog-post-card .card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #000000;
+    margin-bottom: 0.75rem;
+    font-family: var(--heading-font);
 }
 
-.blog-post-card__footer {
-    background-color: #ffffff;
-    /* bg-white */
-    border: 0;
-    /* border-0 */
+.blog-post-card .card-title a {
+    color: #000000;
+    transition: color 0.2s ease;
 }
 
-.blog-post-card .btn-outline-primary {
-    border-color: #1E90FF;
-    color: #1E90FF;
+.blog-post-card .card-title a:hover {
+    color: #1e90ff;
+}
+
+.blog-post-card .card-text {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: #666666;
+}
+
+.blog-post-card .card-body {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-post-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+    margin-top: auto;
+}
+
+.blog-post-author {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333333;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.blog-post-date {
+    font-size: 0.85rem;
+    color: #999999;
+    white-space: nowrap;
+    font-weight: 500;
 }

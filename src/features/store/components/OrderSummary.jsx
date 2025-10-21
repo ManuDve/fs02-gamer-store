@@ -1,3 +1,5 @@
+import { formatPrice } from '../utils/formatPrice';
+
 const OrderSummary = ({ items, total }) => {
     return (
         <>
@@ -10,14 +12,14 @@ const OrderSummary = ({ items, total }) => {
                         {items.map(item => (
                             <li key={item.id} className="d-flex justify-content-between mb-2">
                                 <span>{item.name} x {item.quantity}</span>
-                                <span>$ {(item.price * item.quantity).toFixed(2)}</span>
+                                <span>{formatPrice(item.price * item.quantity)}</span>
                             </li>
                         ))}
                     </ul>
                     <hr />
                     <div className="d-flex justify-content-between mb-2">
                         <span>Subtotal:</span>
-                        <strong>$ {total}</strong>
+                        <strong>{formatPrice(total)}</strong>
                     </div>
                     <div className="d-flex justify-content-between mb-2">
                         <span>Envío:</span>
@@ -26,7 +28,7 @@ const OrderSummary = ({ items, total }) => {
                     <hr />
                     <div className="d-flex justify-content-between">
                         <h5>Total:</h5>
-                        <h5 className="text-primary">$ {total}</h5>
+                        <h5 className="text-primary">{formatPrice(total)}</h5>
                     </div>
                 </div>
             </div>

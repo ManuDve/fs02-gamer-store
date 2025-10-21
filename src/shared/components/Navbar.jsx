@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../app/context/AuthContext";
 import { useCartState } from "../../app/context/CartContext";
@@ -8,11 +8,16 @@ import cartIcon from "../../assets/img/cart.svg";
 export default function Navbar() {
   const { user, logout, isAdmin } = useContext(AuthContext);
   const cartState = useCartState();
+  const location = useLocation();
   
   const cartCount = cartState.items.reduce((total, item) => total + item.quantity, 0);
 
   const handleLogout = () => {
     logout();
+  };
+
+  const isActive = (path) => {
+    return location.pathname === path;
   };
 
   return (
@@ -28,25 +33,61 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav d-flex">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">Inicio</Link>
+              <Link 
+                className={`nav-link ${isActive("/") ? "active" : ""}`} 
+                aria-current={isActive("/") ? "page" : undefined}
+                to="/"
+              >
+                Inicio
+              </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/products">Productos</Link>
+              <Link 
+                className={`nav-link ${isActive("/products") ? "active" : ""}`}
+                aria-current={isActive("/products") ? "page" : undefined}
+                to="/products"
+              >
+                Productos
+              </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/blog">Blog</Link>
+              <Link 
+                className={`nav-link ${isActive("/blog") ? "active" : ""}`}
+                aria-current={isActive("/blog") ? "page" : undefined}
+                to="/blog"
+              >
+                Blog
+              </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/contact">Contacto</Link>
+              <Link 
+                className={`nav-link ${isActive("/contact") ? "active" : ""}`}
+                aria-current={isActive("/contact") ? "page" : undefined}
+                to="/contact"
+              >
+                Contacto
+              </Link>
             </li>
             {!user && (
               <li className="nav-item">
-                <Link className="nav-link" to="/login">Login</Link>
+                <Link 
+                  className={`nav-link ${isActive("/login") ? "active" : ""}`}
+                  aria-current={isActive("/login") ? "page" : undefined}
+                  to="/login"
+                >
+                  Login
+                </Link>
               </li>
             )}
             {isAdmin() && (
               <li className="nav-item ms-lg-auto">
-                <Link className="nav-link" to="/admin/dashboard">Admin</Link>
+                <Link 
+                  className={`nav-link ${isActive("/admin/dashboard") ? "active" : ""}`}
+                  aria-current={isActive("/admin/dashboard") ? "page" : undefined}
+                  to="/admin/dashboard"
+                >
+                  Admin
+                </Link>
               </li>
             )}
           </ul>

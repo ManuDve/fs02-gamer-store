@@ -120,17 +120,30 @@ h6 {
   box-shadow: #00000009 5px 5px 5px;
 }
 
-/* ... */
 #logo-nav {
   max-height: 80px;
 }
 
+.nav-link {
+  color: #333333 !important;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: relative;
+  padding-bottom: 0.5rem !important;
+}
+
 .nav-link:hover {
-  color: var(--electric-light-blue);
+  color: var(--neon-green) !important;
+}
+
+.nav-link.active {
+  color: var(--neon-green) !important;
+  font-weight: 700;
+  border-bottom: 2px solid var(--neon-green);
 }
 
 .navbar-nav .nav-item .active {
-  color: var(--electric-blue);
+  color: var(--neon-green);
   font-weight: 700;
 }
 

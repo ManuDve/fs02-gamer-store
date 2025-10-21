@@ -53,7 +53,7 @@ const BlogPost = () => {
             {post.tags.length > 0 && (
               <div className="mb-3">
                 {post.tags.map((t) => (
-                  <span key={t} className="badge bg-secondary me-2">{t}</span>
+                  <span key={t} className="badge bg-light text-dark me-2">{t}</span>
                 ))}
               </div>
             )}

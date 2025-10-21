@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { formatPrice } from '../utils/formatPrice';
 
 const PaymentSuccess = () => {
     const navigate = useNavigate();
@@ -96,7 +97,7 @@ const PaymentSuccess = () => {
                                                     <small className="text-muted">Cantidad: {item.quantity}</small>
                                                 </div>
                                             </div>
-                                            <strong>$ {(item.price * item.quantity).toFixed(2)}</strong>
+                                            <strong>{formatPrice(item.price * item.quantity)}</strong>
                                         </li>
                                     ))}
                                 </ul>
@@ -106,7 +107,7 @@ const PaymentSuccess = () => {
 
                             <div className="d-flex justify-content-between align-items-center">
                                 <h5 className="mb-0">Total Pagado:</h5>
-                                <h4 className="mb-0 text-success">$ {total}</h4>
+                                <h4 className="mb-0 text-success">{formatPrice(total)}</h4>
                             </div>
                         </div>
                     </div>

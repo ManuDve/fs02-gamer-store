@@ -36,10 +36,10 @@ describe('OrderSummary', () => {
             { withRouter: false }
         );
 
-        // Producto 1: 100 * 2 = 200
-        expect(screen.getByText('$ 200.00')).toBeInTheDocument();
-        // Producto 2: 50 * 1 = 50
-        expect(screen.getByText('$ 50.00')).toBeInTheDocument();
+        // Producto 1: 100 * 2 = 200 -> $200 (CLP)
+        expect(screen.getByText('$200')).toBeInTheDocument();
+        // Producto 2: 50 * 1 = 50 -> $50 (CLP)
+        expect(screen.getByText('$50')).toBeInTheDocument();
     });
 
     it('debería mostrar el subtotal correcto', () => {
@@ -50,7 +50,7 @@ describe('OrderSummary', () => {
 
         expect(screen.getByText('Subtotal:')).toBeInTheDocument();
         // Usar getAllByText porque el total aparece múltiples veces
-        const totals = screen.getAllByText('$ 250.00');
+        const totals = screen.getAllByText('$250');
         expect(totals.length).toBeGreaterThan(0);
     });
 
@@ -94,7 +94,7 @@ describe('OrderSummary', () => {
 
         expect(screen.getByText(/Único Producto x 1/)).toBeInTheDocument();
         // Usar getAllByText porque el precio aparece múltiples veces
-        const prices = screen.getAllByText('$ 99.99');
+        const prices = screen.getAllByText('$100');
         expect(prices.length).toBeGreaterThan(0);
     });
 

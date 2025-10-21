@@ -7,7 +7,7 @@ describe('Product', () => {
     it('renders product and add to cart updates cart state', () => {
         renderWithProviders(
             <>
-                <Product id="T100" img="/img.png" name="TestProd" price={9.99} />
+                <Product id="T100" img="/img.png" name="TestProd" price={9990} />
                 <Cart />
             </>
         );
@@ -18,5 +18,15 @@ describe('Product', () => {
         // The cart UI should contain at least one item with the product name
         const matches = screen.getAllByText(/TestProd/i);
         expect(matches.length).toBeGreaterThan(0);
+    });
+
+    it('renders product with formatted price', () => {
+        renderWithProviders(
+            <Product id="T100" img="/img.png" name="TestProd" price={34990} />
+        );
+
+        // Check that price is formatted correctly as $34.990
+        const priceElement = screen.getByText('$34.990');
+        expect(priceElement).toBeInTheDocument();
     });
 });

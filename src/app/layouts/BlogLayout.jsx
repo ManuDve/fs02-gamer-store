@@ -18,8 +18,9 @@ export default function BlogLayout() {
     <MainLayout>
       <div className="container mt-4">
         <BlogHeader />
-        <div className="row mt-4">
+        <div className="row mt-5">
           <main className="col-md-8">
+            <h2 className="mb-4 fw-bold text-dark blog-section-title">Últimas Entradas</h2>
             {/* Pasamos selectedAuthor vía contexto del Outlet por si algún hijo lo necesita */}
             <Outlet context={{ selectedAuthor }} />
           </main>
