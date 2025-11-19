@@ -26,7 +26,6 @@ import AdminProducts from "../features/admin/pages/Products.jsx";
 
 import NotFound from "../shared/pages/NotFound.jsx";
 
-import { products } from "../assets/mocks/products.json"
 import { blog_posts } from "../assets/mocks/blog_posts.json"
 
 const router = createBrowserRouter([
@@ -34,8 +33,8 @@ const router = createBrowserRouter([
     path: "/",
     element: <MainLayout />,
     children: [
-      { index: true, element: <Home products={products}/> },
-      { path: "products", element: <Products products={products}/> },
+      { index: true, element: <Home /> },
+      { path: "products", element: <Products /> },
       { path: "products/:id", element: <ProductDetail /> },
       { path: "cart", element: <Cart /> },
       { path: "contact", element: <Contact /> },

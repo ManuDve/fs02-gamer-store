@@ -51,7 +51,3 @@
     transition: all 0.3s ease;
     cursor: pointer;
 }
-
-.logo:hover {
-    animation: floatHover 3s ease-in-out infinite, pulseHover 2s ease-in-out infinite;
-}
