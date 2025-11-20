@@ -1,31 +1,25 @@
 import api from './api';
 
 export const authService = {
-  //Iniciar sesión
+  // Login de usuario
   login: async (email, password) => {
-    try {
-      const response = await api.post('/auth/login', { email, password });
-      
-      if (response.token) {
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('user', JSON.stringify({
-          email: response.email,
-          name: response.name,
-          roles: response.roles
-        }));
-        localStorage.setItem('roles', JSON.stringify(response.roles));
-      }
-      
-      return { success: true, data: response };
-    } catch (error) {
-      return {
-        success: false,
-        error: error.message || 'Credenciales inválidas'
-      };
+    const response = await api.post('/auth/login', { email, password });
+    
+    // Guardar token y usuario si el login es exitoso
+    if (response.token) {
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('user', JSON.stringify({
+        email: response.email,
+        name: response.name,
+        roles: response.roles
+      }));
+      localStorage.setItem('roles', JSON.stringify(response.roles));
     }
+    
+    return response;
   },
 
-  // Cerrar sesión
+  // Cierre de sesión
   logout: () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
@@ -43,7 +37,7 @@ export const authService = {
     return !!localStorage.getItem('token');
   },
 
-  // Verificar si el usuario es administrador
+  // Verificar si el usuario tiene rol de administrador
   isAdmin: () => {
     const rolesStr = localStorage.getItem('roles');
     if (!rolesStr) return false;
@@ -67,7 +61,7 @@ export const authService = {
     }
   },
 
-  // Obtener roles del usuario
+  // Obtener roles del usuario actual
   getRoles: () => {
     const rolesStr = localStorage.getItem('roles');
     return rolesStr ? JSON.parse(rolesStr) : [];

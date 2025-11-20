@@ -1,68 +1,48 @@
 import { createContext, useState, useEffect } from "react";
+import { authService } from "../../shared/services/authService";
 
 export const AuthContext = createContext();
 
-// Usuario admin predefinido
-const ADMIN_USER = {
-  email: 'admin@levelupgamer.cl',
-  password: 'admin123',
-  name: 'Administrador',
-  role: 'admin'
-};
-
-// Función para obtener usuarios del localStorage
-const getStoredUsers = () => {
-  const users = localStorage.getItem('registeredUsers');
-  return users ? JSON.parse(users) : [ADMIN_USER];
-};
-
-// Función para guardar usuarios en localStorage
-const saveUsers = (users) => {
-  localStorage.setItem('registeredUsers', JSON.stringify(users));
-};
-
 export function AuthProvider({ children }) {
-  // Inicializar con el usuario guardado en localStorage si existe
-  const [user, setUser] = useState(() => {
-    const savedUser = localStorage.getItem('currentUser');
-    return savedUser ? JSON.parse(savedUser) : null;
-  });
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Guardar el usuario actual en localStorage cuando cambie
+  // Verificar si hay una sesión activa al cargar
   useEffect(() => {
-    if (user) {
-      localStorage.setItem('currentUser', JSON.stringify(user));
-    } else {
-      localStorage.removeItem('currentUser');
+    const currentUser = authService.getCurrentUser();
+    if (currentUser) {
+      setUser(currentUser);
     }
-  }, [user]);
-
-  // Inicializar usuarios registrados con el admin si no existen
-  useEffect(() => {
-    const users = getStoredUsers();
-    if (users.length === 0) {
-      saveUsers([ADMIN_USER]);
-    }
+    setLoading(false);
   }, []);
 
-  const login = (email, password) => {
-    const users = getStoredUsers();
-    const foundUser = users.find(
-      u => u.email === email && u.password === password
-    );
-
-    if (foundUser) {
-      // No guardar la contraseña en el estado del usuario
-      const { password: _, ...userWithoutPassword } = foundUser;
-      setUser(userWithoutPassword);
-      return { success: true, user: userWithoutPassword };
+  /**
+   * Iniciar sesión
+   */
+  const login = async (email, password) => {
+    try {
+      const response = await authService.login(email, password);
+      
+      const userData = {
+        email: response.email,
+        name: response.name,
+        roles: response.roles
+      };
+      
+      setUser(userData);
+      return { success: true, user: userData };
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error.message || 'Credenciales inválidas'
+      };
     }
-
-    return { success: false, error: 'Email o contraseña incorrectos' };
   };
 
+  // Registrar nuevo usuario (TEMPORAL - sin backend / TODO: Implementar con userService cuando esté disponible)
   const register = (userData) => {
-    const users = getStoredUsers();
+    // ⚠️ VERSIÓN TEMPORAL: Usa localStorage
+    const users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
     
     // Verificar si el email ya existe
     const emailExists = users.some(u => u.email === userData.email);
@@ -70,45 +50,73 @@ export function AuthProvider({ children }) {
       return { success: false, error: 'El email ya está registrado' };
     }
 
-    // Crear nuevo usuario (siempre como usuario normal)
+    // Guardar nuevo usuario
     const newUser = {
       ...userData,
-      role: 'user',
+      roles: ['ROLE_USER'],
       registerDate: new Date().toISOString()
     };
 
     users.push(newUser);
-    saveUsers(users);
+    localStorage.setItem('registeredUsers', JSON.stringify(users));
 
-    // Iniciar sesión automáticamente
+    // Auto-login después del registro
     const { password: _, ...userWithoutPassword } = newUser;
     setUser(userWithoutPassword);
 
     return { success: true, user: userWithoutPassword };
   };
 
+  // Cerrar sesión
   const logout = () => {
+    authService.logout();
     setUser(null);
-    localStorage.removeItem('currentUser');
   };
 
+  // Verificar si el usuario es administrador
   const isAdmin = () => {
-    return user?.role === 'admin';
+    return authService.isAdmin();
   };
 
+  // Verificar si hay una sesión activa
   const isAuthenticated = () => {
-    return user !== null;
+    return user !== null && authService.isAuthenticated();
   };
+
+  // Verificar si el usuario tiene un rol específico
+  const hasRole = (role) => {
+    return authService.hasRole(role);
+  };
+
+  // Obtener los roles del usuario actual
+  const getUserRoles = () => {
+    return authService.getRoles();
+  };
+
+  const value = {
+    user,
+    login,
+    logout,
+    register,
+    isAdmin,
+    isAuthenticated,
+    hasRole,
+    getUserRoles,
+    loading
+  };
+
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <AuthContext.Provider value={{ 
-      user, 
-      login, 
-      logout, 
-      register,
-      isAdmin,
-      isAuthenticated 
-    }}>
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );

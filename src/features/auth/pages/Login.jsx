@@ -50,30 +50,39 @@ const Login = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) return;
 
     setIsLoading(true);
+    setErrors({}); // Limpiar errores previos
 
-    // Simular delay de red
-    setTimeout(() => {
-      const result = login(formData.email, formData.password);
+    try {
+      // Asíncrono y llama al backend real
+      const result = await login(formData.email, formData.password);
 
       if (result.success) {
-        // Redirigir según el rol del usuario
-        if (result.user.role === 'admin') {
+        // Verificar roles del backend (ROLE_ADMIN, ROLE_USER)
+        const isAdmin = result.user.roles?.includes('ROLE_ADMIN');
+        
+        if (isAdmin) {
           navigate('/admin/dashboard');
         } else {
           navigate('/');
         }
       } else {
+        // Mostrar error del backend
         setErrors({ general: result.error });
       }
-
+    } catch (error) {
+      // Manejar errores de red o del servidor
+      setErrors({ 
+        general: 'Error al conectar con el servidor. Por favor, intenta nuevamente.' 
+      });
+    } finally {
       setIsLoading(false);
-    }, 500);
+    }
   };
 
   return (
@@ -112,6 +121,7 @@ const Login = () => {
               value={formData.email}
               onChange={handleChange}
               autoComplete="email"
+              disabled={isLoading}
             />
             {errors.email && (
               <div className="invalid-feedback">{errors.email}</div>
@@ -132,12 +142,14 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleChange}
                 autoComplete="current-password"
+                disabled={isLoading}
               />
               <button
                 type="button"
                 className="password-toggle"
                 onClick={() => setShowPassword(!showPassword)}
                 tabIndex="-1"
+                disabled={isLoading}
               >
                 <i className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'}`}></i>
               </button>
@@ -178,11 +190,11 @@ const Login = () => {
           <h6><i className="bi bi-info-circle"></i> Credenciales de Prueba</h6>
           <div className="demo-item">
             <strong>Admin:</strong>
-            <span>admin@levelupgamer.cl / admin123</span>
+            <span>admin@admin.com / admin123</span>
           </div>
           <div className="demo-item">
             <strong>Usuario:</strong>
-            <span>Regístrate para crear tu cuenta</span>
+            <span>usuario@duoc.cl / password123</span>
           </div>
         </div>
       </div>
