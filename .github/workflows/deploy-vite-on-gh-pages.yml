@@ -8,6 +8,11 @@ on:
     tags:
       - 'v*.*.*'  # Se activa con tags como v1.0.0, v2.0.0, etc.
   workflow_dispatch:  # Permite ejecución manual desde GitHub
+    inputs:
+      tag:
+        description: 'Tag de release a desplegar (ej: v2.0.0)'
+        required: false
+        type: string
 
 # Permisos necesarios para desplegar a GitHub Pages
 permissions:
@@ -29,7 +34,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        ref: ${{ github.ref }}
+        ref: ${{ inputs.tag || github.ref }}
     
     - name: Setup Node.js
       uses: actions/setup-node@v4
