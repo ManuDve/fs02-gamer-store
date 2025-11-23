@@ -1,8 +1,8 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [react()],
-  base: "/fs02-gamer-store/",
+  base: mode === 'production' ? "/fs02-gamer-store/" : "/",
   test: {
     globals: true,
     environment: "jsdom",
@@ -12,4 +12,4 @@ export default defineConfig({
       reporter: ["text", "html"],
     },
   },
-});
+}));
