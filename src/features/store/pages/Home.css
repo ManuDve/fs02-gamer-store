@@ -1,0 +1,15 @@
+.home-heading {
+    font-family: "Orbitron", sans-serif;
+}
+
+.home-heading, h1 {
+    font-size: 2rem;
+}
+
+.home-heading, h2 {
+    font-size: 1.5rem;
+}
+
+.home-lead {
+    font-style: italic;
+}

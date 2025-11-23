@@ -1,0 +1,424 @@
+{
+    "products": [
+        {
+            "id": "GM001",
+            "category": "Juego de Mesa",
+            "name": "Catan",
+            "price": 34990,
+            "img": "https://tse2.mm.bing.net/th/id/OIP.Ygd6ZQ679UJMABllYf--_gHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+            "descripcion": "Juego de estrategia de comercio y construcción de civilizaciones en la isla de Catan.",
+            "reseña": "Un clásico moderno, esencial para cualquier colección. ¡Perfecto para noches de estrategia!",
+            "caracteristics": {
+                "jugadores": "3-4",
+                "edad_minima": "+10 años",
+                "tiempo_juego": "60-120 min"
+            }
+        },
+        {
+            "id": "GM002",
+            "category": "Juego de Mesa",
+            "name": "Dixit",
+            "price": 28990,
+            "img": "https://cf.geekdo-images.com/original/img/m74nctbYaqTy03r8s_i_KTyvbYQ=/0x0/pic3483909.jpg",
+            "descripcion": "Juego de cartas narrativo y de imaginación, donde se adivinan conceptos a través de ilustraciones surrealistas.",
+            "reseña": "Excelente para fiestas. Despierta la creatividad y la interpretación de imágenes. ¡Arte bellísimo!",
+            "caracteristics": {
+                "jugadores": "3-6",
+                "edad_minima": "+8 años",
+                "tiempo_juego": "30 min"
+            }
+        },
+        {
+            "id": "GM003",
+            "category": "Juego de Mesa",
+            "name": "Ticket to Ride: Europa",
+            "price": 43990,
+            "img": "https://67287.cdn.simplo7.net/static/67287/sku/jogos-de-tabuleiro-e-cardgames-ticket-to-ride-europa--p-1621519111305.jpg",
+            "descripcion": "Aventura ferroviaria para coleccionar y conectar rutas de tren a través de Europa.",
+            "reseña": "Ideal para la familia. Reglas sencillas y alta rejugabilidad.",
+            "caracteristics": {
+                "jugadores": "2-5",
+                "edad_minima": "+8 años",
+                "tiempo_juego": "30-60 min"
+            }
+        },
+        {
+            "id": "GM004",
+            "category": "Juego de Mesa",
+            "name": "Aventureros al Tren: Primer Viaje",
+            "price": 23990,
+            "img": "https://tse3.mm.bing.net/th/id/OIP.pKHvs9DgTq4ORKLFS7wzqwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+            "descripcion": "Versión simplificada de Ticket to Ride para introducir a los más jóvenes en los juegos de estrategia.",
+            "reseña": "La mejor opción para iniciar a los niños. Rápido y muy colorido.",
+            "caracteristics": {
+                "jugadores": "2-4",
+                "edad_minima": "+6 años",
+                "tiempo_juego": "15-30 min"
+            }
+        },
+        {
+            "id": "GM005",
+            "category": "Juego de Mesa",
+            "name": "Pandemic",
+            "price": 37990,
+            "img": "https://cdn.svc.asmodee.net/production-asmodeees/uploads/2023/06/ZM7101ES_1-1.png",
+            "descripcion": "Juego cooperativo donde el equipo debe curar y contener cuatro plagas que se extienden por el mundo.",
+            "reseña": "Un desafío cooperativo intenso y emocionante. ¡El trabajo en equipo es crucial para ganar!",
+            "caracteristics": {
+                "jugadores": "2-4",
+                "edad_minima": "+8 años",
+                "tiempo_juego": "45 min"
+            }
+        },
+        {
+            "id": "GM006",
+            "category": "Juego de Mesa",
+            "name": "Mysterium",
+            "price": 39990,
+            "img": "https://tse3.mm.bing.net/th/id/OIP.rFnMyj95QfKcl5NaB_ycWwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+            "descripcion": "Juego asimétrico donde un jugador es un fantasma que guía a un grupo de médiums a resolver un misterio de asesinato con cartas de visiones.",
+            "reseña": "Una experiencia única, mezcla de Dixit y Cluedo. Muy atmosférico.",
+            "caracteristics": {
+                "jugadores": "2-7",
+                "edad_minima": "+10 años",
+                "tiempo_juego": "42 min"
+            }
+        },
+        {
+            "id": "GM007",
+            "category": "Juego de Mesa",
+            "name": "Código Secreto (Codenames)",
+            "price": 18990,
+            "img": "https://tse2.mm.bing.net/th/id/OIP.cJdMYHqguVnqzPQPMSyB5AHaJk?rs=1&pid=ImgDetMain&o=7&rm=3",
+            "descripcion": "Juego de palabras por equipos donde los espías deben dar pistas de una sola palabra para que su equipo identifique a sus agentes secretos en el tablero.",
+            "reseña": "Rápido, ingenioso y excelente para grupos grandes. ¡Altamente adictivo!",
+            "caracteristics": {
+                "jugadores": "2-8+",
+                "edad_minima": "+14 años",
+                "tiempo_juego": "15 min"
+            }
+        },
+        {
+            "id": "GM008",
+            "category": "Juego de Mesa",
+            "name": "Wingspan",
+            "price": 56990,
+            "img": "https://facts.net/wp-content/uploads/2024/02/12-facts-about-wingspan-1707773331.jpg",
+            "descripcion": "Juego de coleccionar aves y desarrollar hábitats, centrado en la gestión de motores de recursos y la obtención de puntos.",
+            "reseña": "Un juego visualmente hermoso y muy tranquilo. Perfecto para *gamers* experimentados.",
+            "caracteristics": {
+                "jugadores": "1-5",
+                "edad_minima": "+10 años",
+                "tiempo_juego": "40-70 min"
+            }
+        },
+        {
+            "id": "GM009",
+            "category": "Juego de Mesa",
+            "name": "Sushi Go!",
+            "price": 11990,
+            "img": "https://th.bing.com/th/id/R.bdd79970356de8141a859bdb435e755a?rik=NoFBSdLhFapgbA&pid=ImgRaw&r=0",
+            "descripcion": "Juego de *draft* de cartas ultrarrápido donde compites por el mejor menú de sushi.",
+            "reseña": "Pequeño, portable y muy divertido. Ideal para empezar o terminar una noche de juegos.",
+            "caracteristics": {
+                "jugadores": "2-5",
+                "edad_minima": "+8 años",
+                "tiempo_juego": "15 min"
+            }
+        },
+        {
+            "id": "GM010",
+            "category": "Juego de Mesa",
+            "name": "Splendor",
+            "price": 31990,
+            "img": "https://tse3.mm.bing.net/th/id/OIP.Lr2KHOY53MTljCHqtNoY1AHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+            "descripcion": "Juego de coleccionar gemas y adquirir cartas de desarrollo para ganar prestigio.",
+            "reseña": "Mecánicas sencillas con mucha profundidad estratégica. Rápido de jugar y altamente rejugable.",
+            "caracteristics": {
+                "jugadores": "2-4",
+                "edad_minima": "+10 años",
+                "tiempo_juego": "30 min"
+            }
+        },
+        {
+            "id": "PG001",
+            "category": "Periférico Gamer",
+            "name": "Teclado Mecánico RGB 'Raptor'",
+            "price": 85990,
+            "img": "https://tse3.mm.bing.net/th/id/OIP.RHyIEu5k30UgnOIONMTwjwHaEK?rs=1&pid=ImgDetMain&o=7&rm=3",
+            "descripcion": "Teclado mecánico con *switches* táctiles y retroiluminación RGB personalizable.",
+            "reseña": "Excelente respuesta y tacto. Ideal para sesiones de juego intensas.",
+            "caracteristics": {
+                "tipo_switch": "Outemu Blue",
+                "iluminacion": "RGB por Tecla",
+                "conexión": "USB Cableado"
+            }
+        },
+        {
+            "id": "PG002",
+            "category": "Periférico Gamer",
+            "name": "Ratón Inalámbrico 'Phantom'",
+            "price": 52990,
+            "img": "https://cdn.shopify.com/s/files/1/0269/1013/0275/products/2c11638bfea4c873a64139aed0ab2b87_2048x2048.jpg?v=1614809784",
+            "descripcion": "Ratón *gamer* ultraligero (65g) con sensor óptico de 16000 DPI y conexión de baja latencia.",
+            "reseña": "Increíblemente ligero y preciso. La libertad del inalámbrico sin sacrificar rendimiento.",
+            "caracteristics": {
+                "sensor": "Óptico 16000 DPI",
+                "conexión": "Inalámbrica (2.4 GHz)",
+                "peso": "65g"
+            }
+        },
+        {
+            "id": "PG003",
+            "category": "Periférico Gamer",
+            "name": "Auriculares Surround 7.1 'Echo'",
+            "price": 75990,
+            "img": "https://store.teslards.pe/wp-content/uploads/2023/03/GH-Raider-05.png.png",
+            "descripcion": "Auriculares con sonido envolvente 7.1 virtual y micrófono con cancelación de ruido.",
+            "reseña": "Audio inmersivo y claro. Muy cómodos para largas jornadas de juego.",
+            "caracteristics": {
+                "sonido": "Surround 7.1 Virtual",
+                "conexión": "USB",
+                "compatibilidad": "PC/PS5"
+            }
+        },
+        {
+            "id": "PG004",
+            "category": "Periférico Gamer",
+            "name": "Mousepad Extendido 'Titan'",
+            "price": 23990,
+            "img": "https://cdn.shopify.com/s/files/1/0352/1514/7148/products/AttackonTitan_055_1024x.jpg?v=1649796605",
+            "descripcion": "Alfombrilla extragrande (90x40 cm) con superficie de tela optimizada para velocidad y base antideslizante.",
+            "reseña": "Espacio más que suficiente para teclado y ratón. Mejora drásticamente la precisión.",
+            "caracteristics": {
+                "dimensiones": "900 x 400 mm",
+                "material": "Tela de microfibra",
+                "bordes": "Cosidos antideshilachamiento"
+            }
+        },
+        {
+            "id": "PG005",
+            "category": "Periférico Gamer",
+            "name": "Mando Pro Inalámbrico 'Apex'",
+            "price": 61990,
+            "img": "https://ae01.alicdn.com/kf/S570f0c5b830a4b399f041ec652f550c1s/FlyDiGi-mando-inal-mbrico-con-Bluetooth-Apex-4-Gamepad-blanco-edici-n-est-ndar-controlador-de.jpg",
+            "descripcion": "Mando de juego profesional con botones traseros programables y gatillos de alta respuesta.",
+            "reseña": "Precisión y personalización de nivel competitivo. La ergonomía es perfecta.",
+            "caracteristics": {
+                "plataforma": "PC/Switch/Android",
+                "botones": "4 Palancas Traseras",
+                "bateria": "20 horas"
+            }
+        },
+        {
+            "id": "PG006",
+            "category": "Periférico Gamer",
+            "name": "Webcam 4K 'Streamer Pro'",
+            "price": 113990,
+            "img": "https://resource.logitech.com/b_white/content/dam/logitech/en/products/webcams/4k-pro-webcam/gallery/4k-pro-gallery-1.png",
+            "descripcion": "Cámara web con resolución 4K a 30 FPS y enfoque automático, ideal para *streaming* de alta calidad.",
+            "reseña": "Imágenes cristalinas y excelente rendimiento con poca luz.",
+            "caracteristics": {
+                "resolucion": "4K (3840x2160)",
+                "fps": "30 FPS",
+                "microfono": "Doble integrado"
+            }
+        },
+        {
+            "id": "PG007",
+            "category": "Periférico Gamer",
+            "name": "Volante de Carreras 'ForceDrive'",
+            "price": 236990,
+            "img": "https://ae01.alicdn.com/kf/S931cacc8ebc44a10865559620f764453D/Volante-de-juego-de-carreras-Force-Feedback-PXN-V10-900-grados-Compatible-con-PC-XBOX-ONE.jpg",
+            "descripcion": "Volante de carreras con *Force Feedback* de doble motor, pedales sensibles y rotación de 900 grados.",
+            "reseña": "Experiencia de conducción increíblemente realista. Ideal para simulación.",
+            "caracteristics": {
+                "rotacion": "900 grados",
+                "feedback": "Doble motor de fuerza",
+                "plataforma": "PC/PS4/Xbox"
+            }
+        },
+        {
+            "id": "PG008",
+            "category": "Periférico Gamer",
+            "name": "Ratón Óptico Cableado 'Blade'",
+            "price": 34990,
+            "img": "https://m.media-amazon.com/images/I/41fnD+V32OL.jpg",
+            "descripcion": "Ratón *gamer* cableado, ligero y ambidiestro, con 7200 DPI y 6 botones programables.",
+            "reseña": "El mejor valor por price. Diseño sencillo y muy funcional para eSports.",
+            "caracteristics": {
+                "sensor": "Óptico 7200 DPI",
+                "conexión": "USB Cableado",
+                "diseño": "Ambiestro"
+            }
+        },
+        {
+            "id": "PG009",
+            "category": "Periférico Gamer",
+            "name": "Silla Gamer 'ErgoPro'",
+            "price": 180990,
+            "img": "https://static.nb.com.ar/i/nb_SILLA-GAMER-TRUST-GXT708W-RESTO-WHITE_ver_75d6f2ec772bb2fcbd976b7c454b9776.png",
+            "descripcion": "Silla ergonómica de alto respaldo con soporte lumbar y reposabrazos 4D.",
+            "reseña": "Comodidad excepcional para maratones de juego. Gran inversión en salud postural.",
+            "caracteristics": {
+                "material": "Cuero PU transpirable",
+                "ajuste": "Inclinación 180°",
+                "soporte": "Lumbar y Cervical"
+            }
+        },
+        {
+            "id": "PG010",
+            "category": "Periférico Gamer",
+            "name": "Micrófono USB 'StreamCast'",
+            "price": 93990,
+            "img": "https://sillas-gaming.com/wp-content/uploads/2023/02/Logitech-Streaming-Exclusivos-Streamlabs-Personalizado.jpg",
+            "descripcion": "Micrófono de condensador USB con patrón cardioide, ideal para *podcasting* y *streaming*.",
+            "reseña": "Calidad de estudio profesional sin necesidad de interfaces de audio. Plug and play.",
+            "caracteristics": {
+                "tipo": "Condensador",
+                "patron": "Cardioide",
+                "conexión": "USB"
+            }
+        },
+        {
+            "id": "CN001",
+            "category": "Consola",
+            "name": "Consola 'Play 5'",
+            "price": 473990,
+            "img": "https://i5.walmartimages.com.mx/mg/gm/3pp/asr/c360b6d0-48bb-4ed0-83ea-15da64842755.6d5c87b820734ca8c8dc95e147c4a5b5.jpeg?odnHeight=2000&odnWidth=2000&odnBg=ffffff",
+            "descripcion": "Consola de última generación con gráficos 4K a 120 FPS y SSD ultrarrápido.",
+            "reseña": "El salto generacional que se esperaba. Tiempos de carga casi nulos.",
+            "caracteristics": {
+                "resolucion_maxima": "4K @ 120Hz",
+                "almacenamiento": "825GB SSD",
+                "lector_discos": "Blu-ray Ultra HD"
+            }
+        },
+        {
+            "id": "CN002",
+            "category": "Consola",
+            "name": "Consola 'Xbox Series X'",
+            "price": 473990,
+            "img": "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2020/01/xbox-series-x.jpg?tf=3840x",
+            "descripcion": "La consola más potente del mercado. Velocidad de fotogramas de hasta 120 FPS y compatibilidad con miles de juegos.",
+            "reseña": "Una bestia de rendimiento. El Game Pass es la guinda del pastel.",
+            "caracteristics": {
+                "resolucion_maxima": "4K @ 120Hz",
+                "almacenamiento": "1TB SSD Personalizado",
+                "lector_discos": "Blu-ray 4K UHD"
+            }
+        },
+        {
+            "id": "CN003",
+            "category": "Consola",
+            "name": "Consola 'Switch Go'",
+            "price": 283990,
+            "img": "https://resources.claroshop.com/medios-plazavip/t1/1715811973image58195a4684e64d7aa012d6d9130e6145jpg",
+            "descripcion": "Consola híbrida para jugar en casa o llevar a cualquier lugar. Pantalla OLED vibrante y mandos Joy-Con desmontables.",
+            "reseña": "Imprescindible por sus exclusivas. La flexibilidad de jugar donde quieras no tiene price.",
+            "caracteristics": {
+                "pantalla": "OLED de 7 pulgadas",
+                "modo_juego": "TV, Sobremesa, Portátil",
+                "memoria": "64 GB interna"
+            }
+        },
+        {
+            "id": "CN004",
+            "category": "Consola",
+            "name": "Mando 'Play' DualSense",
+            "price": 66990,
+            "img": "https://tse1.mm.bing.net/th/id/OIP.r4yKyG3hmeaAZRDIrF47hQHaEV?rs=1&pid=ImgDetMain&o=7&rm=3",
+            "descripcion": "Controlador oficial para NovaPlay 5 con respuesta háptica y gatillos adaptativos.",
+            "reseña": "Tecnología innovadora que realmente mejora la inmersión en los juegos.",
+            "caracteristics": {
+                "caracteristica_clave": "Respuesta Háptica",
+                "bateria": "Recargable",
+                "color": "Blanco Cósmico"
+            }
+        },
+        {
+            "id": "CN005",
+            "category": "Consola",
+            "name": "Juego: Starfield Explorers (X-Fusion/PC)",
+            "price": 66990,
+            "img": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/08/starfield-explorers-on-a-planet-next-to-shuttle.jpg",
+            "descripcion": "RPG de ciencia ficción de mundo abierto. Explora más de 1000 planetas en una épica galáctica.",
+            "reseña": "Una odisea espacial que define una generación. Enorme contenido y libertad.",
+            "caracteristics": {
+                "plataforma": "X-Fusion/PC",
+                "genero": "RPG / Ciencia Ficción",
+                "clasificacion": "+18"
+            }
+        },
+        {
+            "id": "CN006",
+            "category": "Consola",
+            "name": "Juego: The Last of Us: Part I (NovaPlay)",
+            "price": 66990,
+            "img": "https://gamingbolt.com/wp-content/uploads/2023/12/the-last-of-us-part-2-remastered-key-art.jpg",
+            "descripcion": "Remake del aclamado juego de acción y aventura con gráficos de última generación.",
+            "reseña": "Una historia desgarradora con la mejor puesta en escena técnica.",
+            "caracteristics": {
+                "plataforma": "NovaPlay 5",
+                "genero": "Survival Horror / Aventura",
+                "clasificacion": "+18"
+            }
+        },
+        {
+            "id": "CN007",
+            "category": "Consola",
+            "name": "Juego: Mario Kart 8 Deluxe (Switch)",
+            "price": 56990,
+            "img": "https://d28ipuewd7cdcq.cloudfront.net/assets/article/2022/11/21/mario-kart-8-deluxe-booster-course-pass-dlc-merry-mountain_feature.jpg",
+            "descripcion": "El juego de carreras arcade más vendido para Switch, con 48 pistas y multijugador local.",
+            "reseña": "Diversión infinita y accesible para todos. El rey de las fiestas.",
+            "caracteristics": {
+                "plataforma": "Switch Go",
+                "genero": "Carreras / Arcade",
+                "jugadores": "1-12"
+            }
+        },
+        {
+            "id": "GM011",
+            "category": "Juego de Mesa",
+            "name": "7 Wonders Duel",
+            "price": 61990,
+            "img": "https://th.bing.com/th/id/R.11aec5060c13894992bd1406f229df79?rik=ls7QySKBeB4%2f8Q&pid=ImgRaw&r=0",
+            "descripcion": "Juego de estrategia económico y científico donde las corporaciones compiten por terraformar Marte.",
+            "reseña": "Profundo y temático. Un juego que requiere varias horas y mucha planificación.",
+            "caracteristics": {
+                "jugadores": "1-5",
+                "edad_minima": "+12 años",
+                "tiempo_juego": "120 min"
+            }
+        },
+        {
+            "id": "GM012",
+            "category": "Juego de Mesa",
+            "name": "Azul",
+            "price": 34990,
+            "img": "https://comprarjuegosdemesa.es/wp-content/uploads/2023/01/azul-juego-de-mesa-958x1024.jpg",
+            "descripcion": "Juego de abstracto de colocación de azulejos para decorar las paredes del Palacio Real de Evora.",
+            "reseña": "Elegante y muy satisfactorio. Fácil de aprender, pero con decisiones difíciles.",
+            "caracteristics": {
+                "jugadores": "2-4",
+                "edad_minima": "+8 años",
+                "tiempo_juego": "30-45 min"
+            }
+        },
+        {
+            "id": "PG011",
+            "category": "Periférico Gamer",
+            "name": "Monitor Curvo 27' 'Quantum'",
+            "price": 331990,
+            "img": "https://www.winpy.cl/files/w13004_lc27h711qelxzs_21.jpg",
+            "descripcion": "Monitor curvo de 27 pulgadas con panel VA, 144Hz de tasa de refresco y 1ms de tiempo de respuesta.",
+            "reseña": "Imágenes fluidas y colores vibrantes. Mejora significativamente la experiencia de juego inmersiva.",
+            "caracteristics": {
+                "tamaño": "27 pulgadas",
+                "frecuencia": "144 Hz",
+                "respuesta": "1 ms (MPRT)"
+            }
+        }
+    ]
+}
