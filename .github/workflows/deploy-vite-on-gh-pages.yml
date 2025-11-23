@@ -10,7 +10,7 @@ on:
   workflow_dispatch:  # Permite ejecución manual desde GitHub
     inputs:
       tag:
-        description: 'Tag de release a desplegar (ej: v2.0.0)'
+        description: 'Tag de release a desplegar (ej: r252014)'
         required: true
         type: string
 
