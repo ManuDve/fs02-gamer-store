@@ -11,7 +11,7 @@ on:
     inputs:
       tag:
         description: 'Tag de release a desplegar (ej: v2.0.0)'
-        required: false
+        required: true
         type: string
 
 # Permisos necesarios para desplegar a GitHub Pages
