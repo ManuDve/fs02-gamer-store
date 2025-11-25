@@ -28,12 +28,6 @@ const Products = () => {
   const [error, setError] = useState(null);
 
   const { filterProducts, setFilters, filters } = useFilters()
-  /*
-  const filteredProducts = filterProducts(products)
-  const juegosDeMesa = filteredProducts.filter(product => product.category === "Juego de Mesa");
-  const perifericosGamer = filteredProducts.filter(product => product.category === "Periférico Gamer");
-  const consolas = filteredProducts.filter(product => product.category === "Consola");
-*/
 
   // Cargar productos al montar el componente
   useEffect(() => {
@@ -97,7 +91,7 @@ const Products = () => {
             {juegosDeMesa.length > 0 ? (
               juegosDeMesa.map(product => (
                 <div key={product.id} className="col-12 col-md-6 col-lg-3">
-                  <Product id={product.id} img={product.img} name={product.name} price={product.price} />
+                  <Product id={product.id} img={product.img} name={product.name} price={product.price} stock={product.stock} />
                 </div>
               ))
             ) : (
@@ -115,7 +109,7 @@ const Products = () => {
             {perifericosGamer.length > 0 ? (
               perifericosGamer.map(product => (
                 <div key={product.id} className="col-12 col-md-6 col-lg-3">
-                  <Product id={product.id} img={product.img} name={product.name} price={product.price} />
+                  <Product id={product.id} img={product.img} name={product.name} price={product.price} stock={product.stock} />
                 </div>
               ))
             ) : (
@@ -133,7 +127,7 @@ const Products = () => {
             {consolas.length > 0 ? (
               consolas.map(product => (
                 <div key={product.id} className="col-12 col-md-6 col-lg-3">
-                  <Product id={product.id} img={product.img} name={product.name} price={product.price} />
+                  <Product id={product.id} img={product.img} name={product.name} price={product.price} stock={product.stock} />
                 </div>
               ))
             ) : (

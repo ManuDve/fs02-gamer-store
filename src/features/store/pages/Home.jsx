@@ -64,7 +64,7 @@ const Home = () => {
           <div className="row g-4">
             {products.slice(0, 4).map(product => (
               <div key={product.id} className="col-12 col-md-6 col-lg-3">
-                <Product id={product.id} img={product.img} name={product.name} price={product.price} />
+                <Product id={product.id} img={product.img} name={product.name} price={product.price} stock={product.stock} />
               </div>
             ))}
           </div>

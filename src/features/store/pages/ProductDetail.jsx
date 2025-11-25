@@ -86,9 +86,11 @@ const ProductDetail = () => {
     name: product.name,
     price: product.price,
     img: product.img,
-    description: product.descripcion || product.reseña || '',
-    characteristics: product.caracteristics || {},
+    description: product.description || '',
+    review: product.review || '',
+    characteristics: product.characteristics || {},
     category: product.category,
+    stock: product.stock,
   };
 
   return (
@@ -124,6 +126,18 @@ const ProductDetail = () => {
           <h1>{productData.name}</h1>
           <p className="h4 text-primary mb-3">{formatPrice(productData.price)}</p>
           
+          <div className="mb-3">
+            {productData.stock > 0 ? (
+              <span className="badge bg-success">
+                ✓ Stock disponible: {productData.stock} unidades
+              </span>
+            ) : (
+              <span className="badge bg-danger">
+                Sin stock
+              </span>
+            )}
+          </div>
+          
           {productData.description && (
             <div className="mb-3">
               <h5>Descripción</h5>
@@ -131,14 +145,23 @@ const ProductDetail = () => {
             </div>
           )}
 
+          {productData.review && (
+            <div className="mb-3">
+              <h5>Reseña</h5>
+              <p className="text-muted fst-italic">{productData.review}</p>
+            </div>
+          )}
+
           {Object.keys(productData.characteristics).length > 0 && (
             <div className="mt-3">
-              <h5>Características</h5>
+              <h5>Características Técnicas</h5>
               <ul className="list-unstyled">
                 {Object.entries(productData.characteristics).map(([key, value]) => (
-                  <li key={key} className="mb-2">
-                    <strong>{key}:</strong> {value}
-                  </li>
+                  value && (
+                    <li key={key} className="mb-2">
+                      <strong className="text-capitalize">{key.replace(/_/g, ' ')}:</strong> {value}
+                    </li>
+                  )
                 ))}
               </ul>
             </div>
