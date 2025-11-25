@@ -3,7 +3,18 @@ import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const ProtectedRoute = ({ children, requireAdmin = false }) => {
-  const { user, isAdmin, isAuthenticated } = useContext(AuthContext);
+  const { isAdmin, isAuthenticated, loading } = useContext(AuthContext);
+
+  // Mostrar loading mientras se verifica la autenticación
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+    );
+  }
 
   // Si no está autenticado, redirigir a login
   if (!isAuthenticated()) {

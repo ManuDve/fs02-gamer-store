@@ -26,30 +26,60 @@ import AdminProducts from "../features/admin/pages/Products.jsx";
 
 import NotFound from "../shared/pages/NotFound.jsx";
 
-import { products } from "../assets/mocks/products.json"
-import { blog_posts } from "../assets/mocks/blog_posts.json"
+import { products } from "../assets/mocks/products.json";
+import { blog_posts } from "../assets/mocks/blog_posts.json";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
-      { index: true, element: <Home products={products}/> },
-      { path: "products", element: <Products products={products}/> },
+      { index: true, element: <Home products={products} /> },
+      { path: "products", element: <Products products={products} /> },
       { path: "products/:id", element: <ProductDetail /> },
-      { path: "cart", element: <Cart /> },
       { path: "contact", element: <Contact /> },
-      { path: "pay", element: <Pay /> },
-      { path: "payment-success", element: <PaymentSuccess /> },
-      { path: "payment-error", element: <PaymentError /> },
+      
+      // Rutas protegidas (requieren login)
+      {
+        path: "cart",
+        element: (
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "pay",
+        element: (
+          <ProtectedRoute>
+            <Pay />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "payment-success",
+        element: (
+          <ProtectedRoute>
+            <PaymentSuccess />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "payment-error",
+        element: (
+          <ProtectedRoute>
+            <PaymentError />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
   {
     path: "/blog",
     element: <BlogLayout />,
     children: [
-      { index: true, element: <BlogHome posts={blog_posts}/> },
-  { path: ":id", element: <BlogPost /> },
+      { index: true, element: <BlogHome posts={blog_posts} /> },
+      { path: ":id", element: <BlogPost /> },
     ],
   },
   {
@@ -60,8 +90,9 @@ const router = createBrowserRouter([
     path: "/register",
     element: <Register />,
   },
+  // Rutas de ADMIN (requieren ROLE_ADMIN)
   {
-    path: "/admin", 
+    path: "/admin",
     element: (
       <ProtectedRoute requireAdmin={true}>
         <AdminLayout />
