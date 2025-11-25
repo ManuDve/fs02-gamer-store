@@ -39,42 +39,30 @@ const Register = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    // Validar nombre
     if (!formData.name.trim()) {
       newErrors.name = 'El nombre es requerido';
     } else if (formData.name.trim().length < 3) {
       newErrors.name = 'El nombre debe tener al menos 3 caracteres';
     }
 
-    // Validar email
     if (!formData.email.trim()) {
       newErrors.email = 'El email es requerido';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Email inválido';
     }
 
-    // Validar teléfono (opcional pero si se ingresa debe ser válido)
-    if (formData.phone && !/^\+?[\d\s-]{8,}$/.test(formData.phone)) {
-      newErrors.phone = 'Teléfono inválido';
-    }
-
-    // Validar contraseña
     if (!formData.password) {
       newErrors.password = 'La contraseña es requerida';
     } else if (formData.password.length < 6) {
       newErrors.password = 'La contraseña debe tener al menos 6 caracteres';
-    } else if (!/(?=.*[a-z])(?=.*[A-Z])/.test(formData.password)) {
-      newErrors.password = 'La contraseña debe contener mayúsculas y minúsculas';
     }
 
-    // Validar confirmación de contraseña
     if (!formData.confirmPassword) {
-      newErrors.confirmPassword = 'Debes confirmar la contraseña';
+      newErrors.confirmPassword = 'Confirma tu contraseña';
     } else if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = 'Las contraseñas no coinciden';
     }
 
-    // Validar términos y condiciones
     if (!formData.acceptTerms) {
       newErrors.acceptTerms = 'Debes aceptar los términos y condiciones';
     }
@@ -83,27 +71,44 @@ const Register = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) return;
 
     setIsLoading(true);
+    setErrors({}); // Limpiar errores generales
 
-    // Simular delay de red
-    setTimeout(() => {
-      const { confirmPassword, acceptTerms, ...userData } = formData;
-      const result = register(userData);
+    try {
+      // Llamar a la función de registro del contexto AuthContext
+      const result = await register({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        phone: formData.phone
+      });
 
       if (result.success) {
-        // Redirigir al home después del registro exitoso
-        navigate('/');
+        // Registro e inicio de sesión exitosos
+        const isAdmin = result.user.roles?.includes('ROLE_ADMIN');
+        
+        if (isAdmin) {
+          navigate('/admin/dashboard');
+        } else {
+          navigate('/');
+        }
       } else {
+        // Mostrar error del backend
         setErrors({ general: result.error });
       }
-
+    } catch (error) {
+      // Manejar errores de red o del servidor
+      setErrors({ 
+        general: 'Error al conectar con el servidor. Por favor, intenta nuevamente.' 
+      });
+    } finally {
       setIsLoading(false);
-    }, 500);
+    }
   };
 
   return (
@@ -131,17 +136,18 @@ const Register = () => {
         <form onSubmit={handleSubmit} className="register-form">
           <div className="form-group">
             <label htmlFor="name">
-              <i className="bi bi-person"></i> Nombre Completo *
+              <i className="bi bi-person"></i> Nombre Completo
             </label>
             <input
               type="text"
               id="name"
               name="name"
               className={`form-control ${errors.name ? 'is-invalid' : ''}`}
-              placeholder="Juan Pérez"
+              placeholder="Tu nombre completo"
               value={formData.name}
               onChange={handleChange}
               autoComplete="name"
+              disabled={isLoading}
             />
             {errors.name && (
               <div className="invalid-feedback">{errors.name}</div>
@@ -150,7 +156,7 @@ const Register = () => {
 
           <div className="form-group">
             <label htmlFor="email">
-              <i className="bi bi-envelope"></i> Email *
+              <i className="bi bi-envelope"></i> Email
             </label>
             <input
               type="email"
@@ -161,6 +167,7 @@ const Register = () => {
               value={formData.email}
               onChange={handleChange}
               autoComplete="email"
+              disabled={isLoading}
             />
             {errors.email && (
               <div className="invalid-feedback">{errors.email}</div>
@@ -175,20 +182,18 @@ const Register = () => {
               type="tel"
               id="phone"
               name="phone"
-              className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
+              className="form-control"
               placeholder="+56 9 1234 5678"
               value={formData.phone}
               onChange={handleChange}
               autoComplete="tel"
+              disabled={isLoading}
             />
-            {errors.phone && (
-              <div className="invalid-feedback">{errors.phone}</div>
-            )}
           </div>
 
           <div className="form-group">
             <label htmlFor="password">
-              <i className="bi bi-lock"></i> Contraseña *
+              <i className="bi bi-lock"></i> Contraseña
             </label>
             <div className="password-input-wrapper">
               <input
@@ -196,16 +201,18 @@ const Register = () => {
                 id="password"
                 name="password"
                 className={`form-control ${errors.password ? 'is-invalid' : ''}`}
-                placeholder="••••••••"
+                placeholder="Mínimo 6 caracteres"
                 value={formData.password}
                 onChange={handleChange}
                 autoComplete="new-password"
+                disabled={isLoading}
               />
               <button
                 type="button"
                 className="password-toggle"
                 onClick={() => setShowPassword(!showPassword)}
                 tabIndex="-1"
+                disabled={isLoading}
               >
                 <i className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'}`}></i>
               </button>
@@ -213,14 +220,11 @@ const Register = () => {
             {errors.password && (
               <div className="invalid-feedback d-block">{errors.password}</div>
             )}
-            <small className="form-text text-muted">
-              Mínimo 6 caracteres, debe contener mayúsculas y minúsculas
-            </small>
           </div>
 
           <div className="form-group">
             <label htmlFor="confirmPassword">
-              <i className="bi bi-lock-fill"></i> Confirmar Contraseña *
+              <i className="bi bi-lock-fill"></i> Confirmar Contraseña
             </label>
             <div className="password-input-wrapper">
               <input
@@ -228,16 +232,18 @@ const Register = () => {
                 id="confirmPassword"
                 name="confirmPassword"
                 className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
-                placeholder="••••••••"
+                placeholder="Repite tu contraseña"
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 autoComplete="new-password"
+                disabled={isLoading}
               />
               <button
                 type="button"
                 className="password-toggle"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 tabIndex="-1"
+                disabled={isLoading}
               >
                 <i className={`bi ${showConfirmPassword ? 'bi-eye-slash' : 'bi-eye'}`}></i>
               </button>
@@ -247,24 +253,25 @@ const Register = () => {
             )}
           </div>
 
-          <div className="form-group">
-            <div className="form-check">
-              <input
-                type="checkbox"
-                id="acceptTerms"
-                name="acceptTerms"
-                className={`form-check-input ${errors.acceptTerms ? 'is-invalid' : ''}`}
-                checked={formData.acceptTerms}
-                onChange={handleChange}
-              />
-              <label htmlFor="acceptTerms" className="form-check-label">
-                Acepto los <a href="#" onClick={(e) => e.preventDefault()}>términos y condiciones</a> y la{' '}
-                <a href="#" onClick={(e) => e.preventDefault()}>política de privacidad</a>
-              </label>
-              {errors.acceptTerms && (
-                <div className="invalid-feedback d-block">{errors.acceptTerms}</div>
-              )}
-            </div>
+          <div className="form-group form-check">
+            <input
+              type="checkbox"
+              id="acceptTerms"
+              name="acceptTerms"
+              className={`form-check-input ${errors.acceptTerms ? 'is-invalid' : ''}`}
+              checked={formData.acceptTerms}
+              onChange={handleChange}
+              disabled={isLoading}
+            />
+            <label className="form-check-label" htmlFor="acceptTerms">
+              Acepto los{' '}
+              <Link to="/terms" target="_blank">
+                términos y condiciones
+              </Link>
+            </label>
+            {errors.acceptTerms && (
+              <div className="invalid-feedback d-block">{errors.acceptTerms}</div>
+            )}
           </div>
 
           <button
@@ -275,7 +282,7 @@ const Register = () => {
             {isLoading ? (
               <>
                 <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                Creando cuenta...
+                Registrando...
               </>
             ) : (
               <>
@@ -292,16 +299,6 @@ const Register = () => {
               Inicia sesión aquí
             </Link>
           </p>
-        </div>
-
-        <div className="benefits-section">
-          <h6><i className="bi bi-star-fill"></i> Beneficios de Registrarte</h6>
-          <ul>
-            <li><i className="bi bi-check-circle"></i> Seguimiento de tus pedidos</li>
-            <li><i className="bi bi-check-circle"></i> Ofertas exclusivas para miembros</li>
-            <li><i className="bi bi-check-circle"></i> Proceso de compra más rápido</li>
-            <li><i className="bi bi-check-circle"></i> Historial de compras</li>
-          </ul>
         </div>
       </div>
     </div>

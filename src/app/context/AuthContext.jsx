@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { authService } from "../../shared/services/authService";
+import { userService } from "../../shared/services/userService";
 
 export const AuthContext = createContext();
 
@@ -16,9 +17,7 @@ export function AuthProvider({ children }) {
     setLoading(false);
   }, []);
 
-  /**
-   * Iniciar sesión
-   */
+  // Iniciar sesión
   const login = async (email, password) => {
     try {
       const response = await authService.login(email, password);
@@ -39,32 +38,25 @@ export function AuthProvider({ children }) {
     }
   };
 
-  // Registrar nuevo usuario (TEMPORAL - sin backend / TODO: Implementar con userService cuando esté disponible)
-  const register = (userData) => {
-    // ⚠️ VERSIÓN TEMPORAL: Usa localStorage
-    const users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
-    
-    // Verificar si el email ya existe
-    const emailExists = users.some(u => u.email === userData.email);
-    if (emailExists) {
-      return { success: false, error: 'El email ya está registrado' };
+  // Registrar nuevo usuario
+  const register = async (userData) => {
+    try {
+      // 1. Registrar usuario en el backend
+      await userService.register({
+        name: userData.name,
+        email: userData.email,
+        password: userData.password,
+        phone: userData.phone || ''
+      });
+
+      // 2. Login automático después del registro exitoso
+      return await login(userData.email, userData.password);
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error.message || 'Error al registrar usuario' 
+      };
     }
-
-    // Guardar nuevo usuario
-    const newUser = {
-      ...userData,
-      roles: ['ROLE_USER'],
-      registerDate: new Date().toISOString()
-    };
-
-    users.push(newUser);
-    localStorage.setItem('registeredUsers', JSON.stringify(users));
-
-    // Auto-login después del registro
-    const { password: _, ...userWithoutPassword } = newUser;
-    setUser(userWithoutPassword);
-
-    return { success: true, user: userWithoutPassword };
   };
 
   // Cerrar sesión
