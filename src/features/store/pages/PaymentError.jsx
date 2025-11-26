@@ -1,14 +1,33 @@
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
 
 const PaymentError = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const hasNavigated = useRef(false);
+    const [isValidating, setIsValidating] = useState(true);
 
     // Obtener información del error desde el state de navegación
-    const { errorMessage, errorCode } = location.state || {
-        errorMessage: 'Hubo un problema al procesar tu pago',
-        errorCode: 'UNKNOWN_ERROR'
-    };
+    const { errorMessage, errorCode } = location.state || {};
+
+    // Proteger contra acceso directo sin datos de error
+    useEffect(() => {
+        // Validar si hay state válido
+        if (!location.state || !errorCode) {
+            // Prevenir navegación múltiple
+            if (!hasNavigated.current) {
+                hasNavigated.current = true;
+                navigate('/cart', { replace: true });
+            }
+        } else {
+            setIsValidating(false);
+        }
+    }, [location.state, errorCode, navigate]);
+
+    // Mostrar loading mientras valida
+    if (isValidating || !errorCode) {
+        return null;
+    }
 
     const getErrorDetails = (code) => {
         switch (code) {

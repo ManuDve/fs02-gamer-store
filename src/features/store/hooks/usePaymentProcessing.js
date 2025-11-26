@@ -1,21 +1,50 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCartDispatch, clearCart } from '../../../app/context/CartContext';
+import { productService } from '../../../shared/services/productService';
 
 export const usePaymentProcessing = (items, total, formData) => {
     const [isProcessing, setIsProcessing] = useState(false);
     const navigate = useNavigate();
     const dispatch = useCartDispatch();
 
-    const processPayment = () => {
+    const updateProductsStock = async (items) => {
+        try {
+            // Obtener los productos actuales y actualizar su stock
+            const updatePromises = items.map(async (item) => {
+                const product = await productService.getById(item.id);
+                const newStock = product.stock - item.quantity;
+                
+                // Actualizar el producto completo con el nuevo stock
+                return productService.update(item.id, {
+                    ...product,
+                    stock: newStock
+                });
+            });
+            
+            await Promise.all(updatePromises);
+            return true;
+        } catch (error) {
+            console.error('Error al actualizar stock:', error);
+            return false;
+        }
+    };
+
+    const processPayment = async () => {
         setIsProcessing(true);
 
         // Simular procesamiento de pago
-        setTimeout(() => {
+        setTimeout(async () => {
             // Simular resultado aleatorio (90% éxito, 10% error para demostración)
             const isSuccess = Math.random() > 0.1;
 
             if (isSuccess) {
+                // NOTA: La actualización de stock debería manejarse en el backend
+                // Por ahora, simulamos un pago exitoso sin actualizar stock
+                // En un escenario real, el backend actualizaría el stock al confirmar el pago
+                
+                console.log('⚠️ Stock update deshabilitado - debería manejarse en backend');
+
                 // Generar número de orden único
                 const orderNumber = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
@@ -55,6 +84,7 @@ export const usePaymentProcessing = (items, total, formData) => {
 
                 // Navegar a página de error con información del error
                 navigate('/payment-error', {
+                    replace: false,
                     state: {
                         errorCode: randomError.code,
                         errorMessage: randomError.message

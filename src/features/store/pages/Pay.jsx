@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useCartState } from '../../../app/context/CartContext';
 import { usePaymentForm } from '../hooks/usePaymentForm';
 import { usePaymentProcessing } from '../hooks/usePaymentProcessing';
@@ -19,8 +20,14 @@ const Pay = () => {
     const { isProcessing, processPayment } = usePaymentProcessing(items, total, formData);
 
     // Si el carrito está vacío, redirigir al carrito
+    useEffect(() => {
+        if (!items || items.length === 0) {
+            navigate('/cart');
+        }
+    }, [items, navigate]);
+
+    // No renderizar si el carrito está vacío
     if (!items || items.length === 0) {
-        navigate('/cart');
         return null;
     }
 
