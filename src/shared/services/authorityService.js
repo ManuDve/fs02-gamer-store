@@ -16,11 +16,8 @@ export const authorityService = {
     authority: authorityData.authority
   }),
 
-  // Actualizar rol
-  update: (id, authorityData) => api.put(`/authorities/${id}`, {
-    userId: authorityData.userId,
-    authority: authorityData.authority
-  }),
+  // Actualizar rol de usuario
+  updateUserRole: (userId, role) => api.put(`/authorities/user/${userId}/role?role=${role}`),
 
   // Eliminar rol
   delete: (id) => api.delete(`/authorities/${id}`)

@@ -23,6 +23,7 @@ import Register from "../features/auth/pages/Register.jsx";
 
 import AdminDashboard from "../features/admin/pages/Dashboard.jsx";
 import AdminProducts from "../features/admin/pages/Products.jsx";
+import AdminUsers from "../features/admin/pages/Users.jsx";
 
 import NotFound from "../shared/pages/NotFound.jsx";
 
@@ -101,6 +102,7 @@ const router = createBrowserRouter([
     children: [
       { path: "dashboard", element: <AdminDashboard /> },
       { path: "products", element: <AdminProducts /> },
+      { path: "users", element: <AdminUsers /> },
     ],
   },
   { path: "*", element: <NotFound /> },

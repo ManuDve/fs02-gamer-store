@@ -37,6 +37,13 @@ export default function AdminLayout() {
             <i className="bi bi-box-seam"></i>
             <span>Productos</span>
           </Link>
+          <Link 
+            to="/admin/users" 
+            className={`nav-link ${isActive('/admin/users')}`}
+          >
+            <i className="bi bi-people-fill"></i>
+            <span>Usuarios</span>
+          </Link>
         </nav>
 
         <div className="sidebar-footer">
