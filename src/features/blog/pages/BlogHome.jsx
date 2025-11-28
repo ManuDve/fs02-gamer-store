@@ -1,15 +1,63 @@
+import { useState, useEffect } from 'react';
 import BlogPostCard from './../components/BlogPostCard.jsx';
 import './BlogHome.css';
 import { useOutletContext } from 'react-router-dom';
+import { blogService } from '../../../shared/services/blogService';
 
-const BlogHome = ({ posts = [] }) => {
+const BlogHome = () => {
   const { selectedAuthor } = useOutletContext() || {};
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    loadPosts();
+  }, []);
+
+  const loadPosts = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await blogService.getAll();
+      setPosts(data);
+    } catch (err) {
+      setError(err.message);
+      console.error('Error al cargar posts:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const filteredPosts = selectedAuthor
     ? posts.filter(p => (p.autor || p.author || '').toString() === selectedAuthor)
     : posts;
 
   const hasPosts = Array.isArray(filteredPosts) && filteredPosts.length > 0;
+
+  if (loading) {
+    return (
+      <div className="blog-home text-center py-5">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Cargando posts...</span>
+        </div>
+        <p className='mt-3'>Cargando posts del blog...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="blog-home py-5">
+        <div className="alert alert-danger" role="alert">
+          <h4 className="alert-heading">Error al cargar posts</h4>
+          <p>{error}</p>
+          <button className="btn btn-primary" onClick={loadPosts}>
+            Reintentar
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="blog-home">

@@ -1,8 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-
 import MainLayout from "./layouts/MainLayout.jsx";
 import BlogLayout from "./layouts/BlogLayout.jsx";
-import AuthLayout from "./layouts/AuthLayout.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
@@ -21,13 +19,12 @@ import BlogPost from "../features/blog/pages/BlogPost.jsx";
 import Login from "../features/auth/pages/Login.jsx";
 import Register from "../features/auth/pages/Register.jsx";
 
-import AdminDashboard from "../features/admin/pages/Dashboard.jsx";
+import Dashboard from "../features/admin/pages/Dashboard.jsx";
 import AdminProducts from "../features/admin/pages/Products.jsx";
 import AdminUsers from "../features/admin/pages/Users.jsx";
 
 import NotFound from "../shared/pages/NotFound.jsx";
 
-import { products } from "../assets/mocks/products.json";
 import { blog_posts } from "../assets/mocks/blog_posts.json";
 
 const router = createBrowserRouter([
@@ -35,8 +32,8 @@ const router = createBrowserRouter([
     path: "/",
     element: <MainLayout />,
     children: [
-      { index: true, element: <Home products={products} /> },
-      { path: "products", element: <Products products={products} /> },
+      { index: true, element: <Home /> },
+      { path: "products", element: <Products /> },
       { path: "products/:id", element: <ProductDetail /> },
       { path: "contact", element: <Contact /> },
       
@@ -79,8 +76,13 @@ const router = createBrowserRouter([
     path: "/blog",
     element: <BlogLayout />,
     children: [
-      { index: true, element: <BlogHome posts={blog_posts} /> },
-      { path: ":id", element: <BlogPost /> },
+      { index: true, element: <BlogHome />, loader: () => blog_posts },
+      {
+        path: ":id",
+        element: <BlogPost />,
+        loader: ({ params }) =>
+          blog_posts.find((post) => post.id === parseInt(params.id)),
+      },
     ],
   },
   {
@@ -100,7 +102,7 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      { path: "dashboard", element: <AdminDashboard /> },
+      { path: "dashboard", element: <Dashboard /> },
       { path: "products", element: <AdminProducts /> },
       { path: "users", element: <AdminUsers /> },
     ],

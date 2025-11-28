@@ -17,10 +17,21 @@ const Product = (props) => {
                 <h5 className="card-title mb-2">
                     <Link to={`/products/${props.id}`} className="text-decoration-none text-dark">{props.name}</Link>
                 </h5>
-                <p className="card-text text-muted flex-grow-1 mb-4 fw-bold">
+                <p className="card-text text-muted flex-grow-1 mb-2 fw-bold">
                     {formatPrice(props.price)}
                 </p>
-                <CartButton id={props.id} name={props.name} price={props.price} img={props.img} />
+                <div className="mb-3">
+                    {props.stock > 0 ? (
+                        <small className="text-success">
+                            <strong>✓ Stock: {props.stock} unidades</strong>
+                        </small>
+                    ) : (
+                        <small className="text-danger">
+                            <strong>Sin stock</strong>
+                        </small>
+                    )}
+                </div>
+                <CartButton id={props.id} name={props.name} price={props.price} img={props.img} stock={props.stock} />
             </div>
         </div>
     )
@@ -28,7 +39,7 @@ const Product = (props) => {
 
 export default Product;
 
-function CartButton({ id, name, price, img }) {
+function CartButton({ id, name, price, img, stock }) {
     const dispatch = useCartDispatch();
     const [isAdded, setIsAdded] = useState(false);
 
@@ -43,6 +54,7 @@ function CartButton({ id, name, price, img }) {
             type="button"
             className={`btn w-100 ${isAdded ? 'btn-success' : 'btn-primary'}`}
             onClick={handleAddToCart}
+            disabled={stock <= 0}
         >
             {isAdded ? '✓ Agregado al carro' : (<><AddToCartIcon /> Agregar al carro</>)}
         </button>
