@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { productService } from '../../../shared/services/productService';
 import './Products.css';
 
 const Products = () => {
@@ -7,43 +8,37 @@ const Products = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState('all');
+  const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
+    id: '',
     name: '',
     price: '',
     stock: '',
-    category: 'Consolas',
+    category: 'Consola',
     description: '',
     img: ''
   });
   const [errors, setErrors] = useState({});
+  const [characteristicsData, setCharacteristicsData] = useState({});
 
-  // Cargar productos desde localStorage o usar datos por defecto
   useEffect(() => {
-    const storedProducts = localStorage.getItem('adminProducts');
-    if (storedProducts) {
-      setProducts(JSON.parse(storedProducts));
-    } else {
-      // Productos iniciales
-      const initialProducts = [
-        { id: 1, name: 'PlayStation 5', category: 'Consolas', stock: 25, price: 599990, description: 'Consola de última generación', img: '/img/ps5.jpg' },
-        { id: 2, name: 'Xbox Series X', category: 'Consolas', stock: 15, price: 549990, description: 'Potente consola de Microsoft', img: '/img/xbox.jpg' },
-        { id: 3, name: 'Nintendo Switch', category: 'Consolas', stock: 8, price: 349990, description: 'Consola híbrida portátil', img: '/img/switch.jpg' },
-        { id: 4, name: 'DualSense Controller', category: 'Accesorios', stock: 45, price: 69990, description: 'Control para PS5', img: '/img/dualsense.jpg' },
-        { id: 5, name: 'Gaming Chair Pro', category: 'Muebles', stock: 3, price: 299990, description: 'Silla gamer ergonómica', img: '/img/chair.jpg' },
-      ];
-      setProducts(initialProducts);
-      localStorage.setItem('adminProducts', JSON.stringify(initialProducts));
-    }
+    loadProducts();
   }, []);
 
-  // Guardar productos en localStorage cuando cambien
-  useEffect(() => {
-    if (products.length > 0) {
-      localStorage.setItem('adminProducts', JSON.stringify(products));
+  const loadProducts = async () => {
+    try {
+      setLoading(true);
+      const data = await productService.getAll();
+      setProducts(data);
+    } catch (error) {
+      console.error('Error al cargar productos:', error);
+      alert('Error al cargar productos');
+    } finally {
+      setLoading(false);
     }
-  }, [products]);
+  };
 
-  const categories = ['Consolas', 'Accesorios', 'Muebles', 'PC Gaming', 'Juegos', 'Audio'];
+  const categories = ['Consola', 'Juego de Mesa', 'Periférico Gamer', 'PC Gaming', 'Audio', 'Accesorios'];
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('es-CL', {
@@ -52,20 +47,105 @@ const Products = () => {
     }).format(price);
   };
 
+  const getIdSuggestion = (category) => {
+    const categoryMap = {
+      'Consola': 'CN001',
+      'Juego de Mesa': 'GM001', 
+      'Periférico Gamer': 'PG001',
+      'PC Gaming': 'PC001',
+      'Audio': 'AU001',
+      'Accesorios': 'AC001'
+    };
+    return categoryMap[category] || 'PROD001';
+  };
+
+  const getCharacteristicFields = (category) => {
+    switch (category) {
+      case 'Juego de Mesa':
+        return [
+          { key: 'jugadores', label: 'Número de Jugadores', type: 'text', placeholder: '2-4', required: true },
+          { key: 'edadMinima', label: 'Edad Mínima', type: 'text', placeholder: '+12 años', required: true },
+          { key: 'tiempoJuego', label: 'Tiempo de Juego', type: 'text', placeholder: '30-60 min', required: true }
+        ];
+      
+      case 'Periférico Gamer':
+        return [
+          { key: 'tipoSwitch', label: 'Tipo de Switch', type: 'select', options: ['Mecánico', 'Membrana', 'Híbrido'], required: false },
+          { key: 'iluminacion', label: 'Iluminación', type: 'select', options: ['RGB', 'LED', 'Sin iluminación'], required: false },
+          { key: 'conexion', label: 'Conexión', type: 'select', options: ['USB', 'Inalámbrico', 'Bluetooth'], required: true },
+          { key: 'sensor', label: 'Tipo de Sensor', type: 'text', placeholder: 'Óptico', required: false },
+          { key: 'peso', label: 'Peso', type: 'text', placeholder: '150g', required: false },
+          { key: 'sonido', label: 'Sonido', type: 'text', placeholder: '7.1', required: false },
+          { key: 'compatibilidad', label: 'Compatibilidad', type: 'text', placeholder: 'PC/Mac', required: false },
+          { key: 'dimensiones', label: 'Dimensiones', type: 'text', placeholder: 'Standard', required: false },
+          { key: 'material', label: 'Material', type: 'text', placeholder: 'ABS', required: false }
+        ];
+      
+      case 'Consola':
+        return [
+          { key: 'resolucionMaxima', label: 'Resolución Máxima', type: 'text', placeholder: '4K', required: false },
+          { key: 'almacenamiento', label: 'Almacenamiento', type: 'text', placeholder: '1TB SSD', required: false },
+          { key: 'lectorDiscos', label: 'Lector de Discos', type: 'select', options: ['Sí', 'No'], required: false },
+          { key: 'pantalla', label: 'Compatibilidad Pantalla', type: 'text', placeholder: 'Compatible TV/Monitor', required: false },
+          { key: 'modoJuego', label: 'Modo de Juego', type: 'text', placeholder: 'Individual/Multijugador', required: false },
+          { key: 'memoria', label: 'Memoria RAM', type: 'text', placeholder: '16GB', required: false },
+          { key: 'caracteristicaClave', label: 'Característica Clave', type: 'text', placeholder: 'Ray Tracing', required: false },
+          { key: 'color', label: 'Color', type: 'text', placeholder: 'Negro', required: false },
+          { key: 'genero', label: 'Género', type: 'text', placeholder: 'Consola', required: false },
+          { key: 'clasificacion', label: 'Clasificación', type: 'select', options: ['E+', 'T+', 'M+'], required: false },
+          { key: 'jugadores2', label: 'Jugadores', type: 'text', placeholder: '1-4', required: false }
+        ];
+      
+      case 'PC Gaming':
+      case 'Audio':
+      case 'Accesorios':
+      default:
+        return [];
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-    // Limpiar error del campo
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
   };
 
+  const handleCharacteristicChange = (e) => {
+    const { name, value } = e.target;
+    setCharacteristicsData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleCategoryChange = (e) => {
+    const { value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      category: value,
+      id: editingProduct ? prev.id : ''
+    }));
+    setCharacteristicsData({});
+    if (errors.category) {
+      setErrors(prev => ({ ...prev, category: '' }));
+    }
+  };
+
   const validateForm = () => {
     const newErrors = {};
+
+    if (!editingProduct && !formData.id.trim()) {
+      newErrors.id = 'El ID es requerido para crear productos';
+    }
+
+    if (formData.id && formData.id.length > 10) {
+      newErrors.id = 'El ID no puede tener más de 10 caracteres';
+    }
 
     if (!formData.name.trim()) {
       newErrors.name = 'El nombre es requerido';
@@ -83,52 +163,194 @@ const Products = () => {
       newErrors.category = 'Selecciona una categoría';
     }
 
+    if (!formData.description.trim()) {
+      newErrors.description = 'La descripción es requerida';
+    }
+
+    if (!formData.img.trim()) {
+      newErrors.img = 'La URL de imagen es requerida';
+    }
+
+    const fields = getCharacteristicFields(formData.category);
+    fields.forEach(field => {
+      if (field.required && (!characteristicsData[field.key] || characteristicsData[field.key].trim() === '')) {
+        newErrors[`char_${field.key}`] = `${field.label} es requerido`;
+      }
+    });
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const renderCharacteristicFields = () => {
+    const fields = getCharacteristicFields(formData.category);
+    
+    if (fields.length === 0) return null;
+
+    return (
+      <div className="characteristics-section">
+        <h4 className="section-title">
+          <i className="bi bi-gear"></i> Características Específicas
+        </h4>
+        <div className="characteristics-grid">
+          {fields.map(field => (
+            <div key={field.key} className="form-group">
+              <label htmlFor={field.key}>
+                {field.label} {field.required && <span className="text-danger">*</span>}
+              </label>
+              
+              {field.type === 'select' ? (
+                <select
+                  id={field.key}
+                  name={field.key}
+                  className={`form-select ${errors[`char_${field.key}`] ? 'is-invalid' : ''}`}
+                  value={characteristicsData[field.key] || ''}
+                  onChange={handleCharacteristicChange}
+                >
+                  <option value="">Seleccionar...</option>
+                  {field.options.map(option => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  type={field.type}
+                  id={field.key}
+                  name={field.key}
+                  className={`form-control ${errors[`char_${field.key}`] ? 'is-invalid' : ''}`}
+                  placeholder={field.placeholder}
+                  value={characteristicsData[field.key] || ''}
+                  onChange={handleCharacteristicChange}
+                />
+              )}
+              
+              {errors[`char_${field.key}`] && (
+                <div className="invalid-feedback">{errors[`char_${field.key}`]}</div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  const createCharacteristicsObject = () => {
+    const fields = getCharacteristicFields(formData.category);
+    
+    if (fields.length === 0) return null;
+
+    const hasValidCharacteristics = fields.some(field => 
+      characteristicsData[field.key] && characteristicsData[field.key].trim() !== ''
+    );
+
+    if (!hasValidCharacteristics) return null;
+
+    const characteristics = {};
+    
+    Object.keys(characteristicsData).forEach(key => {
+      if (characteristicsData[key] && characteristicsData[key].trim() !== '') {
+        characteristics[key] = characteristicsData[key].trim();
+      }
+    });
+
+    return Object.keys(characteristics).length > 0 ? characteristics : null;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) return;
 
-    if (editingProduct) {
-      // Editar producto existente
-      setProducts(prev =>
-        prev.map(p =>
-          p.id === editingProduct.id
-            ? { ...formData, id: p.id, price: Number(formData.price), stock: Number(formData.stock) }
-            : p
-        )
-      );
-    } else {
-      // Agregar nuevo producto
-      const newProduct = {
-        ...formData,
-        id: Date.now(),
-        price: Number(formData.price),
-        stock: Number(formData.stock)
-      };
-      setProducts(prev => [...prev, newProduct]);
-    }
+    let productData = null;
 
-    closeModal();
+    try {
+      if (editingProduct) {
+        productData = {
+          category: formData.category,
+          name: formData.name,
+          price: Number(formData.price),
+          img: formData.img,
+          description: formData.description,
+          review: formData.description || "Producto de calidad premium para gamers exigentes.",
+          stock: {
+            quantity: Number(formData.stock)
+          }
+        };
+
+        const characteristicsObject = createCharacteristicsObject();
+        if (characteristicsObject) {
+          productData.characteristics = characteristicsObject;
+        }
+        
+        await productService.update(editingProduct.id, productData);
+        alert('✅ Producto actualizado exitosamente');
+      } else {
+        productData = {
+          id: formData.id.trim(),
+          category: formData.category,
+          name: formData.name,
+          price: Number(formData.price),
+          img: formData.img,
+          description: formData.description,
+          review: formData.description || "Producto de calidad premium para gamers exigentes.",
+          stock: {
+            quantity: Number(formData.stock)
+          }
+        };
+
+        const characteristicsObject = createCharacteristicsObject();
+        if (characteristicsObject) {
+          productData.characteristics = characteristicsObject;
+        }
+        
+        await productService.create(productData);
+        alert('✅ Producto creado exitosamente');
+      }
+
+      closeModal();
+      loadProducts();
+    } catch (error) {
+      let errorMessage = 'Error desconocido';
+      
+      if (error.response?.status === 500) {
+        errorMessage = `❌ Error interno del servidor: ${error.response?.data?.message || 'Error en el servidor'}`;
+      } else if (error.response?.status === 409) {
+        errorMessage = `❌ Conflicto de datos: ${error.response?.data?.message || 'Recurso duplicado'}`;
+      } else if (error.response?.status === 400) {
+        errorMessage = `❌ Datos inválidos: ${error.response?.data?.message || 'Verificar los datos ingresados'}`;
+      } else {
+        errorMessage = error.response?.data?.message || error.message || 'Error desconocido';
+      }
+      
+      alert(errorMessage);
+    }
   };
 
   const openModal = (product = null) => {
     if (product) {
       setEditingProduct(product);
-      setFormData(product);
+      setFormData({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        stock: product.stock || 0,
+        category: product.category,
+        description: product.description,
+        img: product.img
+      });
+      setCharacteristicsData(product.characteristics || {});
     } else {
       setEditingProduct(null);
       setFormData({
+        id: '',
         name: '',
         price: '',
         stock: '',
-        category: 'Consolas',
+        category: 'Consola',
         description: '',
         img: ''
       });
+      setCharacteristicsData({});
     }
     setErrors({});
     setShowModal(true);
@@ -138,19 +360,28 @@ const Products = () => {
     setShowModal(false);
     setEditingProduct(null);
     setFormData({
+      id: '',
       name: '',
       price: '',
       stock: '',
-      category: 'Consolas',
+      category: 'Consola',
       description: '',
       img: ''
     });
+    setCharacteristicsData({});
     setErrors({});
   };
 
-  const handleDelete = (id) => {
-    if (window.confirm('¿Estás seguro de eliminar este producto?')) {
-      setProducts(prev => prev.filter(p => p.id !== id));
+  const handleDelete = async (id, productName) => {
+    if (window.confirm(`¿Estás seguro de eliminar "${productName}"?`)) {
+      try {
+        await productService.delete(id);
+        alert('✅ Producto eliminado exitosamente');
+        loadProducts();
+      } catch (error) {
+        const errorMessage = error.response?.data?.message || error.message || 'Error desconocido';
+        alert(`❌ Error al eliminar: ${errorMessage}`);
+      }
     }
   };
 
@@ -162,8 +393,21 @@ const Products = () => {
   });
 
   const totalProducts = products.length;
-  const lowStockProducts = products.filter(p => p.stock < 10).length;
-  const totalValue = products.reduce((sum, p) => sum + (p.price * p.stock), 0);
+  const lowStockProducts = products.filter(p => (p.stock || 0) < 10).length;
+  const totalValue = products.reduce((sum, p) => sum + (p.price * (p.stock || 0)), 0);
+
+  if (loading) {
+    return (
+      <div className="admin-products-container">
+        <div className="loading-state">
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Cargando...</span>
+          </div>
+          <p>Cargando productos...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="admin-products-container">
@@ -177,7 +421,6 @@ const Products = () => {
         </button>
       </div>
 
-      {/* Estadísticas */}
       <div className="products-stats">
         <div className="stat-card">
           <div className="stat-icon bg-primary">
@@ -208,7 +451,6 @@ const Products = () => {
         </div>
       </div>
 
-      {/* Filtros */}
       <div className="products-filters">
         <div className="filter-group">
           <label htmlFor="search">
@@ -241,7 +483,6 @@ const Products = () => {
         </div>
       </div>
 
-      {/* Tabla de productos */}
       <div className="products-table-container">
         <table className="products-table">
           <thead>
@@ -264,7 +505,7 @@ const Products = () => {
                     <div className="product-name">
                       <strong>{product.name}</strong>
                       {product.description && (
-                        <small className="text-muted">{product.description}</small>
+                        <small className="text-muted d-block">{product.description}</small>
                       )}
                     </div>
                   </td>
@@ -272,12 +513,12 @@ const Products = () => {
                     <span className="category-badge">{product.category}</span>
                   </td>
                   <td>
-                    <span className={`stock-badge ${product.stock < 10 ? 'low' : 'normal'}`}>
-                      {product.stock}
+                    <span className={`stock-badge ${(product.stock || 0) < 10 ? 'low' : 'normal'}`}>
+                      {product.stock || 0}
                     </span>
                   </td>
                   <td className="price-cell">{formatPrice(product.price)}</td>
-                  <td className="price-cell">{formatPrice(product.price * product.stock)}</td>
+                  <td className="price-cell">{formatPrice(product.price * (product.stock || 0))}</td>
                   <td>
                     <div className="action-buttons">
                       <button
@@ -289,7 +530,7 @@ const Products = () => {
                       </button>
                       <button
                         className="btn-icon btn-delete"
-                        onClick={() => handleDelete(product.id)}
+                        onClick={() => handleDelete(product.id, product.name)}
                         title="Eliminar"
                       >
                         <i className="bi bi-trash"></i>
@@ -312,18 +553,58 @@ const Products = () => {
         </table>
       </div>
 
-      {/* Modal */}
       {showModal && (
         <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-content-wrapper" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h2>{editingProduct ? 'Editar Producto' : 'Agregar Producto'}</h2>
-              <button className="modal-close" onClick={closeModal}>
+              <h2>
+                <i className={`bi ${editingProduct ? 'bi-pencil-square' : 'bi-plus-circle'}`}></i>
+                {editingProduct ? 'Editar Producto' : 'Agregar Producto'}
+              </h2>
+              <button className="modal-close" onClick={closeModal} type="button">
                 <i className="bi bi-x-lg"></i>
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="product-form">
+            <form onSubmit={handleSubmit} className="modal-form">
+              <div className="form-group">
+                <label htmlFor="category">Categoría *</label>
+                <select
+                  id="category"
+                  name="category"
+                  className={`form-select ${errors.category ? 'is-invalid' : ''}`}
+                  value={formData.category}
+                  onChange={handleCategoryChange}
+                >
+                  {categories.map(cat => (
+                    <option key={cat} value={cat}>{cat}</option>
+                  ))}
+                </select>
+                {errors.category && <div className="invalid-feedback">{errors.category}</div>}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="id">
+                  ID del Producto * 
+                  {editingProduct && <span className="text-muted"> (Solo lectura)</span>}
+                </label>
+                <input
+                  type="text"
+                  id="id"
+                  name="id"
+                  className={`form-control ${errors.id ? 'is-invalid' : ''}`}
+                  value={formData.id}
+                  onChange={handleChange}
+                  placeholder={`Ej: ${getIdSuggestion(formData.category)}`}
+                  maxLength="10"
+                  disabled={editingProduct}
+                />
+                {errors.id && <div className="invalid-feedback">{errors.id}</div>}
+                <small className="form-text text-muted">
+                  Máximo 10 caracteres. Sugerido para {formData.category}: {getIdSuggestion(formData.category)}
+                </small>
+              </div>
+
               <div className="form-group">
                 <label htmlFor="name">Nombre del Producto *</label>
                 <input
@@ -371,46 +652,34 @@ const Products = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="category">Categoría *</label>
-                <select
-                  id="category"
-                  name="category"
-                  className={`form-select ${errors.category ? 'is-invalid' : ''}`}
-                  value={formData.category}
-                  onChange={handleChange}
-                >
-                  {categories.map(cat => (
-                    <option key={cat} value={cat}>{cat}</option>
-                  ))}
-                </select>
-                {errors.category && <div className="invalid-feedback">{errors.category}</div>}
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="description">Descripción</label>
+                <label htmlFor="description">Descripción *</label>
                 <textarea
                   id="description"
                   name="description"
-                  className="form-control"
+                  className={`form-control ${errors.description ? 'is-invalid' : ''}`}
                   value={formData.description}
                   onChange={handleChange}
                   placeholder="Descripción del producto"
                   rows="3"
                 ></textarea>
+                {errors.description && <div className="invalid-feedback">{errors.description}</div>}
               </div>
 
               <div className="form-group">
-                <label htmlFor="img">URL de Imagen</label>
+                <label htmlFor="img">URL de Imagen *</label>
                 <input
                   type="text"
                   id="img"
                   name="img"
-                  className="form-control"
+                  className={`form-control ${errors.img ? 'is-invalid' : ''}`}
                   value={formData.img}
                   onChange={handleChange}
-                  placeholder="/img/producto.jpg"
+                  placeholder="https://ejemplo.com/imagen.jpg"
                 />
+                {errors.img && <div className="invalid-feedback">{errors.img}</div>}
               </div>
+
+              {renderCharacteristicFields()}
 
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" onClick={closeModal}>

@@ -16,7 +16,6 @@ class ApiService {
       },
     };
 
-    // Agregar token JWT en formato Bearer
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -24,30 +23,40 @@ class ApiService {
     try {
       const response = await fetch(`${this.baseURL}${endpoint}`, config);
 
-      // Manejar error 401 (token expirado o inválido)
       if (response.status === 401) {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        localStorage.removeItem('roles'); // Limpiar roles también
+        localStorage.removeItem('roles');
         window.location.href = '/login';
         throw new Error('Sesión expirada');
       }
 
-      // Manejar error 403 (sin permisos)
       if (response.status === 403) {
         throw new Error('No tienes permisos para realizar esta acción');
       }
 
-      // Obtener datos de la respuesta
       const data = await response.json().catch(() => null);
 
       if (!response.ok) {
-        throw new Error(data?.message || `Error: ${response.status}`);
+        const error = new Error(data?.message || `Error: ${response.status}`);
+        error.response = {
+          status: response.status,
+          statusText: response.statusText,
+          data: data
+        };
+        throw error;
       }
 
       return data;
     } catch (error) {
       console.error('API Error:', error);
+      if (!error.response && error.message.includes('fetch')) {
+        error.response = {
+          status: 500,
+          statusText: 'Network Error',
+          data: { message: 'Error de conexión' }
+        };
+      }
       throw error;
     }
   }
