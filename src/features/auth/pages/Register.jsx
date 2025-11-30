@@ -49,6 +49,8 @@ const Register = () => {
       newErrors.email = 'El email es requerido';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Email inválido';
+    } else if (!/(@duoc\.cl|@gmail\.com)$/.test(formData.email)) {
+      newErrors.email = 'El email debe ser @duoc.cl o @gmail.com';
     }
 
     if (!formData.phone.trim()) {

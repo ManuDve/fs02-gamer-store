@@ -185,18 +185,6 @@ const Login = () => {
             </Link>
           </p>
         </div>
-
-        <div className="demo-credentials">
-          <h6><i className="bi bi-info-circle"></i> Credenciales de Prueba</h6>
-          <div className="demo-item">
-            <strong>Admin:</strong>
-            <span>admin@admin.com / admin123</span>
-          </div>
-          <div className="demo-item">
-            <strong>Usuario:</strong>
-            <span>usuario@duoc.cl / password123</span>
-          </div>
-        </div>
       </div>
     </div>
   );
