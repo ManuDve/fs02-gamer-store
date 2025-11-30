@@ -50,7 +50,7 @@ describe('Pay Page', () => {
             fireEvent.click(submitButton);
 
             await waitFor(() => {
-                expect(screen.queryByText(/requerido/i)).toBeInTheDocument();
+                expect(screen.getAllByText(/requerido/i).length).toBeGreaterThan(0);
             });
         }
     });

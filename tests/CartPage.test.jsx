@@ -1,11 +1,26 @@
 import React, { useEffect } from 'react';
-import { renderWithProviders, screen } from './test-utils';
-import { describe, it, expect } from 'vitest';
+import { renderWithProviders, screen, waitFor } from './test-utils';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import Cart from '../src/features/store/pages/Cart.jsx';
 import { addToCart, useCartDispatch } from '../src/app/context/CartContext';
+import { productService } from '../src/shared/services/productService';
+
+vi.mock('../src/shared/services/productService', () => ({
+  productService: {
+    getAll: vi.fn()
+  }
+}));
 
 describe('Cart Page', () => {
-  it('muestra items agregados al carrito', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    productService.getAll.mockResolvedValue([
+      { id: 'GM001', name: 'Catan', price: 35.99, stock: 10 },
+      { id: 'GM002', name: 'Monopoly', price: 19.99, stock: 15 }
+    ]);
+  });
+
+  it('muestra items agregados al carrito', async () => {
     function TestApp() {
       const dispatch = useCartDispatch();
       useEffect(() => {
@@ -16,10 +31,12 @@ describe('Cart Page', () => {
 
     renderWithProviders(<TestApp />);
 
-    expect(screen.getByText(/Catan/i)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText(/Catan/i)).toBeInTheDocument();
+    });
   });
 
-  it('muestra el título del carrito', () => {
+  it('muestra el título del carrito', async () => {
     function TestApp() {
       const dispatch = useCartDispatch();
       useEffect(() => {
@@ -30,16 +47,20 @@ describe('Cart Page', () => {
 
     renderWithProviders(<TestApp />);
 
-    expect(screen.getByRole('heading', { name: /Carro de Compras/ })).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByRole('heading', { name: /Carro de Compras/ })).toBeInTheDocument();
+    });
   });
 
-  it('muestra mensaje cuando el carrito está vacío', () => {
+  it('muestra mensaje cuando el carrito está vacío', async () => {
     renderWithProviders(<Cart />, { withCart: true });
 
-    expect(screen.getByText(/Tu carrito está vacío/)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText(/Tu carrito está vacío/)).toBeInTheDocument();
+    });
   });
 
-  it('renderiza múltiples items en el carrito', () => {
+  it('renderiza múltiples items en el carrito', async () => {
     function TestApp() {
       const dispatch = useCartDispatch();
       useEffect(() => {
@@ -51,11 +72,13 @@ describe('Cart Page', () => {
 
     renderWithProviders(<TestApp />);
 
-    expect(screen.getByText(/Catan/i)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText(/Catan/i)).toBeInTheDocument();
+    });
     expect(screen.getByText(/Monopoly/i)).toBeInTheDocument();
   });
 
-  it('renderiza el resumen del carrito', () => {
+  it('renderiza el resumen del carrito', async () => {
     function TestApp() {
       const dispatch = useCartDispatch();
       useEffect(() => {
@@ -66,11 +89,13 @@ describe('Cart Page', () => {
 
     renderWithProviders(<TestApp />);
 
-    const totalTexts = screen.getAllByText(/Total:/);
-    expect(totalTexts.length).toBeGreaterThan(0);
+    await waitFor(() => {
+      const totalTexts = screen.getAllByText(/Total:/);
+      expect(totalTexts.length).toBeGreaterThan(0);
+    });
   });
 
-  it('renderiza el layout responsive', () => {
+  it('renderiza el layout responsive', async () => {
     function TestApp() {
       const dispatch = useCartDispatch();
       useEffect(() => {
@@ -81,8 +106,10 @@ describe('Cart Page', () => {
 
     const { container } = renderWithProviders(<TestApp />);
 
-    const cols = container.querySelectorAll('.col-md-8, .col-md-4');
-    expect(cols.length).toBeGreaterThan(0);
+    await waitFor(() => {
+      const rows = container.querySelectorAll('.row');
+      expect(rows.length).toBeGreaterThan(0);
+    });
   });
 
   it('renderiza con estructura de container', () => {

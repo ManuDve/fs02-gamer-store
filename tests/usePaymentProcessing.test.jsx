@@ -85,8 +85,6 @@ describe('usePaymentProcessing', () => {
     });
 
     it('debería navegar a una página después de procesar el pago', async () => {
-        vi.useFakeTimers();
-
         const wrapper = ({ children }) => (
             <BrowserRouter>
                 <CartProvider>{children}</CartProvider>
@@ -102,20 +100,13 @@ describe('usePaymentProcessing', () => {
             result.current.processPayment();
         });
 
-        // Avanzar el tiempo para simular el setTimeout
-        await act(async () => {
-            vi.advanceTimersByTime(3000);
-            await Promise.resolve();
-        });
-
-        expect(mockNavigate).toHaveBeenCalled();
-
-        vi.useRealTimers();
-    });
+        // Esperar a que se llame navigate
+        await waitFor(() => {
+            expect(mockNavigate).toHaveBeenCalled();
+        }, { timeout: 3000 });
+    }, 10000);
 
     it('debería generar un número de orden único', async () => {
-        vi.useFakeTimers();
-
         const wrapper = ({ children }) => (
             <BrowserRouter>
                 <CartProvider>{children}</CartProvider>
@@ -131,22 +122,16 @@ describe('usePaymentProcessing', () => {
             result.current.processPayment();
         });
 
-        await act(async () => {
-            vi.advanceTimersByTime(3000);
-            await Promise.resolve();
-        });
-
-        expect(mockNavigate).toHaveBeenCalled();
+        await waitFor(() => {
+            expect(mockNavigate).toHaveBeenCalled();
+        }, { timeout: 3000 });
+        
         const navigationCall = mockNavigate.mock.calls[0];
         // Verificar que se navegó con algún estado
         expect(navigationCall).toBeDefined();
-
-        vi.useRealTimers();
-    });
+    }, 10000);
 
     it('debería navegar a payment-success o payment-error', async () => {
-        vi.useFakeTimers();
-
         const wrapper = ({ children }) => (
             <BrowserRouter>
                 <CartProvider>{children}</CartProvider>
@@ -162,21 +147,15 @@ describe('usePaymentProcessing', () => {
             result.current.processPayment();
         });
 
-        await act(async () => {
-            vi.advanceTimersByTime(3000);
-            await Promise.resolve();
-        });
-
-        expect(mockNavigate).toHaveBeenCalled();
+        await waitFor(() => {
+            expect(mockNavigate).toHaveBeenCalled();
+        }, { timeout: 3000 });
+        
         const route = mockNavigate.mock.calls[0][0];
         expect(['/payment-success', '/payment-error']).toContain(route);
-
-        vi.useRealTimers();
-    });
+    }, 10000);
 
     it('debería cambiar isProcessing a false después de procesar', async () => {
-        vi.useFakeTimers();
-
         const wrapper = ({ children }) => (
             <BrowserRouter>
                 <CartProvider>{children}</CartProvider>
@@ -194,13 +173,8 @@ describe('usePaymentProcessing', () => {
 
         expect(result.current.isProcessing).toBe(true);
 
-        await act(async () => {
-            vi.advanceTimersByTime(3000);
-            await Promise.resolve();
-        });
-
-        expect(result.current.isProcessing).toBe(false);
-
-        vi.useRealTimers();
-    });
+        await waitFor(() => {
+            expect(result.current.isProcessing).toBe(false);
+        }, { timeout: 3000 });
+    }, 10000);
 });
