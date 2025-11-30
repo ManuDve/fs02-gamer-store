@@ -51,6 +51,12 @@ const Register = () => {
       newErrors.email = 'Email inválido';
     }
 
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'El teléfono es requerido';
+    } else if (formData.phone.trim().length < 9) {
+      newErrors.phone = 'El teléfono debe tener al menos 9 caracteres';
+    }
+
     if (!formData.password) {
       newErrors.password = 'La contraseña es requerida';
     } else if (formData.password.length < 6) {
@@ -176,19 +182,22 @@ const Register = () => {
 
           <div className="form-group">
             <label htmlFor="phone">
-              <i className="bi bi-telephone"></i> Teléfono (opcional)
+              <i className="bi bi-telephone"></i> Teléfono <span className="text-danger">*</span>
             </label>
             <input
               type="tel"
               id="phone"
               name="phone"
-              className="form-control"
+              className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
               placeholder="+56 9 1234 5678"
               value={formData.phone}
               onChange={handleChange}
               autoComplete="tel"
               disabled={isLoading}
             />
+            {errors.phone && (
+              <div className="invalid-feedback d-block">{errors.phone}</div>
+            )}
           </div>
 
           <div className="form-group">
