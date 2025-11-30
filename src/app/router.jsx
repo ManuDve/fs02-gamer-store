@@ -22,6 +22,7 @@ import Register from "../features/auth/pages/Register.jsx";
 import Dashboard from "../features/admin/pages/Dashboard.jsx";
 import AdminProducts from "../features/admin/pages/Products.jsx";
 import AdminUsers from "../features/admin/pages/Users.jsx";
+import AdminOrders from "../features/admin/pages/Orders.jsx";
 
 import NotFound from "../shared/pages/NotFound.jsx";
 
@@ -105,6 +106,7 @@ const router = createBrowserRouter([
       { path: "dashboard", element: <Dashboard /> },
       { path: "products", element: <AdminProducts /> },
       { path: "users", element: <AdminUsers /> },
+      { path: "orders", element: <AdminOrders /> },
     ],
   },
   { path: "*", element: <NotFound /> },

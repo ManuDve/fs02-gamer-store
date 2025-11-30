@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import { useCartState } from '../../../app/context/CartContext';
 import { usePaymentForm } from '../hooks/usePaymentForm';
 import { usePaymentProcessing } from '../hooks/usePaymentProcessing';
@@ -8,6 +7,7 @@ import ShippingAddressForm from '../components/ShippingAddressForm';
 import PaymentInfoForm from '../components/PaymentInfoForm';
 import OrderSummary from '../components/OrderSummary';
 import PaymentFormActions from '../components/PaymentFormActions';
+import { useEffect } from 'react';
 
 const Pay = () => {
     const navigate = useNavigate();
@@ -19,17 +19,12 @@ const Pay = () => {
 
     const { isProcessing, processPayment } = usePaymentProcessing(items, total, formData);
 
-    // Si el carrito está vacío, redirigir al carrito
+    // Solo redirigir al carrito si está vacío Y NO estamos procesando el pago
     useEffect(() => {
-        if (!items || items.length === 0) {
+        if ((!items || items.length === 0) && !isProcessing) {
             navigate('/cart');
         }
-    }, [items, navigate]);
-
-    // No renderizar si el carrito está vacío
-    if (!items || items.length === 0) {
-        return null;
-    }
+    }, [items, navigate, isProcessing]); // ⬅️ AGREGAMOS isProcessing como dependencia
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -38,6 +33,21 @@ const Pay = () => {
             processPayment();
         }
     };
+
+    // Mostrar loading mientras se procesa
+    if (isProcessing) {
+        return (
+            <main className="container py-5">
+                <div className="text-center">
+                    <div className="spinner-border text-primary" role="status" style={{ width: '3rem', height: '3rem' }}>
+                        <span className="visually-hidden">Procesando pago...</span>
+                    </div>
+                    <h3 className="mt-4">Procesando tu pago...</h3>
+                    <p className="text-muted">Por favor espera un momento</p>
+                </div>
+            </main>
+        );
+    }
 
     return (
         <main className="container py-5">

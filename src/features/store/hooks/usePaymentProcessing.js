@@ -1,98 +1,108 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCartDispatch, clearCart } from '../../../app/context/CartContext';
-import { productService } from '../../../shared/services/productService';
+import orderService from '../../../shared/services/orderService';
 
 export const usePaymentProcessing = (items, total, formData) => {
     const [isProcessing, setIsProcessing] = useState(false);
     const navigate = useNavigate();
     const dispatch = useCartDispatch();
 
-    const updateProductsStock = async (items) => {
-        try {
-            // Obtener los productos actuales y actualizar su stock
-            const updatePromises = items.map(async (item) => {
-                const product = await productService.getById(item.id);
-                const newStock = product.stock - item.quantity;
-                
-                // Actualizar el producto completo con el nuevo stock
-                return productService.update(item.id, {
-                    ...product,
-                    stock: newStock
-                });
-            });
-            
-            await Promise.all(updatePromises);
-            return true;
-        } catch (error) {
-            console.error('Error al actualizar stock:', error);
-            return false;
-        }
-    };
-
     const processPayment = async () => {
         setIsProcessing(true);
 
         // Simular procesamiento de pago
         setTimeout(async () => {
-            // Simular resultado aleatorio (90% éxito, 10% error para demostración)
-            const isSuccess = Math.random() > 0.1;
+            const isSuccess = true;
 
             if (isSuccess) {
-                // NOTA: La actualización de stock debería manejarse en el backend
-                // Por ahora, simulamos un pago exitoso sin actualizar stock
-                // En un escenario real, el backend actualizaría el stock al confirmar el pago
-                
-                console.log('⚠️ Stock update deshabilitado - debería manejarse en backend');
+                try {
+                    // Generar número de orden único
+                    const orderNumber = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+                    const timestamp = new Date().toISOString();
 
-                // Generar número de orden único
-                const orderNumber = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+                    // Estructura correcta que espera el backend
+                    const orderPayload = {
+                        order: {
+                            shippingAddress: {
+                                address: formData.address,
+                                city: formData.city,
+                                state: formData.state,
+                                zipCode: formData.zipCode
+                            },
+                            items: items.map(item => ({
+                                id: item.id,
+                                quantity: item.quantity
+                            })),
+                            shipping: 0,
+                            payment: {
+                                cardNumber: formData.cardNumber,
+                                cardName: formData.cardName,
+                                cardExpiry: formData.cardExpiry,
+                                cardCVV: formData.cardCVV
+                            }
+                        }
+                    };
 
-                // Preparar datos de la orden
-                const orderData = {
-                    orderNumber,
-                    items: [...items],
-                    total,
-                    customerInfo: {
-                        firstName: formData.firstName,
-                        lastName: formData.lastName,
-                        email: formData.email,
-                        phone: formData.phone,
-                        address: formData.address,
-                        city: formData.city,
-                        state: formData.state,
-                        zipCode: formData.zipCode
-                    }
-                };
+                    // Guardar orden en el backend
+                    const response = await orderService.createOrder(orderPayload);
 
-                // Limpiar el carrito después del pago exitoso
-                clearCart(dispatch);
+                    // Preparar datos para la vista
+                    const orderData = {
+                        orderNumber: response.orderNumber || orderNumber,
+                        timestamp: response.timestamp || timestamp,
+                        status: response.status || 'Confirmado',
+                        items: items.map(item => ({
+                            name: item.name,
+                            quantity: item.quantity,
+                            price: item.price,
+                            subtotal: item.price * item.quantity
+                        })),
+                        summary: {
+                            subtotal: parseFloat(total),
+                            shipping: 0,
+                            total: parseFloat(total)
+                        },
+                        customerInfo: {
+                            firstName: formData.firstName,
+                            lastName: formData.lastName,
+                            email: formData.email,
+                            phone: formData.phone
+                        },
+                        shippingAddress: {
+                            address: formData.address,
+                            city: formData.city,
+                            state: formData.state,
+                            zipCode: formData.zipCode
+                        }
+                    };
 
-                // Navegar a página de confirmación con datos
-                navigate('/payment-success', { state: { orderData } });
-            } else {
-                // Simular diferentes tipos de errores
-                const errors = [
-                    { code: 'CARD_DECLINED', message: 'Tu tarjeta ha sido rechazada' },
-                    { code: 'INSUFFICIENT_FUNDS', message: 'Fondos insuficientes' },
-                    { code: 'INVALID_CARD', message: 'Datos de tarjeta inválidos' },
-                    { code: 'EXPIRED_CARD', message: 'Tarjeta vencida' },
-                    { code: 'NETWORK_ERROR', message: 'Error de conexión' }
-                ];
+                    // ⬇️ PRIMERO: Navegar (esto desmonta el componente Pay.jsx)
+                    navigate('/payment-success', {
+                        state: { orderData },
+                        replace: true
+                    });
 
-                const randomError = errors[Math.floor(Math.random() * errors.length)];
+                    // ⬇️ DESPUÉS: Limpiar carrito (con un pequeño delay)
+                    setTimeout(() => {
+                        clearCart(dispatch);
+                        setIsProcessing(false);
+                    }, 100);
 
-                // Navegar a página de error con información del error
-                navigate('/payment-error', {
-                    replace: false,
-                    state: {
-                        errorCode: randomError.code,
-                        errorMessage: randomError.message
-                    }
-                });
+                } catch (error) {
+                    console.error('Error al procesar el pago:', error);
+                    setIsProcessing(false);
+                    
+                    // Mostrar error de backend
+                    navigate('/payment-error', {
+                        state: {
+                            errorCode: 'SERVER_ERROR',
+                            errorMessage: 'Error al procesar la orden en el servidor. Intenta nuevamente.'
+                        },
+                        replace: true
+                    });
+                }
             }
-
-            setIsProcessing(false);
         }, 2000);
     };
 

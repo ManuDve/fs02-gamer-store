@@ -1,159 +1,227 @@
-import { useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { formatPrice } from '../utils/formatPrice';
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import './PaymentSuccess.css';
 
 const PaymentSuccess = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const orderData = location.state?.orderData;
 
-    // Obtener datos de la compra desde el state de navegación
-    const { orderData } = location.state || {};
-
-    useEffect(() => {
-        // Si no hay datos de orden, redirigir al home
-        if (!orderData) {
-            navigate('/');
-        }
-    }, [orderData, navigate]);
-
+  useEffect(() => {
     if (!orderData) {
-        return null;
+      navigate('/');
     }
+  }, [orderData, navigate]);
 
-    const { orderNumber, items, total, customerInfo } = orderData;
+  if (!orderData) {
+    return null;
+  }
 
-    return (
-        <main className="container py-5">
-            <div className="row justify-content-center">
-                <div className="col-lg-8">
-                    {/* Mensaje de éxito */}
-                    <div className="text-center mb-4">
-                        <div className="mb-4">
-                            <div className="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center"
-                                style={{ width: '80px', height: '80px' }}>
-                                <i className="bi bi-check-lg" style={{ fontSize: '3rem' }}></i>
-                            </div>
-                        </div>
-                        <h1 className="display-5 mb-3">¡Pago Exitoso!</h1>
-                        <p className="lead text-muted">
-                            Tu compra ha sido procesada correctamente
-                        </p>
-                    </div>
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('es-CL', {
+      style: 'currency',
+      currency: 'CLP'
+    }).format(price);
+  };
 
-                    {/* Detalles de la orden */}
-                    <div className="card mb-4">
-                        <div className="card-header bg-success text-white">
-                            <h5 className="mb-0">Detalles de la Orden</h5>
-                        </div>
-                        <div className="card-body">
-                            <div className="row mb-3">
-                                <div className="col-md-6">
-                                    <strong>Número de Orden:</strong>
-                                    <p className="mb-0 text-primary">{orderNumber}</p>
-                                </div>
-                                <div className="col-md-6">
-                                    <strong>Fecha:</strong>
-                                    <p className="mb-0">{new Date().toLocaleDateString('es-CL', {
-                                        year: 'numeric',
-                                        month: 'long',
-                                        day: 'numeric',
-                                        hour: '2-digit',
-                                        minute: '2-digit'
-                                    })}</p>
-                                </div>
-                            </div>
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleString('es-CL', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
 
-                            <hr />
+  const handlePrint = () => {
+    window.print();
+  };
 
-                            <div className="mb-3">
-                                <strong>Enviado a:</strong>
-                                <p className="mb-1">{customerInfo.firstName} {customerInfo.lastName}</p>
-                                <p className="mb-1">{customerInfo.address}</p>
-                                <p className="mb-1">{customerInfo.city}, {customerInfo.state} - {customerInfo.zipCode}</p>
-                                <p className="mb-0">
-                                    <i className="bi bi-envelope me-2"></i>{customerInfo.email}
-                                </p>
-                                <p className="mb-0">
-                                    <i className="bi bi-telephone me-2"></i>{customerInfo.phone}
-                                </p>
-                            </div>
+  const handleDownloadPDF = () => {
+    // ⬇️ AHORA HACE LO MISMO QUE IMPRIMIR
+    window.print();
+  };
 
-                            <hr />
+  const handleBackToStore = () => {
+    navigate('/');
+  };
 
-                            <div>
-                                <strong className="d-block mb-3">Productos:</strong>
-                                <ul className="list-unstyled">
-                                    {items.map(item => (
-                                        <li key={item.id} className="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
-                                            <div className="d-flex align-items-center">
-                                                <img
-                                                    src={item.img}
-                                                    alt={item.name}
-                                                    style={{ width: '50px', height: '50px', objectFit: 'cover' }}
-                                                    className="rounded me-3"
-                                                />
-                                                <div>
-                                                    <div>{item.name}</div>
-                                                    <small className="text-muted">Cantidad: {item.quantity}</small>
-                                                </div>
-                                            </div>
-                                            <strong>{formatPrice(item.price * item.quantity)}</strong>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+  return (
+    <div className="payment-success-container">
+      <div className="success-content">
+        {/* Encabezado de éxito - Solo visible en pantalla */}
+        <div className="success-header no-print">
+          <div className="success-icon">
+            <i className="bi bi-check-circle-fill"></i>
+          </div>
+          <h1>¡Pago Exitoso!</h1>
+          <p>Tu pedido ha sido confirmado y procesado correctamente</p>
+        </div>
 
-                            <hr />
-
-                            <div className="d-flex justify-content-between align-items-center">
-                                <h5 className="mb-0">Total Pagado:</h5>
-                                <h4 className="mb-0 text-success">{formatPrice(total)}</h4>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Información adicional */}
-                    <div className="alert alert-info" role="alert">
-                        <h6 className="alert-heading">
-                            <i className="bi bi-info-circle me-2"></i>
-                            ¿Qué sigue?
-                        </h6>
-                        <ul className="mb-0">
-                            <li>Recibirás un correo de confirmación en {customerInfo.email}</li>
-                            <li>Tu pedido será procesado en las próximas 24 horas</li>
-                            <li>El tiempo de entrega estimado es de 3-5 días hábiles</li>
-                            <li>Podrás rastrear tu pedido con el número de orden proporcionado</li>
-                        </ul>
-                    </div>
-
-                    {/* Acciones */}
-                    <div className="d-flex gap-2 justify-content-center">
-                        <button
-                            className="btn btn-primary"
-                            onClick={() => navigate('/')}
-                        >
-                            <i className="bi bi-house-door me-2"></i>
-                            Volver al Inicio
-                        </button>
-                        <button
-                            className="btn btn-outline-primary"
-                            onClick={() => navigate('/products')}
-                        >
-                            <i className="bi bi-shop me-2"></i>
-                            Seguir Comprando
-                        </button>
-                    </div>
-
-                    {/* Soporte */}
-                    <div className="text-center mt-4">
-                        <p className="text-muted mb-0">
-                            ¿Necesitas ayuda? Contáctanos en <a href="mailto:soporte@gamerstore.com">soporte@gamerstore.com</a>
-                        </p>
-                    </div>
-                </div>
+        {/* Boleta */}
+        <div className="invoice-wrapper">
+          <div className="invoice-header">
+            <div className="invoice-company">
+              <h1>🎮 LevelUp Gaming Store</h1>
+              <p className="company-details">
+                <strong>Dirección:</strong> Álvarez 2336, Viña del Mar, Chile<br />
+                <strong>Teléfono:</strong> +569 9999 0000<br />
+                <strong>Email:</strong> contacto@lupgamer.cl
+              </p>
             </div>
-        </main>
-    );
+            <div className="invoice-number-box">
+              <h2>BOLETA DE VENTA</h2>
+              <div className="invoice-number">N° {orderData.orderNumber}</div>
+              <div className="invoice-date">{formatDate(orderData.timestamp)}</div>
+              <div className="invoice-status">
+                <span className="status-badge status-completed">
+                  <i className="bi bi-check-circle-fill"></i>
+                  {orderData.status}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <hr className="invoice-divider" />
+
+          {/* Información del Cliente */}
+          <div className="order-info-section">
+            <h3>
+              <i className="bi bi-person-circle"></i>
+              Información del Cliente
+            </h3>
+            <div className="info-grid">
+              <div className="info-item">
+                <label>Nombre Completo:</label>
+                <span>
+                  {orderData.customerInfo.firstName}{' '}
+                  {orderData.customerInfo.lastName}
+                </span>
+              </div>
+              <div className="info-item">
+                <label>Email:</label>
+                <span>{orderData.customerInfo.email}</span>
+              </div>
+              <div className="info-item">
+                <label>Teléfono:</label>
+                <span>{orderData.customerInfo.phone}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Dirección de Envío */}
+          <div className="order-info-section">
+            <h3>
+              <i className="bi bi-geo-alt-fill"></i>
+              Dirección de Envío
+            </h3>
+            <div className="info-grid">
+              <div className="info-item full-width">
+                <label>Dirección:</label>
+                <span>{orderData.shippingAddress.address}</span>
+              </div>
+              <div className="info-item">
+                <label>Ciudad:</label>
+                <span>{orderData.shippingAddress.city}</span>
+              </div>
+              <div className="info-item">
+                <label>Región:</label>
+                <span>{orderData.shippingAddress.state}</span>
+              </div>
+              <div className="info-item">
+                <label>Código Postal:</label>
+                <span>{orderData.shippingAddress.zipCode}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Detalle de Productos */}
+          <div className="order-info-section">
+            <h3>
+              <i className="bi bi-box-seam"></i>
+              Detalle de Productos
+            </h3>
+            <div className="invoice-items-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th className="text-center">Cantidad</th>
+                    <th className="text-end">Precio Unit.</th>
+                    <th className="text-end">Subtotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orderData.items.map((item, index) => (
+                    <tr key={index}>
+                      <td><strong>{item.name}</strong></td>
+                      <td className="text-center">{item.quantity}</td>
+                      <td className="text-end">{formatPrice(item.price)}</td>
+                      <td className="text-end"><strong>{formatPrice(item.subtotal)}</strong></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Resumen de Pago */}
+          <div className="order-info-section">
+            <div className="invoice-summary">
+              <div className="summary-row">
+                <span>Subtotal:</span>
+                <span>{formatPrice(orderData.summary.subtotal)}</span>
+              </div>
+              <div className="summary-row">
+                <span>Envío:</span>
+                <span>{orderData.summary.shipping === 0 ? 'Gratis' : formatPrice(orderData.summary.shipping)}</span>
+              </div>
+              <div className="summary-row total">
+                <span>Total:</span>
+                <span>{formatPrice(orderData.summary.total)}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer con mensaje de agradecimiento */}
+          <div className="invoice-footer">
+            <p>
+              <strong>¡Gracias por tu compra!</strong>
+            </p>
+            <p className="text-muted">
+              Esta boleta es un comprobante de tu pedido. Recibirás un correo de confirmación con el seguimiento de tu envío.
+            </p>
+          </div>
+        </div>
+
+        {/* Botones de acción - Solo visible en pantalla */}
+        <div className="action-buttons-container no-print">
+          <button 
+            className="btn btn-outline-primary"
+            onClick={handlePrint}
+          >
+            <i className="bi bi-printer"></i>
+            Imprimir Boleta
+          </button>
+          <button 
+            className="btn btn-outline-success"
+            onClick={handleDownloadPDF}
+          >
+            <i className="bi bi-file-earmark-pdf"></i>
+            Descargar PDF
+          </button>
+          <button 
+            className="btn btn-primary"
+            onClick={handleBackToStore}
+          >
+            <i className="bi bi-house-door"></i>
+            Volver a la Tienda
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default PaymentSuccess;

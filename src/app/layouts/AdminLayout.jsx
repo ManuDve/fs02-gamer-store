@@ -44,6 +44,13 @@ export default function AdminLayout() {
             <i className="bi bi-people-fill"></i>
             <span>Usuarios</span>
           </Link>
+          <Link 
+            to="/admin/orders" 
+            className={`nav-link ${isActive('/admin/orders')}`}
+          >
+            <i className="bi bi-cart-check-fill"></i>
+            <span>Órdenes</span>
+          </Link>
         </nav>
 
         <div className="sidebar-footer">
