@@ -110,6 +110,8 @@ const router = createBrowserRouter([
     ],
   },
   { path: "*", element: <NotFound /> },
-]);
+], {
+  basename: "/fs02-gamer-store"
+});
 
 export default router;

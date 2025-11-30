@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
-  base: "./",
+  base: "/fs02-gamer-store/",
   test: {
     globals: true,
     environment: "jsdom",
@@ -15,7 +15,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
+        target: 'http://66.135.22.150:8080',
         changeOrigin: true
       }
     }

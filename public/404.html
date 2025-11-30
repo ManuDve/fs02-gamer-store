@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0;URL='/fs02-gamer-store/'">
+  <script>
+    // Redirige a la página principal con la ruta preservada
+    const path = window.location.pathname.replace('/fs02-gamer-store', '');
+    const redirect = '/fs02-gamer-store/' + (path === '/' ? '' : '?redirect=' + path);
+    window.location.href = redirect;
+  </script>
+  <title>Redirecting...</title>
+</head>
+<body>
+  <p>Redirecting to homepage...</p>
+</body>
+</html>
