@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://66.135.22.150:8080/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://66.135.22.150/api';
 
 class ApiService {
   constructor() {
