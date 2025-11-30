@@ -22,23 +22,20 @@ export const useDashboardFilters = (dashboardData, dateFilter, searchTerm) => {
     return data.filter(item => new Date(item[dateField]) >= filterDate);
   };
 
-  const filteredOrders = filterDataByDate(dashboardData.recentOrders, 'date').filter(order =>
-    order.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    order.id.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
+  // Filtrar usuarios por nombre, email o teléfono
   const filteredUsers = dashboardData.users.filter(user =>
     user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.email.toLowerCase().includes(searchTerm.toLowerCase())
+    user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (user.phone && user.phone.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
+  // Filtrar inventario por nombre o categoría
   const filteredInventory = dashboardData.inventory.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return {
-    filteredOrders,
     filteredUsers,
     filteredInventory,
   };

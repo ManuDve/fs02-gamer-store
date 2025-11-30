@@ -3,9 +3,6 @@ const InventoryTab = ({ filteredInventory, formatPrice }) => {
     <div className="inventory-section">
       <div className="section-header">
         <h2>Gestión de Inventario</h2>
-        <button className="btn btn-primary">
-          <i className="bi bi-plus-circle"></i> Agregar Producto
-        </button>
       </div>
       <div className="table-responsive">
         <table className="data-table">
@@ -17,7 +14,6 @@ const InventoryTab = ({ filteredInventory, formatPrice }) => {
               <th>Stock</th>
               <th>Precio</th>
               <th>Estado</th>
-              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -36,17 +32,6 @@ const InventoryTab = ({ filteredInventory, formatPrice }) => {
                   <span className={`status-badge ${product.status === 'Stock bajo' ? 'status-warning' : 'status-success'}`}>
                     {product.status}
                   </span>
-                </td>
-                <td>
-                  <button className="btn-icon" title="Ver detalles">
-                    <i className="bi bi-eye"></i>
-                  </button>
-                  <button className="btn-icon" title="Editar stock">
-                    <i className="bi bi-pencil"></i>
-                  </button>
-                  <button className="btn-icon btn-danger" title="Eliminar">
-                    <i className="bi bi-trash"></i>
-                  </button>
                 </td>
               </tr>
             ))}

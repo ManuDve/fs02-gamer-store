@@ -361,6 +361,59 @@
     color: #2c3e50;
 }
 
+/* ✅ User Info Styling - ACTUALIZADO PARA COINCIDIR CON USERS.CSS */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.user-info i {
+    font-size: 1.5rem;
+    color: #667eea;
+}
+
+.user-info > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.user-info > div > div {
+    display: flex;
+    align-items: center;
+}
+
+.user-info strong {
+    color: #2c3e50;
+}
+
+.user-info small {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+/* ✅ Role Badge - YA ESTÁ CORRECTO */
+.role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.role-badge.role-admin {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.role-badge.role-user {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
 /* Button Icons */
 .btn-icon {
     background: none;

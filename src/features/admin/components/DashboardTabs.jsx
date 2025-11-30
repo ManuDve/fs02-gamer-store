@@ -1,4 +1,4 @@
-const DashboardTabs = ({ activeTab, setActiveTab, ordersCount, usersCount, inventoryCount }) => {
+const DashboardTabs = ({ activeTab, setActiveTab, usersCount, inventoryCount }) => {
   return (
     <div className="dashboard-tabs">
       <button
@@ -6,12 +6,6 @@ const DashboardTabs = ({ activeTab, setActiveTab, ordersCount, usersCount, inven
         onClick={() => setActiveTab('overview')}
       >
         <i className="bi bi-speedometer2"></i> Resumen
-      </button>
-      <button
-        className={`tab-btn ${activeTab === 'orders' ? 'active' : ''}`}
-        onClick={() => setActiveTab('orders')}
-      >
-        <i className="bi bi-cart-check"></i> Compras ({ordersCount})
       </button>
       <button
         className={`tab-btn ${activeTab === 'users' ? 'active' : ''}`}

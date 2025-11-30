@@ -1,37 +1,101 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { userService } from '../../../shared/services/userService';
+import { authorityService } from '../../../shared/services/authorityService';
+import { productService } from '../../../shared/services/productService';
+import orderService from '../../../shared/services/orderService';
 
 export const useDashboardData = () => {
-  const [dashboardData] = useState({
-    totalSales: 1250000,
-    totalOrders: 342,
-    registeredUsers: 1547,
-    productsInStock: 156,
-    lowStockProducts: 12,
-    recentOrders: [
-      { id: 'ORD-001', customer: 'Juan Pérez', total: 89990, date: '2025-10-20', status: 'Completado' },
-      { id: 'ORD-002', customer: 'María González', total: 125000, date: '2025-10-20', status: 'En proceso' },
-      { id: 'ORD-003', customer: 'Carlos Silva', total: 45000, date: '2025-10-19', status: 'Completado' },
-      { id: 'ORD-004', customer: 'Ana Rodríguez', total: 210000, date: '2025-10-19', status: 'Completado' },
-      { id: 'ORD-005', customer: 'Pedro Martínez', total: 67500, date: '2025-10-18', status: 'Cancelado' },
-    ],
-    users: [
-      { id: 1, name: 'Juan Pérez', email: 'juan@email.com', orders: 5, totalSpent: 450000, registerDate: '2025-01-15' },
-      { id: 2, name: 'María González', email: 'maria@email.com', orders: 8, totalSpent: 780000, registerDate: '2025-02-20' },
-      { id: 3, name: 'Carlos Silva', email: 'carlos@email.com', orders: 3, totalSpent: 180000, registerDate: '2025-03-10' },
-      { id: 4, name: 'Ana Rodríguez', email: 'ana@email.com', orders: 12, totalSpent: 1200000, registerDate: '2025-04-05' },
-      { id: 5, name: 'Pedro Martínez', email: 'pedro@email.com', orders: 2, totalSpent: 95000, registerDate: '2025-09-01' },
-    ],
-    inventory: [
-      { id: 1, name: 'PlayStation 5', category: 'Consolas', stock: 25, price: 599990, status: 'En stock' },
-      { id: 2, name: 'Xbox Series X', category: 'Consolas', stock: 15, price: 549990, status: 'En stock' },
-      { id: 3, name: 'Nintendo Switch', category: 'Consolas', stock: 8, price: 349990, status: 'Stock bajo' },
-      { id: 4, name: 'DualSense Controller', category: 'Accesorios', stock: 45, price: 69990, status: 'En stock' },
-      { id: 5, name: 'Gaming Chair Pro', category: 'Muebles', stock: 3, price: 299990, status: 'Stock bajo' },
-      { id: 6, name: 'Gaming Mouse RGB', category: 'Accesorios', stock: 67, price: 45990, status: 'En stock' },
-      { id: 7, name: 'Mechanical Keyboard', category: 'Accesorios', stock: 5, price: 89990, status: 'Stock bajo' },
-      { id: 8, name: 'Gaming Headset', category: 'Accesorios', stock: 32, price: 79990, status: 'En stock' },
-    ],
+  const [dashboardData, setDashboardData] = useState({
+    totalSales: 0,
+    totalOrders: 0,
+    registeredUsers: 0,
+    productsInStock: 0,
+    lowStockProducts: 0,
+    recentOrders: [],
+    users: [],
+    inventory: []
   });
+  const [loading, setLoading] = useState(true);
 
-  return dashboardData;
+  useEffect(() => {
+    loadDashboardData();
+  }, []);
+
+  const loadDashboardData = async () => {
+    try {
+      setLoading(true);
+
+      // Cargar usuarios
+      const usersData = await userService.getAllUsers();
+      const usersWithRoles = await Promise.all(
+        usersData.map(async (user) => {
+          try {
+            const authorities = await authorityService.getByUserId(user.id);
+            const isAdmin = authorities.some(auth => auth.authority === 'ROLE_ADMIN');
+            
+            return {
+              id: user.id,
+              name: user.name,
+              email: user.email,
+              phone: user.phone || null, // ✅ Agregado el campo phone
+              role: isAdmin ? 'admin' : 'user'
+            };
+          } catch (error) {
+            return {
+              id: user.id,
+              name: user.name,
+              email: user.email,
+              phone: user.phone || null, // ✅ Agregado el campo phone
+              role: 'user'
+            };
+          }
+        })
+      );
+
+      // Cargar productos
+      const productsData = await productService.getAll();
+      const inventoryData = productsData.map(product => ({
+        id: product.id,
+        name: product.name,
+        category: product.category,
+        stock: product.stock || 0,
+        price: product.price,
+        status: (product.stock || 0) < 10 ? 'Stock bajo' : 'En stock'
+      }));
+
+      // Cargar órdenes
+      const ordersData = await orderService.getAllOrders();
+      const recentOrdersData = ordersData.slice(0, 5).map(order => ({
+        id: order.orderNumber,
+        customer: `${order.customerInfo.firstName} ${order.customerInfo.lastName}`,
+        total: order.summary.total,
+        date: order.timestamp,
+        status: order.status
+      }));
+
+      // Calcular estadísticas
+      const totalSales = ordersData.reduce((sum, order) => sum + order.summary.total, 0);
+      const totalOrders = ordersData.length;
+      const registeredUsers = usersWithRoles.length;
+      const productsInStock = inventoryData.length;
+      const lowStockProducts = inventoryData.filter(p => p.stock < 10).length;
+
+      setDashboardData({
+        totalSales,
+        totalOrders,
+        registeredUsers,
+        productsInStock,
+        lowStockProducts,
+        recentOrders: recentOrdersData,
+        users: usersWithRoles,
+        inventory: inventoryData
+      });
+    } catch (error) {
+      console.error('Error al cargar datos del dashboard:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { dashboardData, loading, refreshData: loadDashboardData };
 };
