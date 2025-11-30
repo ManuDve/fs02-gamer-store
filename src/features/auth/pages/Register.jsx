@@ -184,7 +184,7 @@ const Register = () => {
 
           <div className="form-group">
             <label htmlFor="phone">
-              <i className="bi bi-telephone"></i> Teléfono <span className="text-danger">*</span>
+              <i className="bi bi-telephone"></i> Teléfono
             </label>
             <input
               type="tel"

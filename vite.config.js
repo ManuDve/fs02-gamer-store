@@ -15,7 +15,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://66.135.22.150',
+        target: 'https://gamer-store-back.duckdns.org',
         changeOrigin: true
       }
     }
