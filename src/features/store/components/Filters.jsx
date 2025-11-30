@@ -1,9 +1,25 @@
-import { useId } from 'react';
+import { useId, useState, useEffect } from 'react';
 import './Filters.css';
+import { productService } from '../../../shared/services/productService';
 
 const Filters = ({ onChange }) => {
-
     const categorySelectId = useId();
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        loadCategories();
+    }, []);
+
+    const loadCategories = async () => {
+        try {
+            const products = await productService.getAll();
+            // Obtener categorías únicas
+            const uniqueCategories = [...new Set(products.map(p => p.category))];
+            setCategories(uniqueCategories);
+        } catch (error) {
+            console.error('Error al cargar categorías:', error);
+        }
+    };
 
     const handleCategoryChange = (event) => {
         onChange((prevFilters) => ({
@@ -17,12 +33,14 @@ const Filters = ({ onChange }) => {
             <label htmlFor={categorySelectId}>Categoría</label>
             <select id={categorySelectId} onChange={handleCategoryChange}>
                 <option value="all">Todas</option>
-                <option value="Juego de Mesa">Juego de Mesa</option>
-                <option value="Periférico Gamer">Periférico Gamer</option>
-                <option value="Consola">Consola</option>
+                {categories.map(category => (
+                    <option key={category} value={category}>
+                        {category}
+                    </option>
+                ))}
             </select>
         </div>
     )
 }
 
-export default Filters
+export default Filters;
