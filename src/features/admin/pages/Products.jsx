@@ -8,6 +8,7 @@ const Products = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState('all');
+  const [filterLowStock, setFilterLowStock] = useState(false);
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     id: '',
@@ -389,7 +390,8 @@ const Products = () => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          product.category.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = filterCategory === 'all' || product.category === filterCategory;
-    return matchesSearch && matchesCategory;
+    const matchesLowStock = !filterLowStock || (product.stock || 0) < 10;
+    return matchesSearch && matchesCategory && matchesLowStock;
   });
 
   const totalProducts = products.length;
@@ -431,12 +433,18 @@ const Products = () => {
             <p className="stat-value">{totalProducts}</p>
           </div>
         </div>
-        <div className="stat-card">
+        <div 
+          className="stat-card clickable" 
+          onClick={() => setFilterLowStock(!filterLowStock)}
+        >
           <div className="stat-icon bg-warning">
             <i className="bi bi-exclamation-triangle"></i>
           </div>
           <div className="stat-info">
-            <h3>Stock Bajo</h3>
+            <h3>
+              Stock Bajo 
+              {filterLowStock && <span className="filter-active">●</span>}
+            </h3>
             <p className="stat-value">{lowStockProducts}</p>
           </div>
         </div>
