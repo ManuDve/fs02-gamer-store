@@ -133,10 +133,12 @@ const Register = () => {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="register-form">
-          <div className="form-group">
-            <label htmlFor="name">
-              <i className="bi bi-person"></i> Nombre Completo
+        // Validar teléfono (obligatorio)
+        if (!formData.phone.trim()) {
+          newErrors.phone = 'El teléfono es requerido';
+        } else if (!/^\+?[\d\s-]{8,}$/.test(formData.phone)) {
+          newErrors.phone = 'Teléfono inválido';
+        }
             </label>
             <input
               type="text"
@@ -156,7 +158,7 @@ const Register = () => {
 
           <div className="form-group">
             <label htmlFor="email">
-              <i className="bi bi-envelope"></i> Email
+              <i className="bi bi-telephone"></i> Teléfono <span style={{color: 'red'}}>*</span>
             </label>
             <input
               type="email"
@@ -169,6 +171,9 @@ const Register = () => {
               autoComplete="email"
               disabled={isLoading}
             />
+            {errors.phone && (
+              <div className="invalid-feedback">{errors.phone}</div>
+            )}
             {errors.email && (
               <div className="invalid-feedback">{errors.email}</div>
             )}
