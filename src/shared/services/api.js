@@ -27,7 +27,8 @@ class ApiService {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         localStorage.removeItem('roles');
-        window.location.href = '/login';
+        const base = import.meta.env.BASE_URL || '/';
+        window.location.href = `${base}login`.replace('//', '/');
         throw new Error('Sesión expirada');
       }
 
